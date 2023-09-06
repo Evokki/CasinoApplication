@@ -1,2 +1,2 @@
-# Ohjelmistokehitys
- A repository for an OOP-course in school. Made in C#
+# Ohjelmistokehitys projekti
+ Ohjelmistokehitys projekti
