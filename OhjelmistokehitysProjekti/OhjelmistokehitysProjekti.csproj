@@ -7,4 +7,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="WPFgambleLibrary">
+      <HintPath>..\WPFgambleLibrary\obj\Debug\net6.0-windows\WPFgambleLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
