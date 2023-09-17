@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFgambleLibrary;
+using GambleAssetsLibrary;
 
 namespace OhjelmistokehitysProjekti
 {
@@ -21,9 +21,21 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GameWindow _GameWindow = new GameWindow();
+        private TestWindow _TestWindow = new TestWindow();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void GameButtonClicked(object sender, RoutedEventArgs e)
+        {
+            _GameWindow.Show();
+        }
+
+        public void InitTestWindow(object sender, RoutedEventArgs e)
+        {
+            _TestWindow.Show();
         }
     }
 }

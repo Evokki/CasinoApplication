@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WPFgambleLibrary
+namespace GambleAssetsLibrary
 {
     public abstract class Game
     {

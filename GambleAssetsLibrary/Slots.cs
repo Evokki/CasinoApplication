@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFgambleLibrary
+namespace GambleAssetsLibrary
 {
     internal class Slots : Game
     {
