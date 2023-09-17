@@ -3,6 +3,7 @@ using OhjelmistokehitysProjekti.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,17 +14,47 @@ namespace OhjelmistokehitysProjekti.ViewModels
 {
     public class MainViewModel
     {
-        public ObservableCollection<Game> Games = new ObservableCollection<Game>();
-        public ICommand myCommand { get; set; }
+        public ICommand StartGameCommand { get; set; }
+        public ICommand ExitAppCommand { get; set; }
+        private GameWindow? _GameWindow = null;
 
         public MainViewModel() {
-            myCommand = new CloseWindowCommand(CloseWindow, CanShowWindow);
+            StartGameCommand = new RelayCommand(StartGame, CanShowWindow);
+            ExitAppCommand = new RelayCommand(ExitApplication, CanShowWindow);
         }
-        public void CloseWindow(object obj)
+
+        private void StartGame(object obj)
         {
-            
+            if(_GameWindow == null)
+            {
+                _GameWindow = new GameWindow();
+                _GameWindow.Show();
+            }
+            else
+            {
+                _GameWindow.Focus();
+            }
         }
-        public bool CanShowWindow(object obj)
+
+        public void ExitApplication(object obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Exit Application?",
+                "Notification", MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
+        }
+
+        public static void NotifyUser(string msg)
+        {
+            MessageBox.Show(msg,
+                "Notification", MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
+        private bool CanShowWindow(object obj)
         {
             return true;
         }
