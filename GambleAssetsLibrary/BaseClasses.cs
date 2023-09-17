@@ -3,6 +3,37 @@ using System.Collections.Generic;
 
 namespace GambleAssetsLibrary
 {
+    public class User
+    {
+        private string _Username;
+        private string _Password;
+        private decimal _AccountBalance;
+        public User(string name, string pass)
+        {
+            this._Username = name;
+            this._Password = pass;
+        }
+        public void IncreaseBalance(decimal amount)
+        {
+            this._AccountBalance += amount;
+        }
+        public void DecreaseBalance(decimal amount)
+        {
+            if(amount <= this._AccountBalance)
+            {
+                this._AccountBalance -= amount;
+            }
+            else
+            {
+
+            }
+        }
+        public bool Login(string username, string password)
+        {
+            return this._Username == username && this._Password == password;
+        }
+    }
+
     public abstract class Game
     {
         public string DisplayName = "";
