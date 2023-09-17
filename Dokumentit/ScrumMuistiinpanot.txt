@@ -1,7 +1,12 @@
 Aloituspalaveri 13.09.2023
 -Päätökset
 	-Scrum pituus 1vk
+	-Keskiviikkoisin Scrum-palaverit
 -Eka Sprintti 13.09-20.09
 	-Peli classit
 	-UI menu
+	-Arttu aloittaa Slotsin?
+	-Allu aloittaa jonkun korttipelin?
+	-Jaakko voi tehdä jotain???
+	-Veeti tekee base classit ja placeholder UIn
 	
