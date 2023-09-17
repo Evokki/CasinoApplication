@@ -1,6 +1,7 @@
 OhjelmistokehitysProjekti/bin/
 OhjelmistokehitysProjekti/obj/
 OhjelmistokehitysProjekti/.vs/
-WPFgambleLibrary/bin/
-WPFgambleLibrary/.vs/
-WPFgambleLibrary/obj/
+
+GambleAssetsLibrary/bin/
+GambleAssetsLibrary/.vs/
+GambleAssetsLibrary/obj/
