@@ -12,15 +12,13 @@ using System.Windows.Input;
 
 namespace OhjelmistokehitysProjekti.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel: BaseViewModel
     {
         public ICommand StartGameCommand { get; set; }
-        public ICommand ExitAppCommand { get; set; }
         private GameWindow? _GameWindow = null;
 
         public MainViewModel() {
-            StartGameCommand = new RelayCommand(StartGame, CanShowWindow);
-            ExitAppCommand = new RelayCommand(ExitApplication, CanShowWindow);
+            StartGameCommand = new RelayCommand(StartGame, CanExecute);
         }
 
         private void StartGame(object obj)
@@ -36,7 +34,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             }
         }
 
-        public void ExitApplication(object obj)
+        public override void CloseWindow(object obj)
         {
             MessageBoxResult result = MessageBox.Show("Exit Application?",
                 "Notification", MessageBoxButton.YesNo,
@@ -52,11 +50,6 @@ namespace OhjelmistokehitysProjekti.ViewModels
             MessageBox.Show(msg,
                 "Notification", MessageBoxButton.OK,
                 MessageBoxImage.Information);
-        }
-
-        private bool CanShowWindow(object obj)
-        {
-            return true;
         }
     }
 }

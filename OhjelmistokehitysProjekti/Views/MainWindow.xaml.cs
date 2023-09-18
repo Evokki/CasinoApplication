@@ -23,21 +23,21 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TestWindow _TestWindow = new TestWindow();
         public MainWindow()
         {
             InitializeComponent();
             MainViewModel mainViewModel = new MainViewModel();
             this.DataContext = mainViewModel;
-
             ValidateCurrentUser();
         }
         private void ValidateCurrentUser()
         {
             if(UserHandler.GetUser() == null)
             {
+                this.IsEnabled = false;
                 LoginWindow loginWindow = new LoginWindow();
-                loginWindow.Show();
+                loginWindow.ShowDialog();
+                this.IsEnabled = true;
             }
         }
     }

@@ -9,7 +9,7 @@
     <Grid>
         <ListView>
             <Button Content="Game Window Command" Height="80" Command="{Binding StartGameCommand}"></Button>
-            <Button Content="Exit Application Command" Height="80" Command="{Binding ExitAppCommand}"></Button>
+            <Button Content="Exit Application Command" Height="80" Command="{Binding CloseWindowCommand}"></Button>
         </ListView>
 
     </Grid>

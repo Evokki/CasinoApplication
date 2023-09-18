@@ -10,9 +10,9 @@ namespace GambleAssetsLibrary
     {
         private static List<User> _Users = new List<User>();
         private static User? currentUser { get; set; }
-        public static User CreateNewUser(string username, string password)
+        public static User CreateNewUser(string username, string password, bool remember)
         {
-            return new User(username, password);
+            return new User(username, password, remember);
         }
         public static void SetCurrentUser(User u)
         {

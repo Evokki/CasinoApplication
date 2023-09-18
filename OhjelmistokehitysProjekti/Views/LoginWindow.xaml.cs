@@ -23,8 +23,14 @@ namespace OhjelmistokehitysProjekti.Views
         public LoginWindow()
         {
             InitializeComponent();
+
             LoginViewModel viewModel = new LoginViewModel();
+            viewModel.RequestClose += this.Close;
             this.DataContext = viewModel;
+
+            //Sets the window unmovable
+            this.WindowStyle = WindowStyle.None;
+            this.ResizeMode = ResizeMode.NoResize;
         }
     }
 }

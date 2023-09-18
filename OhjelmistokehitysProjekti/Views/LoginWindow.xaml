@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        Title="Login" Height="450" Width="800"
+        Background="Azure">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="300"></ColumnDefinition>
-
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -21,9 +21,9 @@
 
         <Label Grid.Column="0" Grid.Row="0" Content="Username:" ></Label>
         <Label Grid.Column="0" Grid.Row="1" Content="Password:" ></Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="Enter Username..."></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="Enter password..."></TextBox>
-        <CheckBox Grid.Row="2" Content="Remember user credentials"></CheckBox>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding _Username, Mode=OneWayToSource}" ></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding _Password, Mode=OneWayToSource}"></TextBox>
+        <CheckBox Grid.Row="2" Content="Remember user credentials" IsChecked="{Binding _Remember, Mode=TwoWay}"></CheckBox>
         <Button Grid.Row="2" Grid.Column="1" Content="LOGIN" Command="{Binding LoginCommand}"></Button>
         <Button Grid.Row="3" Grid.Column="1" Content="Play as a guest" Command="{Binding PlayAsGuestCommand}"></Button>
         
