@@ -28,9 +28,10 @@ namespace OhjelmistokehitysProjekti
             InitializeComponent();
             MainViewModel mainViewModel = new MainViewModel();
             this.DataContext = mainViewModel;
-            ValidateCurrentUser();
+
+            Loaded += ValidateCurrentUser;
         }
-        private void ValidateCurrentUser()
+        private void ValidateCurrentUser(object obj, RoutedEventArgs e)
         {
             if(UserHandler.GetUser() == null)
             {

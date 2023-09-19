@@ -36,9 +36,11 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         public override void CloseWindow(object obj)
         {
+            JsonDatabaseHandler.SaveJsonData(UserHandler.GetUser());
             MessageBoxResult result = MessageBox.Show("Exit Application?",
                 "Notification", MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
+
             if (result == MessageBoxResult.Yes)
             {
                 App.Current.Shutdown();

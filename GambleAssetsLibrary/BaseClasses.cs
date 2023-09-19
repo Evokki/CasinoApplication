@@ -7,13 +7,11 @@ namespace GambleAssetsLibrary
     {
         private string _Username;
         private string _Password;
-        private bool _RememberMe;
         private decimal _AccountBalance;
-        public User(string name, string pass, bool rememberMe)
+        public User(string name, string pass)
         {
             this._Username = name;
             this._Password = pass;
-            this._RememberMe = rememberMe;
         }
         public void IncreaseBalance(decimal amount)
         {
@@ -33,6 +31,10 @@ namespace GambleAssetsLibrary
         public bool Login(string username, string password)
         {
             return this._Username == username && this._Password == password;
+        }
+        public override string ToString()
+        {
+            return _Username;
         }
     }
 

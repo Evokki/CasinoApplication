@@ -15,7 +15,21 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public ICommand PlayAsGuestCommand { get; set; }
         public string? _Username { get; set; }
         public string? _Password { get; set; }
-        public bool _Remember { get; set; }
+        public bool _LoginOrSignup { get; set; } = false;
+        public string _LoginMode 
+        {
+            get
+            {
+                if (_LoginOrSignup)
+                {
+                    return "CREATE NEW USER";
+                }
+                else
+                {
+                    return "LOGIN";
+                }
+            }
+        }
 
         public LoginViewModel()
         {
@@ -31,18 +45,21 @@ namespace OhjelmistokehitysProjekti.ViewModels
             }
             else
             {
-                User U = UserHandler.CreateNewUser(_Username, _Password, _Remember);
-                UserHandler.SetCurrentUser(U);
-                MainViewModel.NotifyUser("User " + _Username + " has been logged in");
+                if(UserHandler.LoginUser(_Username, _Password) == false)
+                {
+                    MainViewModel.NotifyUser("Wrong username or password!");
+                    return;
+                }
+                
                 CloseWindow(null);
             }
         }
 
         private void PlayAsGuest(object obj)
         {
-            User U = UserHandler.CreateNewUser("Guest User", "1234", false);
-            UserHandler.SetCurrentUser(U);
-            MainViewModel.NotifyUser("User " + _Username + " has been logged in");
+            UserHandler.SetCurrentUser(new User("Guest", "0000"));
+            MainViewModel.NotifyUser("User " + _Username + " has been logged in"); //Testi ilmoitus
+            CloseWindow(null);
         }
     }
 }
