@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GambleAssetsLibrary;
+using OhjelmistokehitysProjekti.ViewModels;
+using OhjelmistokehitysProjekti.Views;
 
 namespace OhjelmistokehitysProjekti
 {
@@ -21,21 +23,23 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GameWindow _GameWindow = new GameWindow();
-        private TestWindow _TestWindow = new TestWindow();
         public MainWindow()
         {
             InitializeComponent();
-        }
+            MainViewModel mainViewModel = new MainViewModel();
+            this.DataContext = mainViewModel;
 
-        public void GameButtonClicked(object sender, RoutedEventArgs e)
-        {
-            _GameWindow.Show();
+            Loaded += ValidateCurrentUser;
         }
-
-        public void InitTestWindow(object sender, RoutedEventArgs e)
+        private void ValidateCurrentUser(object obj, RoutedEventArgs e)
         {
-            _TestWindow.Show();
+            if(UserHandler.GetUser() == null)
+            {
+                this.IsEnabled = false;
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                this.IsEnabled = true;
+            }
         }
     }
 }

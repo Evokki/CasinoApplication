@@ -8,9 +8,8 @@
         Title="Main menu" Height="1080" Width="1920">
     <Grid>
         <ListView>
-            
-        <Button Grid.Column="0" Content="Game Win" Height="80" Click="GameButtonClicked"></Button>
-        <Button Grid.Column="0" Content="Test Win" Height="80" Click="InitTestWindow"></Button>
+            <Button Content="Game Window Command" Height="80" Command="{Binding StartGameCommand}"></Button>
+            <Button Content="Exit Application Command" Height="80" Command="{Binding CloseWindowCommand}"></Button>
         </ListView>
 
     </Grid>

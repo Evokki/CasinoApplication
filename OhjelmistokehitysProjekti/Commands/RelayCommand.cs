@@ -7,13 +7,13 @@ using System.Windows.Input;
 
 namespace OhjelmistokehitysProjekti.Commands
 {
-    public class CloseWindowCommand : ICommand
+    public class RelayCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
         private Action<object> _Execute { get; set; }
         private Predicate<object> _CanExecute { get; set; }
 
-        public CloseWindowCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             _Execute = execute;
             _CanExecute = canExecute;
