@@ -14,6 +14,7 @@ namespace GambleAssetsLibrary
         {
             deck = new Deck();
         }
+
         public override void StartGame()
         {
             Console.WriteLine("Blackjack start");

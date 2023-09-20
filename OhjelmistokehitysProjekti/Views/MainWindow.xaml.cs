@@ -36,6 +36,11 @@ namespace OhjelmistokehitysProjekti
             BlackJackView bjVIew = new BlackJackView();
             bjVIew.Show();
         }
+        public void StartSlots(object sender, RoutedEventArgs e)
+        {
+            SlotsView slotsView = new SlotsView();
+            slotsView.Show();
+        }
         private void ValidateCurrentUser(object obj, RoutedEventArgs e)
         {
             if(UserHandler.GetUser() == null)

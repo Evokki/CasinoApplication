@@ -13,7 +13,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
     public abstract class BaseViewModel: INotifyPropertyChanged
     {
         public ICommand CloseWindowCommand { get; set; }
-        public event Action? RequestClose;
+        public event Action RequestClose;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public BaseViewModel() {
