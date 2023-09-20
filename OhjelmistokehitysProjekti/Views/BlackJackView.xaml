@@ -6,15 +6,18 @@
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
         mc:Ignorable="d"
         Title="Blackjack" Height="450" Width="800">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="BlackjackData"></ObjectDataProvider>
+    </Window.Resources>
     <Grid>
-        <TextBlock Text="This is a game window"></TextBlock>
-        <TextBlock Text="{Binding betIndex, Mode=OneWay}"></TextBlock>
         <StackPanel>
-            <Button Content="BetUp" Command="{Binding BetUpCommand}"></Button>
-            <Button Content="BetDown" Command="{Binding BetDownCommand}"></Button>
+            <TextBlock Text="This is a game window"></TextBlock>
+            <TextBlock Text="{Binding Source={StaticResource BlackjackData}, Path=betIndex}"></TextBlock>
+            <Button Content="BetUp" Command="{Binding BetUpCommand, Mode=OneWayToSource}" IsEnabled="{Binding AllowBetChange}"></Button>
+            <Button Content="BetDown" Command="{Binding BetDownCommand, Mode=OneWayToSource}" IsEnabled="{Binding AllowBetChange}"></Button>
             <Button Content="Double" Command="{Binding DoubleCommand}"></Button>
             <Button Content="Roll" Command="{Binding RollCommand}"></Button>
-            <CheckBox IsChecked="{Binding AllowBetChange}"></CheckBox>
+            <CheckBox IsChecked="{Binding AllowBetChange, Mode=OneWayToSource}"></CheckBox>
         </StackPanel>
         
     </Grid>

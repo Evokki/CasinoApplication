@@ -14,7 +14,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
     {
         public ICommand CloseWindowCommand { get; set; }
         public event Action RequestClose;
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public BaseViewModel() {
             CloseWindowCommand = new RelayCommand(CloseWindow, CanExecute);

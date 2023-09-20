@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GambleAssetsLibrary;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace OhjelmistokehitysProjekti.ViewModels
 {
@@ -14,12 +16,17 @@ namespace OhjelmistokehitysProjekti.ViewModels
     {
         public Game currentGame;
         public bool AllowBetChange = true;
-        public int betIndex = 0;
+        public int betIndex { get; set; } = 0;
         public double[] bets = {0.20, 0.40 , 0.60, 0.80, 1.00};
         ICommand BetUpCommand { get; set; }
         ICommand BetDownCommand { get; set; }
         ICommand DoubleCommand { get; set; }
         ICommand RollCommand { get; set; }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         public BaseGameViewModel(Game game)
         {
             BetUpCommand = new RelayCommand(IncreaseBet, CanChangeBet);

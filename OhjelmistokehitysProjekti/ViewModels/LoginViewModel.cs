@@ -15,7 +15,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public ICommand PlayAsGuestCommand { get; set; }
         public string? _Username { get; set; }
         public string? _Password { get; set; }
-        public bool _LoginOrSignup { get; set; } = false;
+        public bool _LoginOrSignup { get; set; }
         public string _LoginMode 
         {
             get
