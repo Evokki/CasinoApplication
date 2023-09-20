@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GambleAssetsLibrary;
+using OhjelmistokehitysProjekti.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,14 @@ namespace OhjelmistokehitysProjekti
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
-    public partial class GameWindow : Window
+    public partial class BlackJackView : Window
     {
-        public GameWindow()
+        public BlackJackView()
         {
             InitializeComponent();
+            Blackjack bjGame = new Blackjack();
+            BlackjackViewModel viewModel = new BlackjackViewModel(bjGame);
+            this.DataContext = viewModel;
         }
     }
 }

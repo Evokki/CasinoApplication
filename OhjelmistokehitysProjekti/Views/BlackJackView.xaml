@@ -1,0 +1,21 @@
+﻿<Window x:Class="OhjelmistokehitysProjekti.BlackJackView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
+        mc:Ignorable="d"
+        Title="Blackjack" Height="450" Width="800">
+    <Grid>
+        <TextBlock Text="This is a game window"></TextBlock>
+        <TextBlock Text="{Binding betIndex, Mode=OneWay}"></TextBlock>
+        <StackPanel>
+            <Button Content="BetUp" Command="{Binding BetUpCommand}"></Button>
+            <Button Content="BetDown" Command="{Binding BetDownCommand}"></Button>
+            <Button Content="Double" Command="{Binding DoubleCommand}"></Button>
+            <Button Content="Roll" Command="{Binding RollCommand}"></Button>
+            <CheckBox IsChecked="{Binding AllowBetChange}"></CheckBox>
+        </StackPanel>
+        
+    </Grid>
+</Window>

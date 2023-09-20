@@ -31,6 +31,11 @@ namespace OhjelmistokehitysProjekti
 
             Loaded += ValidateCurrentUser;
         }
+        public void StartBlackjack(object sender, RoutedEventArgs e)
+        {
+            BlackJackView bjVIew = new BlackJackView();
+            bjVIew.Show();
+        }
         private void ValidateCurrentUser(object obj, RoutedEventArgs e)
         {
             if(UserHandler.GetUser() == null)

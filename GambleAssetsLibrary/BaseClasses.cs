@@ -40,12 +40,13 @@ namespace GambleAssetsLibrary
 
     public abstract class Game
     {
-        public string DisplayName = "";
-        public virtual void Setup(string S)
+        private string DisplayName = "";
+        public Game(string S)
         {
             DisplayName = S;
         }
         public abstract void StartGame();
+        public abstract void Roll();
         public abstract void EndGame();
     }
 

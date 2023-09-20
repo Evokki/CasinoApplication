@@ -9,4 +9,10 @@ Aloituspalaveri 13.09.2023
 	-Allu aloittaa jonkun korttipelin?
 	-Jaakko voi tehdä jotain???
 	-Veeti tekee base classit ja placeholder UIn
-	
+Sprint 1 review
+	-Veeti sai pohjustettua UIn ja tehtyä baseclassit
+20.09.23-27.09.23
+	-Veeti jatkaa UIta ja aloittaa ensimmäisen pelin
+	-Arttu tekee vittu vihdoin slotsin
+	-Allu tekee vihdoin vitun pokerin
+	-Jaakolle nakkihommat
