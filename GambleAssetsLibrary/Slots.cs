@@ -14,7 +14,11 @@ namespace GambleAssetsLibrary
         {
             throw new NotImplementedException();
         }
-
+        //kolme listaa 
+        //Listoihin eri hedelmä ja niiden arpominen tiettyjen mahdollisuukisen perusteella
+        //Paina spin 
+        //arpoo listojen hedelmät
+        //palauta saadut hedelmät tulosruutuun
         public override void EndGame()
         {
             throw new NotImplementedException();

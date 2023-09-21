@@ -28,5 +28,10 @@ namespace OhjelmistokehitysProjekti
             BlackjackViewModel viewModel = new BlackjackViewModel(bjGame);
             this.DataContext = viewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

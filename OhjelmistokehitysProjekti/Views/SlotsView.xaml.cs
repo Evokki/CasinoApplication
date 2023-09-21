@@ -29,5 +29,10 @@ namespace OhjelmistokehitysProjekti.Views
             SlotsViewModel slotsViewModel = new SlotsViewModel(slotsGame);
             this.DataContext = slotsViewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
