@@ -5,19 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
         mc:Ignorable="d"
-        Title="Blackjack" Height="450" Width="800">
+        Title="Blackjack" Height="1080" Width="1920"
+        WindowState="Maximized">
     <Window.Resources>
-        <ObjectDataProvider x:Key="BlackjackData"></ObjectDataProvider>
+        <Style TargetType="Button" x:Key="BaseGameButton">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Visibility" Value="Hidden"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="BetButton">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameResultButton">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="2">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameInputButton" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="1">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
+        </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Text="This is a game window"></TextBlock>
-            <TextBlock Text="{Binding Source={StaticResource BlackjackData}, Path=betIndex}"></TextBlock>
-            <Button Content="BetUp" Command="{Binding BetUpCommand, Mode=OneWayToSource}" IsEnabled="{Binding AllowBetChange}"></Button>
-            <Button Content="BetDown" Command="{Binding BetDownCommand, Mode=OneWayToSource}" IsEnabled="{Binding AllowBetChange}"></Button>
-            <Button Content="Double" Command="{Binding DoubleCommand}"></Button>
-            <Button Content="Roll" Command="{Binding RollCommand}"></Button>
-            <CheckBox IsChecked="{Binding AllowBetChange, Mode=OneWayToSource}"></CheckBox>
+            <CheckBox Content="Test AllowBetChange Command" IsChecked="{Binding AllowBetChange}"></CheckBox>
+            <CheckBox Content="Test AllowUserInput Command" IsChecked="{Binding AllowUserInput}"></CheckBox>
+            <TextBlock Text="{Binding BetIndex}"></TextBlock>
+            <TextBlock Text="{Binding GameState}"></TextBlock>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
+            <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
+            <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
+
+            <Button Style="{StaticResource GameResultButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button>
+            <Button Style="{StaticResource GameResultButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
+
+            <Button Style="{StaticResource GameInputButton}" Content="Hit" Command="{Binding HitCommand}"></Button>
+            <Button Style="{StaticResource GameInputButton}" Content="Stand" Command="{Binding StandCommand}"></Button>
         </StackPanel>
         
     </Grid>

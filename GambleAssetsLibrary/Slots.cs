@@ -24,7 +24,12 @@ namespace GambleAssetsLibrary
             throw new NotImplementedException();
         }
 
-        public override void Roll()
+        public override void Play()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void HandleGameResults()
         {
             throw new NotImplementedException();
         }

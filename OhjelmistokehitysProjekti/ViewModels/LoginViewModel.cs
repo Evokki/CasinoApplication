@@ -22,12 +22,12 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             get
             {
-                return _LoginOrSignup
+                return _LoginOrSignup;
             }
             set
             {
                 _LoginOrSignup = value;
-                OnPropertyChanged();
+                OnPropertyChanged("_LoginOrSignup");
             }
         }
         public string _LoginMode 
@@ -39,6 +39,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
         public void OnPropertyChanged(string PropertyName = null)
         {
+            if(PropertyName == "_LoginOrSignup")
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("_LoginMode"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
         public LoginViewModel()
@@ -67,7 +69,9 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         private void PlayAsGuest(object obj)
         {
-            UserHandler.SetCurrentUser(new User("Guest", "0000"));
+            User guestUser = new User("Guest", "0000");
+            guestUser.IncreaseBalance(1000.00m);
+            UserHandler.SetCurrentUser(guestUser);
             MainViewModel.NotifyUser("User " + _Username + " has been logged in"); //Testi ilmoitus
             CloseWindow(null);
         }

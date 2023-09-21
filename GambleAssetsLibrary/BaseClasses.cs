@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Windows.Navigation;
 
 namespace GambleAssetsLibrary
 {
@@ -29,6 +30,13 @@ namespace GambleAssetsLibrary
 
             }
         }
+        public bool IsThereEnoughBalance(decimal amount)
+        {
+            if(_AccountBalance >= amount)
+            {
+                return true;
+            }else { return false; }
+        }
         public bool Login(string username, string password)
         {
             return this._Username == username && this._Password == password;
@@ -42,16 +50,45 @@ namespace GambleAssetsLibrary
     public abstract class Game
     {
         private string DisplayName = "";
+        public delegate void GameLogicCallback(GameResult? result);
+        public GameLogicCallback OnGameLogicEnded;
+        public GameLogicCallback OnGameResult;
         public Game(string S)
         {
             DisplayName = S;
         }
-        public abstract void StartGame();
-        public abstract void Roll();
+        public string GetName() => this.DisplayName;
+        public abstract void StartGame(); //Called when opening a game for the first time
+        public abstract void Play(); //Called after player wants to start the game logic. 
+        public virtual void RaiseGameLogicEndedEvent(GameResult result)
+        {
+            OnGameLogicEnded?.Invoke(result);
+        }
         public abstract void EndGame();
-        public abstract double HandlePayout();
+        public abstract void HandleGameResults(); //Call this after the gamelogic to handle if user won or lost. Create Gameresult object
+        public virtual void RaiseGameResultsEvent(GameResult result) //Call this at the end of HandleGameResults.
+        {
+            OnGameResult?.Invoke(result);
+        }
+        public virtual GameResult DoubleOrNothing(GameResult result) //Called after HandlePayout if user clicks double
+        {
+            result.WinAmount *= 2;
+            return result;
+        }
     }
 
+    public class GameResult
+    {
+        public string GameName;
+        public decimal WinAmount;
+        public decimal UsedBet;
+        public GameResult(string s, decimal w, decimal b)
+        {
+            this.GameName = s;
+            this.WinAmount = w;
+            this.UsedBet = b;
+        }
+    }
     public class Card
     {
         public enum CardHouse
@@ -62,36 +99,39 @@ namespace GambleAssetsLibrary
             Club = 3
         };
 
-        public CardHouse House;
-        public string Name;
-        public int Value;
+        private CardHouse _House;
+        private string _Name;
+        private int _Value;
 
         public Card(int value, CardHouse house)
         {
             if(value == 1)
             {
-                this.Name = "A";
+                this._Name = "A";
             }
             else if (value == 11)
             {
-                this.Name = "J";
+                this._Name = "J";
             }
             else if (value == 12)
             {
-                this.Name = "Q";    
+                this._Name = "Q";    
             }
             else if (value == 13)
             {
-                this.Name = "K";
+                this._Name = "K";
             }
             else
             {
-                this.Name = value.ToString();
+                this._Name = value.ToString();
             }
             
-            this.Value = value;
-            this.House = house;
+            this._Value = value;
+            this._House = house;
         }
+        public string GetName() => this._Name;
+        public int GetValue() => this._Value;
+        public string GetHouse() => this._House.ToString();
     }
 
     public class Deck

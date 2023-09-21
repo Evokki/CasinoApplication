@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti.Views"
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800"
-        Background="Azure">
+        Background="Gray">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>

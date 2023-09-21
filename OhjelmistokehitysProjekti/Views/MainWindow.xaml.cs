@@ -26,10 +26,12 @@ namespace OhjelmistokehitysProjekti
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
             MainViewModel mainViewModel = new MainViewModel();
             this.DataContext = mainViewModel;
 
             Loaded += ValidateCurrentUser;
+
         }
         public void StartBlackjack(object sender, RoutedEventArgs e)
         {
