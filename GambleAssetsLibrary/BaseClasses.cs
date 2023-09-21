@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace GambleAssetsLibrary
 {
@@ -48,6 +49,7 @@ namespace GambleAssetsLibrary
         public abstract void StartGame();
         public abstract void Roll();
         public abstract void EndGame();
+        public abstract double HandlePayout();
     }
 
     public class Card
@@ -95,7 +97,12 @@ namespace GambleAssetsLibrary
     public class Deck
     {
         private List<Card> cards = new List<Card>();
+        private Random rng = new Random();
         public Deck()
+        {
+            CreateFullDéck();
+        }
+        private void CreateFullDéck()
         {
             for(int i = 0; i < 4; i++) {
                 Card.CardHouse house = (Card.CardHouse)i;
@@ -104,6 +111,13 @@ namespace GambleAssetsLibrary
                     cards.Add(new Card(i+1, (Card.CardHouse)i));
                 }
             }
+        }
+        public Card GetCard()
+        {
+            int i = rng.Next(cards.Count);
+            Card card = cards[i];
+            cards.RemoveAt(i);
+            return card;
         }
     }
 }

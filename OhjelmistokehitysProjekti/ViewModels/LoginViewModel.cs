@@ -6,31 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GambleAssetsLibrary;
+using System.ComponentModel;
 
 namespace OhjelmistokehitysProjekti.ViewModels
 {
     class LoginViewModel: BaseViewModel
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public ICommand LoginCommand { get; set; }
         public ICommand PlayAsGuestCommand { get; set; }
         public string? _Username { get; set; }
         public string? _Password { get; set; }
-        public bool _LoginOrSignup { get; set; }
+        private bool _LoginOrSignup { get; set; }
+        public bool LoginOrSignup
+        {
+            get
+            {
+                return _LoginOrSignup
+            }
+            set
+            {
+                _LoginOrSignup = value;
+                OnPropertyChanged();
+            }
+        }
         public string _LoginMode 
         {
             get
             {
-                if (_LoginOrSignup)
-                {
-                    return "CREATE NEW USER";
-                }
-                else
-                {
-                    return "LOGIN";
-                }
+                return _LoginOrSignup ? "Create new User" : "Login";
             }
         }
-
+        public void OnPropertyChanged(string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(LoginUser, CanExecute);

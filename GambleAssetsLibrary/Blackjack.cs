@@ -9,7 +9,9 @@ namespace GambleAssetsLibrary
 {
     public class Blackjack : Game
     {
-        public Deck deck;
+        private Deck deck;
+        private List<Card> houseHand = new List<Card>();
+        private List<Card> userHand = new List<Card>();
         public Blackjack(string s = "Blackjack") : base(s)
         {
             deck = new Deck();
@@ -26,7 +28,31 @@ namespace GambleAssetsLibrary
 
         public override void Roll()
         {
-            Console.WriteLine("Blackjack roll");
+            InitHands();
+        }
+        public void HandleHitOrStand(bool state)
+        {
+            if (state)
+            {
+                userHand
+            }
+            else
+            {
+
+            }
+        }
+        private void InitHands()
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                houseHand.Add(deck.GetCard());
+                userHand.Add(deck.GetCard());
+            }
+        }
+
+        public override double HandlePayout()
+        {
+            return 0.0;
         }
     }
 }
