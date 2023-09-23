@@ -16,56 +16,44 @@ namespace OhjelmistokehitysProjekti.ViewModels
     public abstract class BaseGameViewModel : BaseViewModel
     {
         public Game? currentGame;
-        public GameResult latestGameResult;
+        private GameStatus _GameStatus;
+        public GameStatus GameStatus
+        {
+            get { return _GameStatus; }
+            set { _GameStatus = value; OnPropertyChanged("GameStatus"); }
+        }
+        private GameResult _GameResult;
+        public GameResult GameResult
+        {
+            get { return _GameResult; }
+            set { _GameResult = value; OnPropertyChanged("GameResult"); }
+        }
         private int _GameState = 0;
         public int GameState
         {
-            get
-            {
-                return _GameState;
-            }
-            set
-            {
-                _GameState = value;
-                OnPropertyChanged("GameState");
-            }
+            get { return _GameState;}
+            set{ _GameState = value; OnPropertyChanged("GameState"); }
         }
 
         private bool _AllowBetChange = true;
         public bool AllowBetChange{
-            get{
-                return _AllowBetChange;
-            }
-            set{
-                _AllowBetChange = value;
-                OnPropertyChanged("AllowBetChange");
-            }
+            get{ return _AllowBetChange; }
+            set{ _AllowBetChange = value; OnPropertyChanged("AllowBetChange"); }
         }
 
         private bool _AllowUserInput = true;
         public bool AllowUserInput
         {
-            get
-            {
-                return _AllowUserInput;
-            }
-            set
-            {
-                _AllowUserInput = value;
-                OnPropertyChanged("AllowUserInput");
-            }
+            get { return _AllowUserInput; }
+            set{ _AllowUserInput = value ;OnPropertyChanged("AllowUserInput"); }
         }
 
         private int _BetIndex = 0;
-        public int BetIndex{
-            get{
-                return _BetIndex;
-            }
-            set{
-                _BetIndex += value;
-                OnPropertyChanged("BetIndex");
-                }
-            }
+        public int BetIndex
+        {
+            get{ return _BetIndex; }
+            set{  _BetIndex = value; OnPropertyChanged("BetIndex"); }
+        }
 
         public decimal[] bets = { 0,20m, 0.40m, 0.60m, 0.80m, 1.00m };
         public ICommand BetUpCommand { get; set; }
@@ -74,13 +62,15 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public ICommand CashOutCommand { get; set; }
         public ICommand PlayCommand { get; set; }
 
-        public override event PropertyChangedEventHandler PropertyChanged;
+        public override event PropertyChangedEventHandler? PropertyChanged;
 
         public void OnPropertyChanged(string PropertyName)
         {
             Console.WriteLine("Prop changed " + PropertyName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        //Constructor. Assings values to all ICommands and sets up Game model.
         public BaseGameViewModel(Game game)
         {
             BetUpCommand = new RelayCommand(IncreaseBet, CanChangeBet);
@@ -90,17 +80,34 @@ namespace OhjelmistokehitysProjekti.ViewModels
             CashOutCommand = new RelayCommand(CashOut, CanExecute);
 
             currentGame = game;
-            currentGame.OnGameLogicEnded += HandleGameLogicEnded;
+            currentGame.OnGameStatus += HandleGameStatus;
             currentGame.OnGameResult += HandleGameResult;
         }
 
+        /// <summary>
+        //  States, limiting user view inputs
+        //  0 = Initial Input state | BetUp, BetDown and Play Commands
+        /// 1 = User game selection state | User selection commands, Changes per game
+        /// 2 = Game result state | Double and cashout commands
+        /// </summary>
+        public void ChangeGameState(int newState) 
+        {
+            GameState = newState;
+        }
+        #region Betting Functionality
+        // Called from BetUpCommand
         private void IncreaseBet(object obj)
         {
             if (BetIndex < bets.Length - 1) {
                 BetIndex += 1;
             }
+            else
+            {
+                BetIndex = bets.Length - 1;
+            }
             Console.WriteLine("Bet +. Current bet " + bets[BetIndex]);
         }
+        // Called from BetDownCommand
         private void DecreaseBet(object obj)
         {
             if (BetIndex > 0)
@@ -110,22 +117,31 @@ namespace OhjelmistokehitysProjekti.ViewModels
             Console.WriteLine("Bet -. Current bet " + bets[BetIndex] );
         }
         public decimal GetCurrentBet() => bets[BetIndex];
+        #endregion
 
+        #region GameResult Functionality
+        // Called from DoubleCommand
+        // Calls Game.DoubleOrNothing doubling logic and returns a new result. Changes game state to 0 = (InputState) if no win.
         private void DoubleOrNothing(object obj)
         {
-            latestGameResult = currentGame.DoubleOrNothing(latestGameResult);
-            if(latestGameResult.WinAmount == 0) {
-                GameState = 0;
+            GameResult = currentGame.DoubleOrNothing(GameResult);
+            if(GameResult.WinAmount == 0) {
+                ChangeGameState(0);
             }
         }
 
+        // Called from CashOutCommand
+        // Adds winning from GameResult. Changes game state to 0 = (InputState).
         private void CashOut(object obj)
         {
             User u = UserHandler.GetUser();
-            u.IncreaseBalance(latestGameResult.WinAmount);
-            GameState = 0;
+            u.IncreaseBalance(GameResult.WinAmount);
+            ChangeGameState(0);
         }
+        #endregion
 
+        //Called from PlayCommand
+        // Initiates gamelogic in currentGame<Game>. After game logic an event Game.OnGameStatus(GameCallbackObjects.GameStatus result) is called.
         private void PlayGame(object obj)
         {
             User u = UserHandler.GetUser();
@@ -139,14 +155,26 @@ namespace OhjelmistokehitysProjekti.ViewModels
                 MessageBox.Show("User Account doesnt have enough balance");
             }
         }
-        private void HandleGameLogicEnded(GameResult res)
+        //GameStatus Listener. Listens to OnGameStatus event from class Game. Event returns a GameStatus object = Contains data about game state (Cards)
+        public virtual void HandleGameStatus(GameCallback res)
         {
-            GameState = 1;
+            GameStatus = (GameStatus) res;
+            ChangeGameState(1);
         }
-        private void HandleGameResult(GameResult res)
+        //GameResult Listener. Listens to OnGameResult event from class Game. Event returns a GameResult object = Contains data about winnings
+        public virtual void HandleGameResult(GameCallback res)
         {
-            latestGameResult = res;
-            GameState = 2;
+            GameResult = (GameResult) res;
+            if (GameResult.userWon)
+            {
+                MainViewModel.NotifyUser($"You won {GameResult.WinAmount}!");
+                ChangeGameState(2);
+            }
+            else
+            {
+                MainViewModel.NotifyUser("House won!");
+                ChangeGameState(0);
+            }
         }
 
         public virtual bool CanChangeBet(object obj)

@@ -47,8 +47,34 @@
             <CheckBox Content="Test AllowUserInput Command" IsChecked="{Binding AllowUserInput}"></CheckBox>
             <TextBlock Text="{Binding BetIndex}"></TextBlock>
             <TextBlock Text="{Binding GameState}"></TextBlock>
+            <TextBlock Text="{Binding GameStatus.GameName}"></TextBlock>
+            <TextBlock Text="House values"></TextBlock>
+            <TextBlock Text="{Binding HouseHandValue}"></TextBlock>
+            <TextBlock Text="User values"></TextBlock>
+            <TextBlock Text="{Binding UserHandValue}"></TextBlock>
+            <ListView ItemsSource="{Binding GameStatus.UserCards}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text="{Binding House}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding GameStatus.HouseCards}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text="{Binding House}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Orientation="Horizontal"></StackPanel>
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
@@ -60,6 +86,5 @@
             <Button Style="{StaticResource GameInputButton}" Content="Hit" Command="{Binding HitCommand}"></Button>
             <Button Style="{StaticResource GameInputButton}" Content="Stand" Command="{Binding StandCommand}"></Button>
         </StackPanel>
-        
     </Grid>
 </Window>

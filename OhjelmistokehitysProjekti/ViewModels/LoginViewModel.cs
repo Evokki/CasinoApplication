@@ -20,26 +20,16 @@ namespace OhjelmistokehitysProjekti.ViewModels
         private bool _LoginOrSignup { get; set; }
         public bool LoginOrSignup
         {
-            get
-            {
-                return _LoginOrSignup;
-            }
-            set
-            {
-                _LoginOrSignup = value;
-                OnPropertyChanged("_LoginOrSignup");
-            }
+            get{ return _LoginOrSignup; }
+            set{ _LoginOrSignup = value; OnPropertyChanged("LoginOrSignup"); }
         }
         public string _LoginMode 
         {
-            get
-            {
-                return _LoginOrSignup ? "Create new User" : "Login";
-            }
+            get { return _LoginOrSignup ? "Create new User" : "Login"; }
         }
         public void OnPropertyChanged(string PropertyName = null)
         {
-            if(PropertyName == "_LoginOrSignup")
+            if(PropertyName == "LoginOrSignup")
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("_LoginMode"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }

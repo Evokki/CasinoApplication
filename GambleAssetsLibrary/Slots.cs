@@ -29,7 +29,7 @@ namespace GambleAssetsLibrary
             throw new NotImplementedException();
         }
 
-        public override void HandleGameResults()
+        public override void HandleGameResults(bool userWon = false)
         {
             throw new NotImplementedException();
         }

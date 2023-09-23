@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows.Navigation;
-
 namespace GambleAssetsLibrary
 {
     public class User
@@ -50,8 +52,8 @@ namespace GambleAssetsLibrary
     public abstract class Game
     {
         private string DisplayName = "";
-        public delegate void GameLogicCallback(GameResult? result);
-        public GameLogicCallback OnGameLogicEnded;
+        public delegate void GameLogicCallback(GameCallback result);
+        public GameLogicCallback OnGameStatus;
         public GameLogicCallback OnGameResult;
         public Game(string S)
         {
@@ -60,15 +62,15 @@ namespace GambleAssetsLibrary
         public string GetName() => this.DisplayName;
         public abstract void StartGame(); //Called when opening a game for the first time
         public abstract void Play(); //Called after player wants to start the game logic. 
-        public virtual void RaiseGameLogicEndedEvent(GameResult result)
+        public virtual void RaiseGameLogicEndedEvent(GameStatus StatusResult)
         {
-            OnGameLogicEnded?.Invoke(result);
+            OnGameStatus?.Invoke(StatusResult);
         }
         public abstract void EndGame();
-        public abstract void HandleGameResults(); //Call this after the gamelogic to handle if user won or lost. Create Gameresult object
-        public virtual void RaiseGameResultsEvent(GameResult result) //Call this at the end of HandleGameResults.
+        public abstract void HandleGameResults(bool userWon = false); //Call this after the gamelogic to handle if user won or lost. Create Gameresult object
+        public virtual void RaiseGameResultsEvent(GameResult Result) //Call this at the end of HandleGameResults.
         {
-            OnGameResult?.Invoke(result);
+            OnGameResult?.Invoke(Result);
         }
         public virtual GameResult DoubleOrNothing(GameResult result) //Called after HandlePayout if user clicks double
         {
@@ -77,33 +79,39 @@ namespace GambleAssetsLibrary
         }
     }
 
-    public class GameResult
+    public class Card: INotifyPropertyChanged
     {
-        public string GameName;
-        public decimal WinAmount;
-        public decimal UsedBet;
-        public GameResult(string s, decimal w, decimal b)
+        const string Clubs = "Clubs";
+        const string Hearts = "Hearts";
+        const string Diamonds = "Diamonds";
+        const string Spades = "Spades";
+        public static string[] _Houses = { Spades, Hearts, Clubs, Diamonds };
+
+        private string _House;
+        public string House
         {
-            this.GameName = s;
-            this.WinAmount = w;
-            this.UsedBet = b;
+            get { return _House; }
+            set { _House = value; OnPropertyChanged("_House"); }
         }
-    }
-    public class Card
-    {
-        public enum CardHouse
-        {
-            Heart = 0,
-            Spade = 1,
-            Diamond = 2,
-            Club = 3
-        };
-
-        private CardHouse _House;
         private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged("_Name"); }
+        }
         private int _Value;
+        public int Value
+        {
+            get { return _Value; }
+            set { _Value = value; OnPropertyChanged("Value"); }
+        }
 
-        public Card(int value, CardHouse house)
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+        public Card(int value, string house)
         {
             if(value == 1)
             {
@@ -129,9 +137,6 @@ namespace GambleAssetsLibrary
             this._Value = value;
             this._House = house;
         }
-        public string GetName() => this._Name;
-        public int GetValue() => this._Value;
-        public string GetHouse() => this._House.ToString();
     }
 
     public class Deck
@@ -145,17 +150,17 @@ namespace GambleAssetsLibrary
         private void CreateFullDéck()
         {
             for(int i = 0; i < 4; i++) {
-                Card.CardHouse house = (Card.CardHouse)i;
+                string house = Card._Houses[i];
                 for(int j = 0; j < 14; j++)
                 {
-                    cards.Add(new Card(i+1, (Card.CardHouse)i));
+                    cards.Add(new Card(j+1, house));
                 }
             }
         }
         public Card GetCard()
         {
             int i = rng.Next(cards.Count);
-            Card card = cards[i];
+            Card card = cards.ElementAt(i);
             cards.RemoveAt(i);
             return card;
         }

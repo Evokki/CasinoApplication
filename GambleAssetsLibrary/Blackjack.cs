@@ -25,6 +25,8 @@ namespace GambleAssetsLibrary
         public override void EndGame()
         {
             Console.WriteLine("Blackjack end");
+            houseHand.Clear();
+            userHand.Clear();
         }
 
         public override void Play()
@@ -35,16 +37,17 @@ namespace GambleAssetsLibrary
         public void HandleHitOrStand(bool state)
         {
             int userAmount = CalculateHand(userHand);
-            if (state) //PLayer wants a new card
+            if (state) //Player wants a new card
             {
                 userHand.Add(deck.GetCard());
-                if (userAmount < 21)
+                RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
+                if (userAmount > 21)
                 {
-                    //PLayloop continues
+                    HandleGameResults(false);
                 }
-                else
+                else if(userAmount == 21)
                 {
-                    HandleGameResults();
+                    HouseTurn(userAmount);
                 }
             }
             else //Player stands. House turn
@@ -59,6 +62,7 @@ namespace GambleAssetsLibrary
             if (userAmount > houseAmount) //User has higher hand than house. House draws a card.
             {
                 houseHand.Add(deck.GetCard());
+                RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
                 houseAmount = CalculateHand(houseHand);
 
                 if (houseAmount < 21) //House Didnt go over 21. Checking again
@@ -67,16 +71,16 @@ namespace GambleAssetsLibrary
                 }
                 else if(houseAmount == 21) //House has a highest possible hand. House wins
                 {
-                    HandleGameResults();
+                    HandleGameResults(false);
                 }
                 else //House went over 21. User wins
                 {
-                    HandleGameResults();
+                    HandleGameResults(true);
                 }
             }
             else //House has a higher or equal hand. House wins
             {
-                HandleGameResults();
+                HandleGameResults(false);
             }
         }
 
@@ -85,7 +89,13 @@ namespace GambleAssetsLibrary
             int i = 0;
             foreach(Card card in hand)
             {
-                i += card.GetValue();
+                if(card.Value > 10)
+                {
+                    i += 10;
+                }
+                else { 
+                    i += card.Value;
+                }
             }
             return i;
         }
@@ -97,16 +107,21 @@ namespace GambleAssetsLibrary
                 houseHand.Add(deck.GetCard());
                 userHand.Add(deck.GetCard());
             }
-            RaiseGameLogicEndedEvent(null);
+            RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
         }
 
-        public override void HandleGameResults()
+        public override void HandleGameResults(bool won)
         {
             decimal bet = 0.2m;
-            decimal win = 1.0m;
+            decimal win = 0m;
+            if (won)
+            {
+                win = bet * 5;
+            }
 
-            GameResult res = new GameResult(GetName(), win, bet);
+            GameResult res = new GameResult(GetName(), win, bet, won);
             RaiseGameResultsEvent(res);
+            EndGame();
         }
     }
 }

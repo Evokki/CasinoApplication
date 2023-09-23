@@ -21,17 +21,19 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class BlackJackView : Window
     {
+        Blackjack bjGame;
+        BlackjackViewModel viewModel;
         public BlackJackView()
         {
             InitializeComponent();
-            Blackjack bjGame = new Blackjack();
-            BlackjackViewModel viewModel = new BlackjackViewModel(bjGame);
+            bjGame = new Blackjack();
+            viewModel = new BlackjackViewModel(bjGame);
             this.DataContext = viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UpdateHand(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

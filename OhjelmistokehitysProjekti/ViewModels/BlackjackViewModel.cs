@@ -12,13 +12,27 @@ namespace OhjelmistokehitysProjekti.ViewModels
 {
     public class BlackjackViewModel : BaseGameViewModel
     {
-        private Blackjack Game;
+        private Blackjack _currentGame;
+        private BlackjackGameStatus _currentGameStatus;
         public ICommand HitCommand { get; set; }
         public ICommand StandCommand { get; set; }
 
+        private int _UserHandValue;
+        public int UserHandValue
+        {
+            get { return _UserHandValue; }
+            set { _UserHandValue = value; OnPropertyChanged("UserHandValue"); }
+        }
+        private int _HouseHandValue;
+        public int HouseHandValue
+        {
+            get { return _HouseHandValue; }
+            set { _HouseHandValue = value; OnPropertyChanged("HouseHandValue"); }
+        }
+
         public BlackjackViewModel(Game game) : base(game)
         {
-            Game = (Blackjack)game;
+            _currentGame = (Blackjack)game;
             HitCommand = new RelayCommand(HandleHitCommand, CanExecute);
             StandCommand = new RelayCommand(HandleStandCommand, CanExecute);
         }
@@ -26,12 +40,21 @@ namespace OhjelmistokehitysProjekti.ViewModels
         private void HandleHitCommand(object obj)
         {
             Console.WriteLine("hit cmd");
-            Game.HandleHitOrStand(true);
+            _currentGame.HandleHitOrStand(true);
         }
         private void HandleStandCommand(object obj)
         {
             Console.WriteLine("stand cmd");
-            Game.HandleHitOrStand(false);
+            _currentGame.HandleHitOrStand(false);
+        }
+
+        public override void HandleGameStatus(GameCallback res)
+        {
+            base.GameStatus = (GameStatus)res;
+            _currentGameStatus = (BlackjackGameStatus)res;
+            HouseHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.HouseCards);
+            UserHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.UserCards);
+            ChangeGameState(1);
         }
     }
 }
