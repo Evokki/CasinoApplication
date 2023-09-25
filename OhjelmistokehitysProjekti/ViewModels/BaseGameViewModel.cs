@@ -48,14 +48,18 @@ namespace OhjelmistokehitysProjekti.ViewModels
             set{ _AllowUserInput = value ;OnPropertyChanged("AllowUserInput"); }
         }
 
+        private decimal[] _Bets = { 0,20m, 0.40m, 0.60m, 0.80m, 1.00m };
         private int _BetIndex = 0;
         public int BetIndex
         {
             get{ return _BetIndex; }
             set{  _BetIndex = value; OnPropertyChanged("BetIndex"); }
         }
+        public decimal CurrentBet
+        {
+            get { return _Bets[BetIndex]; }
+        }
 
-        public decimal[] bets = { 0,20m, 0.40m, 0.60m, 0.80m, 1.00m };
         public ICommand BetUpCommand { get; set; }
         public ICommand BetDownCommand { get; set; }
         public ICommand DoubleCommand { get; set; }
@@ -66,7 +70,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         public void OnPropertyChanged(string PropertyName)
         {
-            Console.WriteLine("Prop changed " + PropertyName);
+            if(PropertyName == "BetIndex")
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentBet"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
@@ -98,14 +103,13 @@ namespace OhjelmistokehitysProjekti.ViewModels
         // Called from BetUpCommand
         private void IncreaseBet(object obj)
         {
-            if (BetIndex < bets.Length - 1) {
+            if (BetIndex < _Bets.Length - 1) {
                 BetIndex += 1;
             }
             else
             {
-                BetIndex = bets.Length - 1;
+                BetIndex = _Bets.Length - 1;
             }
-            Console.WriteLine("Bet +. Current bet " + bets[BetIndex]);
         }
         // Called from BetDownCommand
         private void DecreaseBet(object obj)
@@ -114,9 +118,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
             {
                 BetIndex -= 1;
             }
-            Console.WriteLine("Bet -. Current bet " + bets[BetIndex] );
         }
-        public decimal GetCurrentBet() => bets[BetIndex];
+        public decimal GetCurrentBet() => CurrentBet;
         #endregion
 
         #region GameResult Functionality
@@ -145,9 +148,9 @@ namespace OhjelmistokehitysProjekti.ViewModels
         private void PlayGame(object obj)
         {
             User u = UserHandler.GetUser();
-            if (u.IsThereEnoughBalance(bets[BetIndex]))
+            if (u.IsThereEnoughBalance(CurrentBet))
             {
-                u.DecreaseBalance(bets[BetIndex]);
+                u.DecreaseBalance(CurrentBet);
                 currentGame.Play();
             }
             else

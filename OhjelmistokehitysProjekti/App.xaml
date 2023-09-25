@@ -4,6 +4,58 @@
              xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button" x:Key="BaseGameButton">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Visibility" Value="Hidden"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="BetButton">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameResultButton">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="2">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameInputButton" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="1">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid" x:Key="Card">
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30"/>
+                    <Setter Property="Margin" Value="20, 20"/>
+                    <Setter Property="Text" Value="{Binding Name}"/>
+                </Style>
+                <Style TargetType="Image">
+                    <Setter Property="Height" Value="80"/>
+                    <Setter Property="Source" Value="{Binding CardSuitPath}"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="Grid" x:Key="Cardback">
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="Height" Value="260"/>
+            <Style.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="{Binding SuitPath}"/>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Application.Resources>
 </Application>

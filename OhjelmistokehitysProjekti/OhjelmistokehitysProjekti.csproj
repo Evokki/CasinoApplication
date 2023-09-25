@@ -8,11 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\cardback_blue.png" />
+    <None Remove="Resources\Images\suits_Clubs.png" />
+    <None Remove="Resources\Images\suits_Diamonds.png" />
+    <None Remove="Resources\Images\suits_Hearts.png" />
+    <None Remove="Resources\Images\suits_Spades.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GambleAssetsLibrary\GambleAssetsLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="SaveData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\cardback_blue.png" />
+    <Resource Include="Resources\Images\suits_Clubs.png" />
+    <Resource Include="Resources\Images\suits_Diamonds.png" />
+    <Resource Include="Resources\Images\suits_Hearts.png" />
+    <Resource Include="Resources\Images\suits_Spades.png" />
   </ItemGroup>
 
 </Project>

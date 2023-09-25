@@ -7,75 +7,69 @@
         mc:Ignorable="d"
         Title="Blackjack" Height="1080" Width="1920"
         WindowState="Maximized">
-    <Window.Resources>
-        <Style TargetType="Button" x:Key="BaseGameButton">
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="80"/>
-            <Setter Property="Margin" Value="20"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Visibility" Value="Hidden"></Setter>
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="BetButton">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding GameState}" Value="0">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameResultButton">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding GameState}" Value="2">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameInputButton" >
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding GameState}" Value="1">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-    <Grid>
+    <Grid Background="Gray">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="700"></RowDefinition>
             <RowDefinition Height="180"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <CheckBox Content="Test AllowBetChange Command" IsChecked="{Binding AllowBetChange}"></CheckBox>
-            <CheckBox Content="Test AllowUserInput Command" IsChecked="{Binding AllowUserInput}"></CheckBox>
-            <TextBlock Text="{Binding BetIndex}"></TextBlock>
-            <TextBlock Text="{Binding GameState}"></TextBlock>
+        
+        <StackPanel x:Name="GameDebugPanel" Grid.Row="0"  HorizontalAlignment="Center">
+            <TextBlock Text="{Binding CurrentBet}"></TextBlock>
             <TextBlock Text="{Binding GameStatus.GameName}"></TextBlock>
-            <TextBlock Text="House values"></TextBlock>
-            <TextBlock Text="{Binding HouseHandValue}"></TextBlock>
-            <TextBlock Text="User values"></TextBlock>
-            <TextBlock Text="{Binding UserHandValue}"></TextBlock>
-            <ListView ItemsSource="{Binding GameStatus.UserCards}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text="{Binding House}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <ListView ItemsSource="{Binding GameStatus.HouseCards}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text="{Binding House}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel Orientation="Horizontal"></StackPanel>
         </StackPanel>
+        
+        <StackPanel x:Name="GameContentPanel" Grid.Row="1">
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock Text="House Hand Value" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding HouseHandValue}" 
+                       HorizontalAlignment="Center"></TextBlock>
+
+            <ListView x:Name="HouseHandPanel" 
+                      ItemsSource="{Binding GameStatus.HouseCards}"
+                      HorizontalAlignment="Center">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="Black" Margin="10">
+                            <Grid Style="{StaticResource Card}">
+                                <Image></Image>
+                                <TextBlock Text="{Binding Name}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TextBlock Text="User Hand Value" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding UserHandValue}" HorizontalAlignment="Center"></TextBlock>
+            
+            <ListView x:Name="UserHandPanel" 
+                      ItemsSource="{Binding GameStatus.UserCards}"
+                      HorizontalAlignment="Center">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="Black" Margin="10">
+                            <Grid Style="{StaticResource Card}">
+                                <Image></Image>
+                                <TextBlock Text="{Binding Name}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center"> <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button>

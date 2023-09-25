@@ -85,19 +85,19 @@ namespace GambleAssetsLibrary
         const string Hearts = "Hearts";
         const string Diamonds = "Diamonds";
         const string Spades = "Spades";
-        public static string[] _Houses = { Spades, Hearts, Clubs, Diamonds };
+        public static string[] _Suits = { Spades, Hearts, Clubs, Diamonds };
 
-        private string _House;
-        public string House
+        private string _Suit;
+        public string Suit
         {
-            get { return _House; }
-            set { _House = value; OnPropertyChanged("_House"); }
+            get { return _Suit; }
+            set { _Suit = value; OnPropertyChanged("Suit"); }
         }
         private string _Name;
         public string Name
         {
             get { return _Name; }
-            set { _Name = value; OnPropertyChanged("_Name"); }
+            set { _Name = value; OnPropertyChanged("Name"); }
         }
         private int _Value;
         public int Value
@@ -105,10 +105,17 @@ namespace GambleAssetsLibrary
             get { return _Value; }
             set { _Value = value; OnPropertyChanged("Value"); }
         }
+        public string CardSuitPath
+        {
+            get{ return GambleExtensionMethods.CardSuitPath(Suit); }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {
+            Console.WriteLine(CardSuitPath);
+            if(PropertyName == "Suit")
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardSuitPath"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
         public Card(int value, string house)
@@ -135,7 +142,7 @@ namespace GambleAssetsLibrary
             }
             
             this._Value = value;
-            this._House = house;
+            this._Suit = house;
         }
     }
 
@@ -150,7 +157,7 @@ namespace GambleAssetsLibrary
         private void CreateFullDéck()
         {
             for(int i = 0; i < 4; i++) {
-                string house = Card._Houses[i];
+                string house = Card._Suits[i];
                 for(int j = 0; j < 14; j++)
                 {
                     cards.Add(new Card(j+1, house));
