@@ -32,7 +32,13 @@ namespace OhjelmistokehitysProjekti.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Slots slotsGame = new Slots();
+            
+        }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 }
