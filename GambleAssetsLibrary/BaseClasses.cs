@@ -7,11 +7,30 @@ using System.Security.Cryptography;
 using System.Windows.Navigation;
 namespace GambleAssetsLibrary
 {
-    public class User
+    public class User: INotifyPropertyChanged
     {
         private string _Username;
+        public string Username
+        {
+            get { return _Username; }
+            set { _Username = value; OnPropertyChanged("Username"); }
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string PropertyName=null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
         private string _Password;
         private decimal _AccountBalance;
+        public decimal AccountBalance
+        {
+            get { return _AccountBalance; }
+            set { _AccountBalance = value; OnPropertyChanged("AccountBalance"); }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         public User(string name, string pass)
         {
             this._Username = name;

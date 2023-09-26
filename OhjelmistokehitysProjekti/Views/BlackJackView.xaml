@@ -4,23 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
+        xmlns:gambleLib="clr-namespace:GambleAssetsLibrary;assembly=GambleAssetsLibrary"
         mc:Ignorable="d"
         Title="Blackjack" Height="1080" Width="1920"
         WindowState="Maximized">
+    <Window.Resources>
+        <gambleLib:UserHandler x:Key="UserData"/>
+        <DataTemplate x:Key="UserDataTemplate">
+            <StackPanel Style="{StaticResource UserPanel}">
+                <TextBlock Text="{Binding UserLocalTime}"></TextBlock>
+                <TextBlock Text="{Binding Username}"></TextBlock>
+                <TextBlock Text="{Binding AccountBalance}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid Background="Gray">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="700"></RowDefinition>
             <RowDefinition Height="180"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <StackPanel x:Name="GameDebugPanel" Grid.Row="0"  HorizontalAlignment="Center">
+        <StackPanel x:Name="GameDebugPanel" Grid.Row="1"  HorizontalAlignment="Center">
             <TextBlock Text="{Binding CurrentBet}"></TextBlock>
             <TextBlock Text="{Binding GameStatus.GameName}"></TextBlock>
         </StackPanel>
+
+        <ListBox Grid.Row="0" ItemsSource="{Binding Source={StaticResource kek}}"  
+                 ItemTemplate="{StaticResource UserDataTemplate}">
+            
+        </ListBox>
         
         <StackPanel x:Name="GameContentPanel" Grid.Row="1">
-
             <TextBlock Text="House Hand Value" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Text="{Binding HouseHandValue}" 
                        HorizontalAlignment="Center"></TextBlock>

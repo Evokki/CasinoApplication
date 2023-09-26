@@ -30,7 +30,7 @@ namespace GambleAssetsLibrary
             }
             return x;
         }
-        public static string CardSuitPath(string suit)
+        public static string CardSuitPath(this string suit)
         {
             return "/Ohjelmistokehitysprojekti;Component/Resources/Images/suits_" + suit + ".png";
         }

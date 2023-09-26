@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="StackPanel" x:Key="UserPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="LightPink"/>
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        
         <Style TargetType="Button" x:Key="BaseGameButton">
             <Setter Property="Width" Value="120"/>
             <Setter Property="Height" Value="80"/>
@@ -32,6 +43,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
         <Style TargetType="Grid" x:Key="Card">
             <Setter Property="Height" Value="300"/>
             <Setter Property="Width" Value="220"/>

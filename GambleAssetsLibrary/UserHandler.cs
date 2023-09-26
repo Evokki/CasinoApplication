@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GambleAssetsLibrary
 {
-    public class UserHandler
+    public class UserHandler: INotifyPropertyChanged
     {
         private static List<User> _Users;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         private static User? currentUser { get; set; }
+        public User CurrentUser
+        {
+            get { return currentUser; }
+            set { currentUser = value; OnPropertyChanged("CurrentUser"); }
+        }
+        public void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
         public static void CreateNewUser(string username, string password)
         {
             User u = new User(username, password);
