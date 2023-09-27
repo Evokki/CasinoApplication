@@ -49,7 +49,7 @@
 
         <StackPanel Style="{StaticResource GameControls}" Grid.Row="4">
             <!-- Stackpanel for showin game buttons -->
-            <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button> <!--Nää napit näkyy vast sit ite pelissä ja niille ei tarvi tehä oikee mitää-->
+            <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button> <!--Nää napit näkyy vast sit ite pelissä ja niille ei tarvi tehä oikee mitää-->
             <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button> <!--Tää nappi on se mikä alottaa pelin.-->
 

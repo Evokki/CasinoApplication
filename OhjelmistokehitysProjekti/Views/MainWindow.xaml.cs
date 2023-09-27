@@ -23,6 +23,7 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Window? gameView;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,18 +32,41 @@ namespace OhjelmistokehitysProjekti
             this.DataContext = mainViewModel;
 
             Loaded += ValidateCurrentUser;
-
         }
+
+        public void ClearGameView(object? sender, EventArgs e) {
+            gameView.Closed -= ClearGameView;
+            gameView = null;
+        }
+
         public void StartBlackjack(object sender, RoutedEventArgs e)
         {
-            BlackJackView bjVIew = new BlackJackView();
-            bjVIew.Show();
+            if(gameView == null)
+            {
+                gameView = new BlackJackView();
+                gameView.Closed += ClearGameView;
+            }
+            gameView.Show();
         }
         public void StartSlots(object sender, RoutedEventArgs e)
         {
-            SlotsView slotsView = new SlotsView();
-            slotsView.Show();
+            if (gameView == null)
+            {
+                gameView = new SlotsView();
+                gameView.Closed += ClearGameView;
+            }
+            gameView.Show();
         }
+        private void StartPoker(object sender, RoutedEventArgs e)
+        {
+            if (gameView == null)
+            {
+                gameView = new PokerView();
+                gameView.Closed += ClearGameView;
+            }
+            gameView.Show();
+        }
+
         private void ValidateCurrentUser(object obj, RoutedEventArgs e)
         {
             if(UserHandler.GetUser() == null)
@@ -53,5 +77,6 @@ namespace OhjelmistokehitysProjekti
                 this.IsEnabled = true;
             }
         }
+
     }
 }

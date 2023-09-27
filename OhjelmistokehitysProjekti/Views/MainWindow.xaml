@@ -8,9 +8,10 @@
         Title="Main menu" Height="1080" Width="1920">
     <Grid>
         <ListView>
-            <Button Content="blackjack" Height="80" Click="StartBlackjack"></Button>
-            <Button Content="slots" Height="80" Click="StartSlots"></Button>
-            <Button Content="Exit Application Command" Height="80" Command="{Binding CloseWindowCommand}"></Button>
+            <Button Content="blackjack" Height="80" Width="300" Click="StartBlackjack"></Button>
+            <Button Content="slots" Height="80" Width="300" Click="StartSlots"></Button>
+            <Button Content="Poker" Height="80" Width="300" Click="StartPoker"></Button>
+            <Button Content="Exit Application Command" Height="80" Width="300" Command="{Binding CloseWindowCommand}"></Button>
         </ListView>
 
     </Grid>
