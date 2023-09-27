@@ -1,1 +1,28 @@
 app.diagrams.net UML-Mallinnussivusto
+
+Miten Meiän softa toimii?
+View
+-xaml tiedosto ja vastaava xaml.cs tiedosto jokaiselle eri Windowille
+-Viewin ainoa tehtävä on näyttää infoa ViewModelista
+-Viewillä on referenssi Omaan Viewmodeliin
+
+ViewModel
+-Jokaiselle viewille on oma ViewModel jossa on Viewin toiminnallisuudet 
+-Esim nappi painallukset päätyy Command propertyn avulla ViewModeliin suoraan
+-Viewmodelilla on referenssi tarvittaviin muihin .cs tiedostoihin kuten Peli scriptit (esim. Slots.cs ja Blackjack.cs => Löytyy GambleAssetsLibrarysta)
+
+
+Kaikki pelit periytyy Game-objektista ja perii tarvittavat funktiot sieltä.
+Kaikki peli Windoweissa käytetyt ViewModelit periytyy BaseGameViewModelista ja saa niistä yleiset perus toiminnot ja komennot.
+
+BaseGameViewModel Commandit. Kaikki toimii samalla tavalla
+PlayCommand => BaseGameViewModel.PlayCommand() => Game.Play()
+BetUpCommand => BaseGameViewModel.IncreaseBet()
+BetDownCommand => BaseGameViewModel.DecreaseBet() 
+DoubleCommand => BaseGameViewModel.DoubleOrNothing()  => Game.DoubleOrNothing()
+CashOutCommand => BaseGameViewModel.CashOut()  => BaseGameViewModel.ChangeState(0)
+
+BaseGameViewModel.ChangeState() päättää mitä peli nappeja näkyy ruudulla. Statet on 0,1 ja 2
+0 = Ruudulla näkyy BetUp, BetDown ja Play
+1 = Ruudulla näkyy pelikohtaiset valinta napit esim. Pokerissa pakat ja Blackjackissä Hit ja Stand. 
+2 = Ruudulla näkyy Double ja CashOut
