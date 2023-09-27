@@ -151,7 +151,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             if (u.IsThereEnoughBalance(CurrentBet))
             {
                 u.DecreaseBalance(CurrentBet);
-                currentGame.Play();
+                currentGame.Play(CurrentBet);
             }
             else
             {

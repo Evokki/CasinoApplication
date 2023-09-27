@@ -29,8 +29,9 @@ namespace GambleAssetsLibrary
             userHand.Clear();
         }
 
-        public override void Play()
+        public override void Play(decimal bet)
         {
+            currentBet = bet;
             InitHands();
         }
 
@@ -40,6 +41,7 @@ namespace GambleAssetsLibrary
             if (state) //Player wants a new card
             {
                 userHand.Add(deck.GetCard());
+                userAmount = CalculateHand(userHand);
                 RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
                 if (userAmount > 21)
                 {
@@ -112,14 +114,13 @@ namespace GambleAssetsLibrary
 
         public override void HandleGameResults(bool won)
         {
-            decimal bet = 0.2m;
             decimal win = 0m;
             if (won)
             {
-                win = bet * 5;
+                win = currentBet * 5;
             }
 
-            GameResult res = new GameResult(GetName(), win, bet, won);
+            GameResult res = new GameResult(GetName(), win, currentBet, won);
             RaiseGameResultsEvent(res);
             EndGame();
         }

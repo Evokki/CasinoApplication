@@ -71,6 +71,7 @@ namespace GambleAssetsLibrary
     public abstract class Game
     {
         private string DisplayName = "";
+        public decimal currentBet = 0;
         public delegate void GameLogicCallback(GameCallback result);
         public GameLogicCallback OnGameStatus;
         public GameLogicCallback OnGameResult;
@@ -80,7 +81,7 @@ namespace GambleAssetsLibrary
         }
         public string GetName() => this.DisplayName;
         public abstract void StartGame(); //Called when opening a game for the first time
-        public abstract void Play(); //Called after player wants to start the game logic. 
+        public abstract void Play(decimal bet); //Called after player wants to start the game logic. 
         public virtual void RaiseGameLogicEndedEvent(GameStatus StatusResult)
         {
             OnGameStatus?.Invoke(StatusResult);

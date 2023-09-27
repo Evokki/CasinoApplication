@@ -57,7 +57,7 @@ namespace GambleAssetsLibrary
             throw new NotImplementedException();
         }
 
-        public override void Play()
+        public override void Play(decimal bet)
         {
             throw new NotImplementedException();
         }
