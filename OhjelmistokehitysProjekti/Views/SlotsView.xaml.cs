@@ -21,24 +21,14 @@ namespace OhjelmistokehitysProjekti.Views
     /// </summary>
     public partial class SlotsView : Window
     {
+        public Slots SlotsGame;
         public SlotsView()
         {
             InitializeComponent();
 
-            Slots slotsGame= new Slots();
-            SlotsViewModel slotsViewModel = new SlotsViewModel(slotsGame);
+            SlotsGame= new Slots(); 
+            SlotsViewModel slotsViewModel = new SlotsViewModel(SlotsGame);
             this.DataContext = slotsViewModel;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Slots slotsGame = new Slots();
-            
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
         }
     }
 }

@@ -8,6 +8,7 @@ namespace GambleAssetsLibrary
     {
         public Slots(string s = "Slots") : base(s)
         {
+            
         }
         public override void StartGame()
         {
@@ -48,23 +49,31 @@ namespace GambleAssetsLibrary
             }
         }
 
-
-
-    
-
         public override void EndGame()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Slots end"); //Tää on vaa sen takii et softa toimii. Se throw new exception kaataa aina pelin ni korvasin vaa tällä.
         }
 
         public override void Play(decimal bet)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Lul"); // Tänne se arpomis systeemi
+
+            bool won = true; //muokkaa tota sit voitonperusteel
+
+            RaiseGameLogicEndedEvent(new GameStatus(GetName()));
+            HandleGameResults(won); //älä koske
         }
 
-        public override void HandleGameResults(bool userWon = false)
+        public override void HandleGameResults(bool userWon = false) //Callaa tää sen jälkee ku numerot on arvottu
         {
-            throw new NotImplementedException();
+            //Lisää tähän logiikka mil se voitto lasketaa
+            decimal win = 0;
+            if (userWon)
+            {
+                win = currentBet * 10; //muokkaa toi win sillee et se antaa niiden numerojen perusteel voiton
+            }
+
+            RaiseGameResultsEvent(new GameResult(GetName(),win, currentBet, userWon)); //älä koske
         }
     }
 }

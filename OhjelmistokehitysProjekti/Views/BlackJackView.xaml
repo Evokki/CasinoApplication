@@ -18,8 +18,7 @@
             <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="1" HorizontalAlignment="Center">
-            <StackPanel x:Name="GameContentPanel" Grid.Row="1">
+            <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
                 <TextBlock Text="House Hand Value" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock Text="{Binding HouseHandValue}" 
                            HorizontalAlignment="Center"></TextBlock>
@@ -67,9 +66,9 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-        </ListBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center"> <!-- Stackpanel for showin game buttons -->
-            <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
+
+        <StackPanel Style="{StaticResource GameControls}" Grid.Row="2" > <!-- Stackpanel for showin game buttons -->
+            <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
             <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
 

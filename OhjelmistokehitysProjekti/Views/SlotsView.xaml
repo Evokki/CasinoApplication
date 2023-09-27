@@ -5,17 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti.Views"
         mc:Ignorable="d"
-        Title="SlotsView" Height="450" Width="800">
+        Title="SlotsView" Height="1080" Width="1920"
+        WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="SlottiTyyli"> <!--Muokkaile tätä tyyliä miten haluut. Tää on textblock elementteihin-->
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button Content="Spin" HorizontalAlignment="Center" Height="42" Margin="0,268,0,0" VerticalAlignment="Top" Width="164"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="91,333,0,0" TextWrapping="Wrap" Text="777= 5000" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="91,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="245,333,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="245,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="399,333,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="399,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="553,333,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="37" Margin="553,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="154"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="93" Margin="226,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" TextChanged="TextBox_TextChanged" FontSize="36"/>
+        <Grid.RowDefinitions> <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+        </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray">
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="LightGray">
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+            </StackPanel>
+        </Grid>
+            
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="93" Margin="226,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"  FontSize="36"/>
+
+        <StackPanel Style="{StaticResource GameControls}" Grid.Row="4">
+            <!-- Stackpanel for showin game buttons -->
+            <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button> <!--Nää napit näkyy vast sit ite pelissä ja niille ei tarvi tehä oikee mitää-->
+            <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
+            <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button> <!--Tää nappi on se mikä alottaa pelin.-->
+
+            <Button Style="{StaticResource GameResultButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button> <!--Nää kaks pitäs sit ku peli on arponu tulokset-->        
+            <Button Style="{StaticResource GameResultButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
+        </StackPanel>
     </Grid>
 </Window>
