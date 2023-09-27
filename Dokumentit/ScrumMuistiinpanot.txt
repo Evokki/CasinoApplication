@@ -1,8 +1,9 @@
 Aloituspalaveri 13.09.2023
 -Päätökset
-	-Scrum pituus 1vk
+	-Sprintin pituus 1vk
 	-Keskiviikkoisin Scrum-palaverit
--Eka Sprintti 13.09-20.09
+
+-1 Sprintti 13.09-20.09
 	-Peli classit
 	-UI menu
 	-Arttu aloittaa Slotsin?
@@ -11,8 +12,14 @@ Aloituspalaveri 13.09.2023
 	-Veeti tekee base classit ja placeholder UIn
 Sprint 1 review
 	-Veeti sai pohjustettua UIn ja tehtyä baseclassit
-20.09.23-27.09.23
+
+-2 Sprintti 20.09.23-27.09.23
 	-Veeti jatkaa UIta ja aloittaa ensimmäisen pelin
 	-Arttu tekee vittu vihdoin slotsin
 	-Allu tekee vihdoin vitun pokerin
 	-Jaakolle nakkihommat
+Sprint 2 review
+	-Blackjack saatu valmiiksi, Luotu muille peleille viewit ja viewmodelit. Aloitettu graafista ulkoasua
+
+-3 Sprintti 27.09.23-04.10.23
+	-Veeti auttaa muita ja Viimeistelee User Systeemin. Myös UI
