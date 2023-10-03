@@ -20,7 +20,7 @@
             <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
             <!--Nää napit näkyy vast sit ite pelissä ja niille ei tarvi tehä oikee mitää-->
             <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
-            <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
+            <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}" Click="Button_Click"></Button>
             <!--Tää nappi on se mikä alottaa pelin.-->
 
             <Button Style="{StaticResource GameResultButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button>

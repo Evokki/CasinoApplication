@@ -30,5 +30,10 @@ namespace OhjelmistokehitysProjekti.Views
             ViewModel = new PokerViewModel(PokerGame);
             this.DataContext = ViewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
