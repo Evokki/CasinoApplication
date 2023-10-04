@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,14 +25,20 @@ namespace OhjelmistokehitysProjekti
     public partial class MainWindow : Window
     {
         public Window? gameView;
+        public static UserViewModel _UserViewModel { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
             MainViewModel mainViewModel = new MainViewModel();
-            this.DataContext = mainViewModel;
+            GameButtonPanel.DataContext = mainViewModel;
 
-            Loaded += ValidateCurrentUser;
+            if(_UserViewModel == null)
+            {
+                _UserViewModel = new UserViewModel();
+            }
+
+            UserPanel.DataContext = _UserViewModel;
         }
 
         public void ClearGameView(object? sender, EventArgs e) {
@@ -67,16 +74,12 @@ namespace OhjelmistokehitysProjekti
             gameView.Show();
         }
 
-        private void ValidateCurrentUser(object obj, RoutedEventArgs e)
+        public void ShowPopup(object sender, RoutedEventArgs e)
         {
-            if(UserHandler.GetUser() == null)
-            {
-                this.IsEnabled = false;
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                this.IsEnabled = true;
-            }
+            
+            //UserBalancePopup.StaysOpen = false;
+            UserBalancePopup.IsOpen = true;
+            //UserBalancePopup.PlacementTarget = (UIElement)sender;
         }
-
     }
 }

@@ -20,12 +20,17 @@ namespace OhjelmistokehitysProjekti
     /// </summary>
     public partial class TestWindow : Window
     {
+        public string LocalTime;
         public TestWindow()
         {
             InitializeComponent();
 
             MainViewModel MVM = new MainViewModel();
             this.DataContext = MVM;
+
+            DateTime date = DateTime.Now;
+            TimeSpan t = date.TimeOfDay;
+            LocalTime = date.ToString();
         }
     }
 }

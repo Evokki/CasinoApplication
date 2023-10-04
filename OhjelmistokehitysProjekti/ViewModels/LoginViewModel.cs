@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GambleAssetsLibrary;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace OhjelmistokehitysProjekti.ViewModels
 {
@@ -15,22 +17,25 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand LoginCommand { get; set; }
         public ICommand PlayAsGuestCommand { get; set; }
-        public string? _Username { get; set; }
-        public string? _Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
         private bool _LoginOrSignup { get; set; }
         public bool LoginOrSignup
         {
             get{ return _LoginOrSignup; }
-            set{ _LoginOrSignup = value; OnPropertyChanged("LoginOrSignup"); }
+            set{ _LoginOrSignup = value; OnPropertyChanged("LoginOrSignup"); Console.WriteLine("Changed login or sign up to " + _LoginOrSignup); }
         }
-        public string _LoginMode 
+        public string LoginMode 
         {
-            get { return _LoginOrSignup ? "Create new User" : "Login"; }
+            get
+            {
+                Console.WriteLine("Get L of S = " + _LoginOrSignup);  if (LoginOrSignup) { return "Login"; } else return "Create User";
+                }
         }
         public void OnPropertyChanged(string PropertyName = null)
         {
             if(PropertyName == "LoginOrSignup")
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("_LoginMode"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoginMode"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
         public LoginViewModel()
@@ -41,13 +46,13 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         private void LoginUser(object obj)
         {
-            if(string.IsNullOrEmpty(_Username) || string.IsNullOrEmpty(_Password))
+            if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
                 MainViewModel.NotifyUser("Username or password is empty!");
             }
-            else
+            if (!LoginOrSignup)
             {
-                if(UserHandler.LoginUser(_Username, _Password) == false)
+                if(UserHandler.LoginUser(Username, Password) == false)
                 {
                     MainViewModel.NotifyUser("Wrong username or password!");
                     return;
@@ -55,15 +60,33 @@ namespace OhjelmistokehitysProjekti.ViewModels
                 
                 CloseWindow(null);
             }
+            else
+            {
+                UserHandler.CreateNewUser(Username, Password);
+                CloseWindow(null);
+            }
         }
 
         private void PlayAsGuest(object obj)
         {
-            User guestUser = new User("Guest", "0000");
-            guestUser.IncreaseBalance(1000.00m);
-            UserHandler.SetCurrentUser(guestUser);
-            MainViewModel.NotifyUser("User " + _Username + " has been logged in"); //Testi ilmoitus
+            UserHandler.CreateNewUser("Guest", "1234");
+            UserHandler.GetUser().IncreaseBalance(100);
             CloseWindow(null);
+        }
+        public override void CloseWindow(object obj)
+        {
+            if(obj != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Exit Application?",
+                    "Notification", MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.Current.Shutdown();
+                }
+            }
+            base.CloseWindow(obj);
         }
     }
 }

@@ -56,5 +56,10 @@ namespace OhjelmistokehitysProjekti.ViewModels
             UserHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.UserCards);
             ChangeGameState(1);
         }
+
+        public override void CloseWindow(object obj)
+        {
+            base.CloseWindow(obj);
+        }
     }
 }

@@ -4,50 +4,47 @@
              xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="StackPanel" x:Key="UserPanel">
-            <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Background" Value="LightPink"/>
-            <Style.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="22"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Style>
-            </Style.Resources>
-        </Style>
-        
-
         <Style TargetType="Button" x:Key="BaseGameButton">
-                    <Setter Property="Width" Value="120"/>
-                    <Setter Property="Height" Value="80"/>
-                    <Setter Property="Margin" Value="20"/>
-                    <Setter Property="FontSize" Value="24"/>
-                    <Setter Property="Visibility" Value="Hidden"></Setter>
-                </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="BetButton">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="GameControlsPanelStyle">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Setter Property="Opacity" Value="0"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="BetButtonPanel" BasedOn="{StaticResource GameControlsPanelStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding GameState}" Value="0">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Opacity" Value="1"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameResultButton">
+
+        <Style TargetType="StackPanel" x:Key="GameInputButtonPanel" BasedOn="{StaticResource GameControlsPanelStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GameState}" Value="1">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Opacity" Value="1"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="StackPanel" x:Key="GameResultButtonPanel" BasedOn="{StaticResource GameControlsPanelStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding GameState}" Value="2">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Opacity" Value="1"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseGameButton}" x:Key="GameInputButton" >
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding GameState}" Value="1">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>    
-        <Style TargetType="StackPanel" x:Name="GameControls" x:Key="GameControls">
-            <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
+
         <Style TargetType="Grid" x:Key="Card">
             <Setter Property="Height" Value="300"/>
             <Setter Property="Width" Value="220"/>
@@ -64,6 +61,7 @@
                 </Style>
             </Style.Resources>
         </Style>
+        
         <Style TargetType="Grid" x:Key="Cardback">
             <Setter Property="Height" Value="300"/>
             <Setter Property="Height" Value="260"/>
@@ -72,6 +70,48 @@
                     <Setter Property="Source" Value="{Binding SuitPath}"/>
                 </Style>
             </Style.Resources>
+        </Style>
+        
+        <Style x:Key="UserCanvas" TargetType="Canvas"> <!--User Panel Style-->
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="#0f0f0f" Offset="0.1"/>
+                        <GradientStop Color="#2e2e2e" Offset="0.3"/>
+                        <GradientStop Color="#4d4d4d" Offset=".8"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Canvas.Top" Value="70"/>
+                    <Setter Property="Text" Value="Placeholder"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Style>
+                <Style TargetType="Menu">
+                    <Setter Property="Canvas.Top" Value="10"/>
+                    <Setter Property="Canvas.Right" Value="10"/>
+                    <Setter Property="Width" Value="100"/>
+                    <Setter Property="Height" Value="100"/>
+                    <Setter Property="Background" Value="#ffffff"/>
+                </Style>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Margin" Value="10,10,10,10"/>
+                    <Setter Property="Width" Value="90"/>
+                    <Setter Property="Height" Value="90"/>
+                    <Setter Property="Background" Value="#000000"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="MenuItem" x:Key="UserPanelMenuItem">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="10"/>
         </Style>
     </Application.Resources>
 </Application>

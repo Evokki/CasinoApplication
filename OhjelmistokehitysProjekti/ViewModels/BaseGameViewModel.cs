@@ -48,7 +48,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             set{ _AllowUserInput = value ;OnPropertyChanged("AllowUserInput"); }
         }
 
-        private decimal[] _Bets = { 0,20m, 0.40m, 0.60m, 0.80m, 1.00m };
+        private decimal[] _Bets = { 0.20m, 0.40m, 0.60m, 0.80m, 1.00m , 2.00m, 3.00m, 4.00m, 5.00m , 7.50m, 10.00m, 20.00m, 50.00m, 100.00m};
         private int _BetIndex = 0;
         public int BetIndex
         {
@@ -76,7 +76,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
 
         //Constructor. Assings values to all ICommands and sets up Game model.
-        public BaseGameViewModel(Game game)
+        public BaseGameViewModel(Game game) : base()
         {
             BetUpCommand = new RelayCommand(IncreaseBet, CanChangeBet);
             BetDownCommand = new RelayCommand(DecreaseBet, CanChangeBet);
@@ -179,7 +179,10 @@ namespace OhjelmistokehitysProjekti.ViewModels
                 ChangeGameState(0);
             }
         }
-
+        public override void CloseWindow(object obj)
+        {
+            base.CloseWindow(obj);
+        }
         public virtual bool CanChangeBet(object obj)
         {
             return _AllowBetChange;

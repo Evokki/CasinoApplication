@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text.Json.Serialization;
+using System.Windows;
 using System.Windows.Navigation;
 namespace GambleAssetsLibrary
 {
@@ -16,12 +18,12 @@ namespace GambleAssetsLibrary
             set { _Username = value; OnPropertyChanged("Username"); }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string PropertyName=null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
         private string _Password;
+        public string Password
+        {
+            get { return _Password; }
+            set { _Password = value; OnPropertyChanged("Password"); }
+        }
         private decimal _AccountBalance;
         public decimal AccountBalance
         {
@@ -30,11 +32,22 @@ namespace GambleAssetsLibrary
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
+        private void OnPropertyChanged([CallerMemberName] string PropertyName=null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+        public User() { }
         public User(string name, string pass)
         {
-            this._Username = name;
-            this._Password = pass;
+            this.Username = name;
+            this.Password = pass;
+        }
+        [JsonConstructor]
+        public User(string userName, string password, decimal accountBalance)
+        {
+            this.Username = userName;
+            this.Password = password;
+            this.AccountBalance = accountBalance;
         }
         public void IncreaseBalance(decimal amount)
         {
@@ -48,7 +61,7 @@ namespace GambleAssetsLibrary
             }
             else
             {
-
+                
             }
         }
         public bool IsThereEnoughBalance(decimal amount)

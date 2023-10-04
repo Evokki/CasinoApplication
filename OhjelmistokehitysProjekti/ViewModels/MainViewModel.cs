@@ -8,29 +8,13 @@ namespace OhjelmistokehitysProjekti.ViewModels
 {
     public class MainViewModel: BaseViewModel
     {
-        public ICommand StartGameCommand { get; set; }
-        private BlackJackView? _GameWindow = null;
+        public MainViewModel():base() {
 
-        public MainViewModel() {
-            StartGameCommand = new RelayCommand(StartGame, CanExecute);
-        }
-
-        private void StartGame(object obj)
-        {
-            if(_GameWindow == null)
-            {
-                _GameWindow = new BlackJackView();
-                _GameWindow.Show();
-            }
-            else
-            {
-                _GameWindow.Focus();
-            }
         }
 
         public override void CloseWindow(object obj)
         {
-            //JsonDatabaseHandler.SaveJsonData(UserHandler.GetUser());
+            UserHandler.SaveUserData();
 
             MessageBoxResult result = MessageBox.Show("Exit Application?",
                 "Notification", MessageBoxButton.YesNo,

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace GambleAssetsLibrary
 {
@@ -15,7 +16,7 @@ namespace GambleAssetsLibrary
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private static User? currentUser { get; set; }
-        public User CurrentUser
+        public User? CurrentUser
         {
             get { return currentUser; }
             set { currentUser = value; OnPropertyChanged("CurrentUser"); }
@@ -27,7 +28,11 @@ namespace GambleAssetsLibrary
         public static void CreateNewUser(string username, string password)
         {
             User u = new User(username, password);
-            JsonDatabaseHandler.SaveJsonData(u);
+            if(!_Users.Contains(u))
+                _Users.Add(u);
+            JsonDatabaseHandler.SaveJsonData(_Users);
+            MessageBox.Show("Created a new user.");
+            LoginUser(username, password);
         }
 
         public static void InitUserList()
@@ -37,10 +42,19 @@ namespace GambleAssetsLibrary
             {
                 _Users = JsonDatabaseHandler.ConvertJsonToObject(jsonUsers);
             }
+            else
+            {
+                _Users = new List<User>();
+            }
         }
 
         public static bool LoginUser(string username, string password)
         {
+            if(username == "Guest" || password == "1234")
+            {
+                SetCurrentUser(new User(username, password));
+                return true;
+            }
             if(_Users == null)
             {
                 return false;
@@ -58,13 +72,36 @@ namespace GambleAssetsLibrary
                 }
             }
             return false;
-
         }
-        public static void SetCurrentUser(User u)
+        public static void LogOutUser()
         {
-            currentUser = u;
+            if (currentUser != null)
+            {
+                string msg = currentUser.Username + " has been logged out.";
+                MessageBox.Show(msg);
+                SetCurrentUser(null);
+            }
         }
-        public static User GetUser()
+
+        public static void SaveUserData()
+        {
+            JsonDatabaseHandler.SaveJsonData(_Users);
+        }
+
+        private static void SetCurrentUser(User? u)
+        {
+            if(currentUser == null)
+            {
+                currentUser = u;
+                string msg = "Logged in as " + currentUser.Username;
+                MessageBox.Show(msg);
+            }else if(u == null)
+            {
+                currentUser = null;
+            }
+        }
+
+        public static User? GetUser()
         {
             return currentUser;
         }

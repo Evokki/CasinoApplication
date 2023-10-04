@@ -29,6 +29,8 @@ namespace OhjelmistokehitysProjekti
             bjGame = new Blackjack();
             viewModel = new BlackjackViewModel(bjGame);
             this.DataContext = viewModel;
+
+            UserPanel.DataContext = MainWindow._UserViewModel;
         }
     }
 }

@@ -7,11 +7,40 @@
         mc:Ignorable="d"
         Title="Main menu" Height="1080" Width="1920">
     <Grid>
-        <ListView>
-            <Button Content="blackjack" Height="80" Width="300" Click="StartBlackjack"></Button>
-            <Button Content="slots" Height="80" Width="300" Click="StartSlots"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Canvas Name="UserPanel" Style="{StaticResource UserCanvas}">
+            <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
+            <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
+            <TextBlock Text="{Binding user.AccountBalance, IsAsync=True}" Canvas.Right="150"></TextBlock>
+
+            <Menu>
+                <MenuItem Header="Menu" Foreground="#ffffff" FontSize="24" FontWeight="Bold">
+                    <MenuItem Header="Deposit" Style="{StaticResource UserPanelMenuItem}" Command="{Binding DepositCommand}"></MenuItem>
+                    <MenuItem Header="Withdraw" Style="{StaticResource UserPanelMenuItem}" Command="{Binding WithdrawCommand}"></MenuItem>
+                    <MenuItem Header="Log Out" Style="{StaticResource UserPanelMenuItem}" Command="{Binding LogOutCommand}"></MenuItem>
+                    <MenuItem Header="Refresh" Style="{StaticResource UserPanelMenuItem}" Command="{Binding Refresh}"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Canvas>
+
+        <Popup Name="UserBalancePopup" Height="100" Width="200">
+            <Border BorderThickness="2">
+                <StackPanel Background="Gray">
+                    <TextBlock Text="Amount"></TextBlock>
+                    <TextBox x:Name="PopupTextBox"></TextBox>
+                </StackPanel>
+            </Border>
+        </Popup>
+        
+        <ListView Name="GameButtonPanel" Grid.Row="1">
+            <Button Content="Blackjack" Height="80" Width="300" Click="StartBlackjack"></Button>
+            <Button Content="Slots" Height="80" Width="300" Click="StartSlots"></Button>
             <Button Content="Poker" Height="80" Width="300" Click="StartPoker"></Button>
-            <Button Content="Exit Application Command" Height="80" Width="300" Command="{Binding CloseWindowCommand}"></Button>
+            <Button Content="Quit" Height="80" Width="300" Command="{Binding CloseWindowCommand}"></Button>
         </ListView>
 
     </Grid>
