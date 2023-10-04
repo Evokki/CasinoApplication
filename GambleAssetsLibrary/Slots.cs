@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace GambleAssetsLibrary
@@ -45,6 +46,8 @@ namespace GambleAssetsLibrary
 
         public override void Play(decimal bet)
         {
+            currentBet = bet;
+
             Random random = new Random();
 
             int[] rolledNumbers = new int[3];

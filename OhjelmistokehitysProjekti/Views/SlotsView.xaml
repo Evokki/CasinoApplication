@@ -63,8 +63,11 @@
         
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="{Binding Num1}" Width ="200" FontSize="40"></TextBlock>
+            <Image Source="{Binding Num1Path}" Width="100" Height="100"></Image>
             <TextBlock Text="{Binding Num2}" Width ="200" FontSize="40"></TextBlock>
+            <Image Source="{Binding Num2Path}" Width="100" Height="100"></Image>
             <TextBlock Text="{Binding Num3}" Width ="200" FontSize="40"></TextBlock>
+            <Image  Source="{Binding Num3Path}" Width="100" Height="100"></Image>
         </StackPanel>
         
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="93" Margin="226,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"  FontSize="36"/>

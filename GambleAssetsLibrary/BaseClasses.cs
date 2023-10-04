@@ -146,7 +146,6 @@ namespace GambleAssetsLibrary
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {
-            Console.WriteLine(CardSuitPath);
             if(PropertyName == "Suit")
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardSuitPath"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));

@@ -15,21 +15,33 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public int Num1
         {
             get { return _Num1; }
-            set { _Num1 = value; OnPropertyChanged("Num1"); }
+            set { _Num1 = value; OnPropertyChanged("Num1"); OnPropertyChanged("Num1Path"); }
         }
         private int _Num2;
         public int Num2
         {
             get { return _Num2; }
-            set { _Num2 = value; OnPropertyChanged("Num2"); }
+            set { _Num2 = value; OnPropertyChanged("Num2"); OnPropertyChanged("Num2Path"); }
         }
         private int _Num3;
         public int Num3
         {
             get { return _Num3; }
-            set { _Num3 = value; OnPropertyChanged("Num3"); }
+            set { _Num3 = value; OnPropertyChanged("Num3"); OnPropertyChanged("Num3Path"); }
         }
-        
+        public string Num1Path
+        {
+            get { return Num1.SlotIconPath(); }
+        }
+        public string Num2Path
+        {
+            get { return Num2.SlotIconPath(); }
+        }
+        public string Num3Path
+        {
+            get { return Num3.SlotIconPath(); }
+        }
+
         public SlotsViewModel(Game game) : base(game)
         {
             CurrentGame = (Slots)game;
@@ -42,6 +54,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
             Num1 = CurrentStatus.Numbers[0];
             Num2 = CurrentStatus.Numbers[1];
             Num3 = CurrentStatus.Numbers[2];
+            
+            Console.WriteLine(Num1Path);
             ChangeGameState(2);
         }
     }

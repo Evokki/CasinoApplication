@@ -61,7 +61,7 @@
                 </Style>
             </Style.Resources>
         </Style>
-        
+
         <Style TargetType="Grid" x:Key="Cardback">
             <Setter Property="Height" Value="300"/>
             <Setter Property="Height" Value="260"/>

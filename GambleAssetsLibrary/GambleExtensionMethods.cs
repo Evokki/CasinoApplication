@@ -34,5 +34,10 @@ namespace GambleAssetsLibrary
         {
             return "/Ohjelmistokehitysprojekti;Component/Resources/Images/suits_" + suit + ".png";
         }
+
+        public static string SlotIconPath(this int icon)
+        {
+            return "/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_" + icon + ".png";
+        }
     }
 }
