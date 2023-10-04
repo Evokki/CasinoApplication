@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace GambleAssetsLibrary
 {
@@ -12,41 +12,7 @@ namespace GambleAssetsLibrary
         }
         public override void StartGame()
         {
-            List<int> Lista1 = new List<int>();
-
-            Random rng = new Random();
-
-            int[] numerot = { 1, 2, 3, 4, 5 };
-            double[] mahdollisuudet = { 0.10, 0.15, 0.2, 0.25, 0.30 };
-
-            for (int i = 0; i < 3; i++)
-            {
-                int randomnumero = uusirng(rng, numerot, mahdollisuudet);
-                Lista1.Add(randomnumero);
-
-            }
-
-
-            foreach (int i in Lista1)
-            {
-                Console.Write(i + " ");
-
-            }
-
-            static int uusirng(Random rng, int[] numerot, double[] mahdollisuudet)
-            {
-                double randomsumma = rng.NextDouble();
-                double jakautuminen = 0;
-
-                for (int i = 0; i < 5; i++)
-                {
-                    jakautuminen += mahdollisuudet[i];
-                    if (randomsumma < jakautuminen)
-                        return numerot[i];
-                }
-                throw new Exception();
-
-            }
+           
         }
 
         public override void EndGame()
@@ -56,9 +22,79 @@ namespace GambleAssetsLibrary
 
         public override void Play(decimal bet)
         {
-            Console.WriteLine("Lul"); // Tänne se arpomis systeemi
+            static int GenerateRandomNumber(int[] numbers, double[] probabilities, Random random)
+            {
+                double randomValue = random.NextDouble();
+                double cumulativeProbability = 0;
 
-            bool won = true; //muokkaa tota sit voitonperusteel
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    cumulativeProbability += probabilities[i];
+
+                    if (randomValue < cumulativeProbability)
+                    {
+                        return numbers[i];
+                    }
+                }
+
+
+                throw new InvalidOperationException("Invalid probabilities");
+            }
+
+            int[] numbers = { 1, 2, 3, 4, 5 };
+            double[] probabilities = { 0.5, 0.25, 0.125, 0.085, 0.04 };
+
+            Random random = new Random();
+            int[] rolledNumbers = new int[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                rolledNumbers[i] = GenerateRandomNumber(numbers, probabilities, random);
+                
+            }
+            int Win1 = rolledNumbers.Count(x => x == 1);
+            int Win2 = rolledNumbers.Count(x => x == 2);
+            int Win3 = rolledNumbers.Count(x => x == 3);
+            int Win4 = rolledNumbers.Count(x => x == 4);
+            int Win5 = rolledNumbers.Count(x => x == 5);
+
+            if (Win1 == 3)
+            {
+                bool won = true;
+                
+                //win1 = currentBet * 5;
+            }
+            if (Win2 == 3)
+            {
+                bool won = true;
+               
+                //win2 = currentBet * 10;
+            }
+            if (Win3 == 3)
+            {
+                bool won = true;
+               
+                //win3 = currentBet * 20;
+            }
+            if (Win4 == 3)
+            {
+                bool won = true;
+               
+                //win4 = currentBet * 50;
+            }
+            if (Win5 == 3)
+            {
+                bool won = true;
+              
+                //win5 = currentBet * 100;
+
+            }
+            else
+            {
+                bool won = false;
+            }
+
+            bool won = false;
 
             RaiseGameLogicEndedEvent(new GameStatus(GetName()));
             HandleGameResults(won); //älä koske
@@ -66,8 +102,8 @@ namespace GambleAssetsLibrary
 
         public override void HandleGameResults(bool userWon = false) //Callaa tää sen jälkee ku numerot on arvottu
         {
-            //Lisää tähän logiikka mil se voitto lasketaa
-            decimal win = 0;
+            
+                decimal win = 0;
             if (userWon)
             {
                 win = currentBet * 10; //muokkaa toi win sillee et se antaa niiden numerojen perusteel voiton
@@ -77,3 +113,5 @@ namespace GambleAssetsLibrary
         }
     }
 }
+
+
