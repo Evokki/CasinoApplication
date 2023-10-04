@@ -7,6 +7,31 @@ namespace GambleAssetsLibrary
     public class Slots : Game
     {
         private int WinMultiplier = 0;
+        static int GenerateRandomNumber(int[] numbers, double[] probabilities, Random random)
+        {
+            double randomValue = random.NextDouble();
+            double cumulativeProbability = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                cumulativeProbability += probabilities[i];
+
+                if (randomValue < cumulativeProbability)
+                {
+                    return numbers[i];
+                }
+            }
+
+
+            throw new InvalidOperationException("Invalid probabilities");
+        }
+
+        private int[] numbers = { 1, 2, 3, 4, 5 };
+        private double[] probabilities = { 0.5, 0.25, 0.125, 0.085, 0.04 };
+
+        Random random = new Random();
+
+
         public Slots(string s = "Slots") : base(s)
         {
             
@@ -23,29 +48,6 @@ namespace GambleAssetsLibrary
 
         public override void Play(decimal bet)
         {
-            static int GenerateRandomNumber(int[] numbers, double[] probabilities, Random random)
-            {
-                double randomValue = random.NextDouble();
-                double cumulativeProbability = 0;
-
-                for (int i = 0; i < numbers.Length; i++)
-                {
-                    cumulativeProbability += probabilities[i];
-
-                    if (randomValue < cumulativeProbability)
-                    {
-                        return numbers[i];
-                    }
-                }
-
-
-                throw new InvalidOperationException("Invalid probabilities");
-            }
-
-            int[] numbers = { 1, 2, 3, 4, 5 };
-            double[] probabilities = { 0.5, 0.25, 0.125, 0.085, 0.04 };
-
-            Random random = new Random();
             int[] rolledNumbers = new int[3];
 
             for (int i = 0; i < 3; i++)
