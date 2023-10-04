@@ -6,6 +6,7 @@ namespace GambleAssetsLibrary
 {
     public class Slots : Game
     {
+        private int WinMultiplier = 0;
         public Slots(string s = "Slots") : base(s)
         {
             
@@ -58,43 +59,40 @@ namespace GambleAssetsLibrary
             int Win4 = rolledNumbers.Count(x => x == 4);
             int Win5 = rolledNumbers.Count(x => x == 5);
 
+            bool won = false;
+
             if (Win1 == 3)
             {
-                bool won = true;
+                won = true;
                 
                 //win1 = currentBet * 5;
             }
             if (Win2 == 3)
             {
-                bool won = true;
+                won = true;
                
                 //win2 = currentBet * 10;
             }
             if (Win3 == 3)
             {
-                bool won = true;
+                won = true;
                
                 //win3 = currentBet * 20;
             }
             if (Win4 == 3)
             {
-                bool won = true;
+                won = true;
                
                 //win4 = currentBet * 50;
             }
             if (Win5 == 3)
             {
-                bool won = true;
-              
+                won = true;
+                WinMultiplier = 100; // näin
+
                 //win5 = currentBet * 100;
 
             }
-            else
-            {
-                bool won = false;
-            }
-
-            bool won = false;
 
             RaiseGameLogicEndedEvent(new GameStatus(GetName()));
             HandleGameResults(won); //älä koske
@@ -103,10 +101,10 @@ namespace GambleAssetsLibrary
         public override void HandleGameResults(bool userWon = false) //Callaa tää sen jälkee ku numerot on arvottu
         {
             
-                decimal win = 0;
+            decimal win = 0;
             if (userWon)
             {
-                win = currentBet * 10; //muokkaa toi win sillee et se antaa niiden numerojen perusteel voiton
+                win = currentBet * WinMultiplier; //muokkaa toi win sillee et se antaa niiden numerojen perusteel voiton
             }
 
             RaiseGameResultsEvent(new GameResult(GetName(),win, currentBet, userWon)); //älä koske
