@@ -23,3 +23,13 @@ Sprint 2 review
 
 -3 Sprintti 27.09.23-04.10.23
 	-Veeti auttaa muita ja Viimeistelee User Systeemin. Myös UI
+Sprint 3 review
+	-Veeti teki User paneelin ja muita UI töitä.
+	-Allu jatkoi Pokeria
+	-Arttu jatkoi Slotsia
+
+-4 Sprintti 04.10.23-11.10.23
+	-Arttu SLots
+	-Allu Pokeri
+	-Veeti Hienosäätöä
+	-Jaakko
