@@ -20,17 +20,33 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions> <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="140"></RowDefinition>
             <RowDefinition Height="300"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
-                </Grid.RowDefinitions>
+        <Canvas Grid.Row="0" Name="UserPanel" Style="{StaticResource UserCanvas}">
+            <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
+            <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
+            <TextBlock Text="{Binding user.AccountBalance, IsAsync=True}" Canvas.Right="150"></TextBlock>
+
+            <Menu>
+                <MenuItem Header="Menu" Foreground="#ffffff" FontSize="24" FontWeight="Bold">
+                    <MenuItem Header="Deposit" Command="{Binding DepositCommand}"></MenuItem>
+                    <MenuItem Header="Withdraw" Command="{Binding WithdrawCommand}"></MenuItem>
+                    <MenuItem Header="Log Out" Command="{Binding LogOutCommand}"></MenuItem>
+                    <MenuItem Header="Refresh" Command="{Binding TestRefreshCommand}"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Canvas>
+        
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+            </Grid.RowDefinitions>
+            
             <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray">
                 <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
                 <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
@@ -44,17 +60,30 @@
                 <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
             </StackPanel>
         </Grid>
-            
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{Binding Num1}" Width ="200" FontSize="40"></TextBlock>
+            <TextBlock Text="{Binding Num2}" Width ="200" FontSize="40"></TextBlock>
+            <TextBlock Text="{Binding Num3}" Width ="200" FontSize="40"></TextBlock>
+        </StackPanel>
+        
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="93" Margin="226,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"  FontSize="36"/>
 
-        <StackPanel Style="{StaticResource GameControls}" Grid.Row="4">
+        <Grid Grid.Row="4">
             <!-- Stackpanel for showin game buttons -->
-            <Button Style="{StaticResource BetButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button> <!--Nää napit näkyy vast sit ite pelissä ja niille ei tarvi tehä oikee mitää-->
-            <Button Style="{StaticResource BetButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
-            <Button Style="{StaticResource BetButton}" Content="Play" Command="{Binding PlayCommand}"></Button> <!--Tää nappi on se mikä alottaa pelin.-->
+            <Button Style="{StaticResource BaseGameButton}" Content="Quit" Command="{Binding CloseWindowCommand}" Margin="0,0,1700,0"></Button>
 
-            <Button Style="{StaticResource GameResultButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button> <!--Nää kaks pitäs sit ku peli on arponu tulokset-->        
-            <Button Style="{StaticResource GameResultButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
-        </StackPanel>
+            <StackPanel Style="{StaticResource BetButtonPanel}">
+                <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
+                <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"></TextBlock>
+                <Button Style="{StaticResource BaseGameButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource GameResultButtonPanel}">
+                <Button Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

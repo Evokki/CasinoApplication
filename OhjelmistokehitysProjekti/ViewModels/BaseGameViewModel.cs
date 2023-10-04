@@ -175,7 +175,6 @@ namespace OhjelmistokehitysProjekti.ViewModels
             }
             else
             {
-                MainViewModel.NotifyUser("House won!");
                 ChangeGameState(0);
             }
         }

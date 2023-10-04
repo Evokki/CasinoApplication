@@ -83,4 +83,14 @@ namespace GambleAssetsLibrary
             UserCards = new ObservableCollection<Card>(uH);
         }
     }
+
+    public class SlotsGameStatus: GameStatus
+    {
+        public int[] Numbers;
+        public SlotsGameStatus(string Name, int[] rolledNums): base(Name) 
+        {
+            
+            Numbers = rolledNums;
+        }
+    }
 }

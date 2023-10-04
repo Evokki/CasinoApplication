@@ -29,9 +29,6 @@ namespace GambleAssetsLibrary
         private int[] numbers = { 1, 2, 3, 4, 5 };
         private double[] probabilities = { 0.5, 0.25, 0.125, 0.085, 0.04 };
 
-        Random random = new Random();
-
-
         public Slots(string s = "Slots") : base(s)
         {
             
@@ -48,6 +45,8 @@ namespace GambleAssetsLibrary
 
         public override void Play(decimal bet)
         {
+            Random random = new Random();
+
             int[] rolledNumbers = new int[3];
 
             for (int i = 0; i < 3; i++)
@@ -66,37 +65,30 @@ namespace GambleAssetsLibrary
             if (Win1 == 3)
             {
                 won = true;
-                
-                //win1 = currentBet * 5;
+                WinMultiplier = 5;
             }
             if (Win2 == 3)
             {
                 won = true;
-               
-                //win2 = currentBet * 10;
+                WinMultiplier = 10;
             }
             if (Win3 == 3)
             {
                 won = true;
-               
-                //win3 = currentBet * 20;
+                WinMultiplier = 20;
             }
             if (Win4 == 3)
             {
                 won = true;
-               
-                //win4 = currentBet * 50;
+                WinMultiplier = 50;
             }
             if (Win5 == 3)
             {
                 won = true;
-                WinMultiplier = 100; // näin
-
-                //win5 = currentBet * 100;
-
+                WinMultiplier = 100; 
             }
 
-            RaiseGameLogicEndedEvent(new GameStatus(GetName()));
+            RaiseGameLogicEndedEvent(new SlotsGameStatus(GetName(), rolledNumbers));
             HandleGameResults(won); //älä koske
         }
 
