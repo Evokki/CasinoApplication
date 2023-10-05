@@ -42,7 +42,6 @@ namespace OhjelmistokehitysProjekti
         }
 
         public void ClearGameView(object? sender, EventArgs e) {
-            gameView.Closed -= ClearGameView;
             gameView = null;
         }
 

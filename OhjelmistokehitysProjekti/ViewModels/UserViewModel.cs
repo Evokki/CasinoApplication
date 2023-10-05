@@ -26,51 +26,58 @@ namespace OhjelmistokehitysProjekti
         {
             get { return DateTime.Now.ToString("HH:mm"); }
         }
-        private User _User;
         public User? user
         {
-            get { return _User; }
-            set { _User = value; OnPropertyChanged("user"); }
+            get { return UserHandler.GetUser(); }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand DepositCommand { get; set; }
         public ICommand WithdrawCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
-        public ICommand Refresh { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         public UserViewModel()
         {
             DepositCommand = new RelayCommand(Deposit, canExecute);
             WithdrawCommand = new RelayCommand(Withdraw, canExecute);
             LogOutCommand = new RelayCommand(Logout, canExecute);
-            Refresh = new RelayCommand(ValidateUser, canExecute);
+            //RefreshCommand = new RelayCommand(ValidateUser, canExecute);
 
-            ValidateUser(null);
+            ValidateUser();
             _ = UpdateTime();
         }
-        public void ValidateUser(object parameter)
+
+        public void ValidateUser()
         {
-            user = UserHandler.GetUser();
             if (user == null)
             {
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                user = UserHandler.GetUser();
             }
+            OnPropertyChanged("user");
         }
         public void Deposit(object parameter)
         {
-            decimal amount = 10;
-            UserHandler.GetUser().IncreaseBalance(amount);
+            ChangeUserMoney(true, 10);
+        }
+        public void ChangeUserMoney(bool Add, decimal amount)
+        {
+            if (Add)
+            {
+                user.IncreaseBalance(amount);
+
+            }
+            else {
+                user.DecreaseBalance(amount);
+            }
+            OnPropertyChanged("user");
         }
         public void Withdraw(object parameter)
         {
-            AShowPopup(parameter);
-            decimal amount = 10;
-            UserHandler.GetUser().DecreaseBalance(amount);
+            ChangeUserMoney(false, 10);
         }
 
-        public void AShowPopup(object obj)
+        public void ShowPopup(object obj)
         {
             Popup popup = new Popup();
             Border b = new Border();
@@ -84,7 +91,8 @@ namespace OhjelmistokehitysProjekti
         public void Logout(object parameter)
         {
             UserHandler.LogOutUser();
-            ValidateUser(null);
+            OnPropertyChanged("user");
+            ValidateUser();
         }
         public bool canExecute(object obj)
         {

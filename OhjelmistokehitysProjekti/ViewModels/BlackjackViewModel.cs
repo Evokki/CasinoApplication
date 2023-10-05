@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OhjelmistokehitysProjekti.ViewModels
@@ -50,16 +51,11 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         public override void HandleGameStatus(GameCallback res)
         {
-            base.GameStatus = (GameStatus)res;
+            base.gameStatus = (GameStatus)res;
             _currentGameStatus = (BlackjackGameStatus)res;
             HouseHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.HouseCards);
             UserHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.UserCards);
             ChangeGameState(1);
-        }
-
-        public override void CloseWindow(object obj)
-        {
-            base.CloseWindow(obj);
         }
     }
 }

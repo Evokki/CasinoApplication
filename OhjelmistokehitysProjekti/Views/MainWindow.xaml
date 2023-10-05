@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti"
         mc:Ignorable="d"
-        Title="Main menu" Height="1080" Width="1920">
+        Title="Main menu" Height="1080" Width="1920"
+        Background="LightGray">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="MenuGameButtonStyle">
+            <Setter Property="Margin" Value="40, 80"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="CadetBlue"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -35,13 +45,26 @@
                 </StackPanel>
             </Border>
         </Popup>
-        
-        <ListView Name="GameButtonPanel" Grid.Row="1">
-            <Button Content="Blackjack" Height="80" Width="300" Click="StartBlackjack"></Button>
-            <Button Content="Slots" Height="80" Width="300" Click="StartSlots"></Button>
-            <Button Content="Poker" Height="80" Width="300" Click="StartPoker"></Button>
-            <Button Content="Quit" Height="80" Width="300" Command="{Binding CloseWindowCommand}"></Button>
-        </ListView>
+
+        <Grid Name="GameButtonPanel" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400"></RowDefinition>
+                <RowDefinition Height="400"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="2" Grid.ColumnSpan="4"  Margin="5" Fill="Gray"/>
+            <Button Content="Blackjack" Style="{StaticResource MenuGameButtonStyle}" Click="StartBlackjack" Grid.Row="0" Grid.Column="1"></Button>
+            <Button Content="Slots" Style="{StaticResource MenuGameButtonStyle}" Click="StartSlots" Grid.Row="0" Grid.Column="2"></Button>
+            <Button Content="Poker" Style="{StaticResource MenuGameButtonStyle}" Click="StartPoker" Grid.Row="1" Grid.Column="1"></Button>
+            <Button Content="Quit" Width="200" Margin="10, 5, 200, 0" FontSize="32" Background="IndianRed" Command="{Binding CloseWindowCommand}" Grid.Row="3" Grid.Column="0"></Button>
+        </Grid>
 
     </Grid>
 </Window>

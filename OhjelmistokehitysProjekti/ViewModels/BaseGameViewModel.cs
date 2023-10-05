@@ -17,15 +17,15 @@ namespace OhjelmistokehitysProjekti.ViewModels
     {
         public Game? currentGame;
         private GameStatus _GameStatus;
-        public GameStatus GameStatus
+        public GameStatus gameStatus
         {
             get { return _GameStatus; }
             set { _GameStatus = value; OnPropertyChanged("GameStatus"); }
         }
         private GameResult _GameResult;
-        public GameResult GameResult
+        public GameResult gameResult
         {
-            get { return _GameResult; }
+            get { return _GameResult; }  
             set { _GameResult = value; OnPropertyChanged("GameResult"); }
         }
         private int _GameState = 0;
@@ -127,8 +127,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
         // Calls Game.DoubleOrNothing doubling logic and returns a new result. Changes game state to 0 = (InputState) if no win.
         private void DoubleOrNothing(object obj)
         {
-            GameResult = currentGame.DoubleOrNothing(GameResult);
-            if(GameResult.WinAmount == 0) {
+            currentGame.DoubleOrNothing(_GameResult);
+            if(gameResult.WinAmount == 0) {
                 ChangeGameState(0);
             }
         }
@@ -137,8 +137,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
         // Adds winning from GameResult. Changes game state to 0 = (InputState).
         private void CashOut(object obj)
         {
-            User u = UserHandler.GetUser();
-            u.IncreaseBalance(GameResult.WinAmount);
+            MainWindow._UserViewModel.ChangeUserMoney(true, gameResult.WinAmount);
+            OnPropertyChanged("user");
             ChangeGameState(0);
         }
         #endregion
@@ -147,10 +147,9 @@ namespace OhjelmistokehitysProjekti.ViewModels
         // Initiates gamelogic in currentGame<Game>. After game logic an event Game.OnGameStatus(GameCallbackObjects.GameStatus result) is called.
         private void PlayGame(object obj)
         {
-            User u = UserHandler.GetUser();
-            if (u.IsThereEnoughBalance(CurrentBet))
+            if (UserHandler.GetUser().IsThereEnoughBalance(CurrentBet))
             {
-                u.DecreaseBalance(CurrentBet);
+                MainWindow._UserViewModel.ChangeUserMoney(false, CurrentBet);
                 currentGame.Play(CurrentBet);
             }
             else
@@ -161,16 +160,16 @@ namespace OhjelmistokehitysProjekti.ViewModels
         //GameStatus Listener. Listens to OnGameStatus event from class Game. Event returns a GameStatus object = Contains data about game state (Cards)
         public virtual void HandleGameStatus(GameCallback res)
         {
-            GameStatus = (GameStatus) res;
+            gameStatus = (GameStatus) res;
             ChangeGameState(1);
         }
         //GameResult Listener. Listens to OnGameResult event from class Game. Event returns a GameResult object = Contains data about winnings
         public virtual void HandleGameResult(GameCallback res)
         {
-            GameResult = (GameResult) res;
-            if (GameResult.userWon)
+            gameResult = (GameResult) res;
+            if (gameResult.userWon)
             {
-                MainViewModel.NotifyUser($"You won {GameResult.WinAmount}!");
+                MainViewModel.NotifyUser($"You won {gameResult.WinAmount}!");
                 ChangeGameState(2);
             }
             else
@@ -178,10 +177,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
                 ChangeGameState(0);
             }
         }
-        public override void CloseWindow(object obj)
-        {
-            base.CloseWindow(obj);
-        }
+
         public virtual bool CanChangeBet(object obj)
         {
             return _AllowBetChange;

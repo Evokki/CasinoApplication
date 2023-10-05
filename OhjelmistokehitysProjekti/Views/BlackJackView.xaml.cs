@@ -32,5 +32,10 @@ namespace OhjelmistokehitysProjekti
 
             UserPanel.DataContext = MainWindow._UserViewModel;
         }
+
+        private void CloseWindowClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -105,10 +105,9 @@ namespace GambleAssetsLibrary
         {
             OnGameResult?.Invoke(Result);
         }
-        public virtual GameResult DoubleOrNothing(GameResult result) //Called after HandlePayout if user clicks double
+        public virtual void DoubleOrNothing(GameResult result) //Called after HandlePayout if user clicks double
         {
-            result.WinAmount *= 2;
-            return result;
+            
         }
     }
 
@@ -186,6 +185,12 @@ namespace GambleAssetsLibrary
         {
             CreateFullDéck();
         }
+        public void ResetDeck()
+        {
+            cards.Clear();
+            CreateFullDéck();
+        }
+
         private void CreateFullDéck()
         {
             for(int i = 0; i < 4; i++) {

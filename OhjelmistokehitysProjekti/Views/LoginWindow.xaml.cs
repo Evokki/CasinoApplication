@@ -32,5 +32,18 @@ namespace OhjelmistokehitysProjekti.Views
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
         }
+
+        public void CloseWindow(object obj, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Exit Application?",
+                "Notification", MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
+
+        }
     }
 }

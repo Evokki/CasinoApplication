@@ -79,6 +79,7 @@ namespace GambleAssetsLibrary
             {
                 string msg = currentUser.Username + " has been logged out.";
                 MessageBox.Show(msg);
+                SaveUserData();
                 SetCurrentUser(null);
             }
         }

@@ -27,6 +27,7 @@ namespace GambleAssetsLibrary
             Console.WriteLine("Blackjack end");
             houseHand.Clear();
             userHand.Clear();
+            deck.ResetDeck();
         }
 
         public override void Play(decimal bet)
@@ -110,6 +111,11 @@ namespace GambleAssetsLibrary
                 userHand.Add(deck.GetCard());
             }
             RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
+        }
+
+        public override void DoubleOrNothing(GameResult result)
+        {
+            Play(result.UsedBet * 2);
         }
 
         public override void HandleGameResults(bool won)

@@ -23,19 +23,10 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public bool LoginOrSignup
         {
             get{ return _LoginOrSignup; }
-            set{ _LoginOrSignup = value; OnPropertyChanged("LoginOrSignup"); Console.WriteLine("Changed login or sign up to " + _LoginOrSignup); }
-        }
-        public string LoginMode 
-        {
-            get
-            {
-                Console.WriteLine("Get L of S = " + _LoginOrSignup);  if (LoginOrSignup) { return "Login"; } else return "Create User";
-                }
+            set{ _LoginOrSignup = value; OnPropertyChanged("LoginOrSignup"); }
         }
         public void OnPropertyChanged(string PropertyName = null)
         {
-            if(PropertyName == "LoginOrSignup")
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoginMode"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
         public LoginViewModel()
@@ -58,11 +49,13 @@ namespace OhjelmistokehitysProjekti.ViewModels
                     return;
                 }
                 
+                OnPropertyChanged("user");
                 CloseWindow(null);
             }
             else
             {
                 UserHandler.CreateNewUser(Username, Password);
+                OnPropertyChanged("user");
                 CloseWindow(null);
             }
         }
@@ -71,22 +64,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             UserHandler.CreateNewUser("Guest", "1234");
             UserHandler.GetUser().IncreaseBalance(100);
+            OnPropertyChanged("user");
             CloseWindow(null);
-        }
-        public override void CloseWindow(object obj)
-        {
-            if(obj != null)
-            {
-                MessageBoxResult result = MessageBox.Show("Exit Application?",
-                    "Notification", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    App.Current.Shutdown();
-                }
-            }
-            base.CloseWindow(obj);
         }
     }
 }
