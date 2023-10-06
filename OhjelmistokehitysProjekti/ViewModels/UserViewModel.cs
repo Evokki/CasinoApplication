@@ -35,7 +35,8 @@ namespace OhjelmistokehitysProjekti
         public ICommand WithdrawCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
-
+        public event Action OnDeposit;
+        public event Action OnWithdraw;
         public UserViewModel()
         {
             DepositCommand = new RelayCommand(Deposit, canExecute);
@@ -58,7 +59,11 @@ namespace OhjelmistokehitysProjekti
         }
         public void Deposit(object parameter)
         {
-            ChangeUserMoney(true, 10);
+            OnDeposit?.Invoke();
+        }
+        public void Withdraw(object parameter)
+        {
+            OnWithdraw?.Invoke();
         }
         public void ChangeUserMoney(bool Add, decimal amount)
         {
@@ -71,10 +76,6 @@ namespace OhjelmistokehitysProjekti
                 user.DecreaseBalance(amount);
             }
             OnPropertyChanged("user");
-        }
-        public void Withdraw(object parameter)
-        {
-            ChangeUserMoney(false, 10);
         }
 
         public void ShowPopup(object obj)

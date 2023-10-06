@@ -19,9 +19,10 @@ namespace OhjelmistokehitysProjekti.Views
     /// <summary>
     /// Interaction logic for SlotsView.xaml
     /// </summary>
-    public partial class SlotsView : Window
+    public partial class SlotsView : Window, IPopUpHelper
     {
         public Slots SlotsGame;
+        private PopupHandler _PopupHandler;
         public SlotsView()
         {
             InitializeComponent();
@@ -29,6 +30,27 @@ namespace OhjelmistokehitysProjekti.Views
             SlotsGame= new Slots(); 
             SlotsViewModel slotsViewModel = new SlotsViewModel(SlotsGame);
             this.DataContext = slotsViewModel;
+
+            _PopupHandler = new PopupHandler(this, UserBalancePopup, PopupTextBox, PopupTitle);
+            MainWindow._UserViewModel.OnDeposit += _PopupHandler.SetDepositHandler;
+            MainWindow._UserViewModel.OnWithdraw += _PopupHandler.SetWithdrawHandler;
+
+            UserPanel.DataContext = MainWindow._UserViewModel;
+        }
+
+        public void OnDeposit(decimal amount)
+        {
+            MainWindow._UserViewModel.ChangeUserMoney(true, amount);
+        }
+
+        public void OnWithdraw(decimal amount)
+        {
+            MainWindow._UserViewModel.ChangeUserMoney(false, amount);
+        }
+
+        private void CloseWindowClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

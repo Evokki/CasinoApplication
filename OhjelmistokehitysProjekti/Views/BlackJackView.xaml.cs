@@ -19,10 +19,11 @@ namespace OhjelmistokehitysProjekti
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
-    public partial class BlackJackView : Window
+    public partial class BlackJackView : Window, IPopUpHelper
     {
         Blackjack bjGame;
         BlackjackViewModel viewModel;
+        private PopupHandler _PopupHandler;
         public BlackJackView()
         {
             InitializeComponent();
@@ -30,12 +31,27 @@ namespace OhjelmistokehitysProjekti
             viewModel = new BlackjackViewModel(bjGame);
             this.DataContext = viewModel;
 
+            _PopupHandler = new PopupHandler(this, UserBalancePopup, PopupTextBox, PopupTitle);
+            MainWindow._UserViewModel.OnDeposit += _PopupHandler.SetDepositHandler;
+            MainWindow._UserViewModel.OnWithdraw += _PopupHandler.SetWithdrawHandler;
+
             UserPanel.DataContext = MainWindow._UserViewModel;
+        }
+
+        public void OnDeposit(decimal amount)
+        {
+            MainWindow._UserViewModel.ChangeUserMoney(true, amount);
+        }
+
+        public void OnWithdraw(decimal amount)
+        {
+            MainWindow._UserViewModel.ChangeUserMoney(false, amount);
         }
 
         private void CloseWindowClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+    
     }
 }

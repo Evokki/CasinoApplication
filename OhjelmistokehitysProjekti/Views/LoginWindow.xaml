@@ -11,7 +11,7 @@
         <Style TargetType="Button" x:Key="LoginToggleButton">
             <Setter Property="Content" Value="LOGIN"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=LoginCheck, Path=isChecked}" Value="True">
+                <DataTrigger Binding="{Binding ElementName=LoginCheck, Path=IsChecked}" Value="True">
                     <Setter Property="Content" Value="CREATE USER"/>
                 </DataTrigger>
             </Style.Triggers>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,12 @@ namespace OhjelmistokehitysProjekti
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IPopUpHelper
     {
         public Window? gameView;
         public static UserViewModel _UserViewModel { get; set; }
+
+        public PopupHandler popHandler;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,12 +36,15 @@ namespace OhjelmistokehitysProjekti
             MainViewModel mainViewModel = new MainViewModel();
             GameButtonPanel.DataContext = mainViewModel;
 
+            popHandler = new PopupHandler(this, UserBalancePopup, PopupTextBox, PopupTitle);
             if(_UserViewModel == null)
             {
                 _UserViewModel = new UserViewModel();
+                _UserViewModel.OnDeposit += popHandler.SetDepositHandler;
+                _UserViewModel.OnWithdraw += popHandler.SetWithdrawHandler;
             }
-
             UserPanel.DataContext = _UserViewModel;
+
         }
 
         public void ClearGameView(object? sender, EventArgs e) {
@@ -73,12 +79,15 @@ namespace OhjelmistokehitysProjekti
             gameView.Show();
         }
 
-        public void ShowPopup(object sender, RoutedEventArgs e)
+        public void OnDeposit(decimal amount)
         {
-            
-            //UserBalancePopup.StaysOpen = false;
-            UserBalancePopup.IsOpen = true;
-            //UserBalancePopup.PlacementTarget = (UIElement)sender;
+            Debug.WriteLine("On depo: " + this.Name);
+            _UserViewModel.ChangeUserMoney(true, amount);
+        }
+
+        public void OnWithdraw(decimal amount)
+        {
+            _UserViewModel.ChangeUserMoney(false, amount);
         }
     }
 }

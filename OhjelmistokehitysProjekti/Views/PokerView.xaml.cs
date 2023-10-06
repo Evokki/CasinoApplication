@@ -19,21 +19,39 @@ namespace OhjelmistokehitysProjekti.Views
     /// <summary>
     /// Interaction logic for PokerView.xaml
     /// </summary>
-    public partial class PokerView : Window
+    public partial class PokerView : Window, IPopUpHelper
     {
         public Poker PokerGame;
         public PokerViewModel ViewModel;
+        private PopupHandler _PopupHandler;
         public PokerView()
         {
             InitializeComponent();
             PokerGame = new Poker("Poker");
             ViewModel = new PokerViewModel(PokerGame);
+
+            _PopupHandler = new PopupHandler(this, UserBalancePopup, PopupTextBox, PopupTitle);
+            MainWindow._UserViewModel.OnDeposit += _PopupHandler.SetDepositHandler;
+            MainWindow._UserViewModel.OnWithdraw += _PopupHandler.SetWithdrawHandler;
+
             this.DataContext = ViewModel;
+
+            UserPanel.DataContext = MainWindow._UserViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void OnDeposit(decimal amount)
         {
+            MainWindow._UserViewModel.ChangeUserMoney(true, amount);
+        }
 
+        public void OnWithdraw(decimal amount)
+        {
+            MainWindow._UserViewModel.ChangeUserMoney(false, amount);
+        }
+
+        private void CloseWindowClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

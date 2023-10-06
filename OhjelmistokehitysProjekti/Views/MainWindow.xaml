@@ -26,25 +26,23 @@
             <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
             <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
             <TextBlock Text="{Binding user.AccountBalance, IsAsync=True}" Canvas.Right="150"></TextBlock>
-
-            <Menu>
+            <Popup Name="UserBalancePopup" Height="80" Width="160" PlacementTarget="{Binding ElementName=UserMenu}" Placement="Left" HorizontalOffset="-160">
+                <Border BorderThickness="2">
+                    <StackPanel Background="Gray">
+                        <TextBlock x:Name="PopupTitle" Text="Amount" FontSize="16"></TextBlock>
+                        <TextBox x:Name="PopupTextBox"></TextBox>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Menu x:Name="UserMenu">
                 <MenuItem Header="Menu" Foreground="#ffffff" FontSize="24" FontWeight="Bold">
                     <MenuItem Header="Deposit" Style="{StaticResource UserPanelMenuItem}" Command="{Binding DepositCommand}"></MenuItem>
                     <MenuItem Header="Withdraw" Style="{StaticResource UserPanelMenuItem}" Command="{Binding WithdrawCommand}"></MenuItem>
                     <MenuItem Header="Log Out" Style="{StaticResource UserPanelMenuItem}" Command="{Binding LogOutCommand}"></MenuItem>
-                    <MenuItem Header="Refresh" Style="{StaticResource UserPanelMenuItem}" Command="{Binding Refresh}"></MenuItem>
+                    <MenuItem Header="Refresh" Style="{StaticResource UserPanelMenuItem}" Command="{Binding RefreshCommand}"></MenuItem>
                 </MenuItem>
             </Menu>
         </Canvas>
-
-        <Popup Name="UserBalancePopup" Height="100" Width="200">
-            <Border BorderThickness="2">
-                <StackPanel Background="Gray">
-                    <TextBlock Text="Amount"></TextBlock>
-                    <TextBox x:Name="PopupTextBox"></TextBox>
-                </StackPanel>
-            </Border>
-        </Popup>
 
         <Grid Name="GameButtonPanel" Grid.Row="1">
             <Grid.ColumnDefinitions>
