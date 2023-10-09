@@ -26,7 +26,6 @@ namespace OhjelmistokehitysProjekti.ViewModels
             CurrentGame = (Poker)game;
             SelectOneCommand = new RelayCommand(SelectStackOne, CanExecute);
             SelectTwoCommand = new RelayCommand(SelectStackTwo, CanExecute);
-
         }
         public void SelectStackOne(object obj)
         {
@@ -41,6 +40,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public override void HandleGameStatus(GameCallback result)
         {
             CurrentStatus = (PokerGameStatus)result;
+            OnPropertyChanged("Card1");
             base.HandleGameStatus(result);
         }
         public override void HandleGameResult(GameCallback res)

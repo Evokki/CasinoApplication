@@ -23,7 +23,6 @@ namespace GambleAssetsLibrary
             player = new SoundPlayer(AudioPath);
             player.Load();
             player.Play();
-
         }
     }
 }
