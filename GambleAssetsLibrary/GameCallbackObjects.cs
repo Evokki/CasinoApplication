@@ -93,4 +93,52 @@ namespace GambleAssetsLibrary
             Numbers = rolledNums;
         }
     }
+    public class PokerGameStatus : GameStatus
+    {
+        private ObservableCollection<Card> _UserCards;
+        public ObservableCollection<Card> UserCards
+        {
+            get { return _UserCards; }
+            set { _UserCards = value; OnPropertyChanged("UserCards"); }
+        }
+        private ObservableCollection<Card> _Stack1;
+        public ObservableCollection<Card> Stack1
+        {
+            get { return _Stack1; }
+            set { _Stack1 = value; OnPropertyChanged("Stack1"); }
+        }
+        private ObservableCollection<Card> _Stack2;
+        public ObservableCollection<Card> Stack2
+        {
+            get { return _Stack2; }
+            set { _Stack2 = value; OnPropertyChanged("Stack2"); }
+        }
+        private Card _Card1;
+        public Card Card1
+        {
+            get { return _Card1; }
+            set { _Card1 = value; OnPropertyChanged("Card1"); }
+        }
+        private Card _Card2;
+        public Card Card2
+        {
+            get { return _Card2; }
+            set { _Card2 = value; OnPropertyChanged("Card2"); }
+        }
+
+        public PokerGameStatus(string Name, List<Card> hand, List<Card> one, List<Card> two) : base(Name)
+        {
+            UserCards = new ObservableCollection<Card>(hand);
+            Stack1 = new ObservableCollection<Card>(one);
+            Stack2 = new ObservableCollection<Card>(two);
+            if(one.Count != 0)
+            {
+                Card1 = one.First();
+            }
+            if (two.Count != 0)
+            {
+                Card2 = two.First();
+            }
+        }
+    }
 }

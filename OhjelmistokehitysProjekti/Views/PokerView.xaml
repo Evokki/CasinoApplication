@@ -35,7 +35,45 @@
                 </MenuItem>
             </Menu>
         </Canvas>
-        
+
+        <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
+            
+            <ListView x:Name="UserCardPanel" 
+                ItemsSource="{Binding CurrentStatus.UserCards}"
+                HorizontalAlignment="Center" Grid.Row="1">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="Black" Margin="10">
+                            <Grid Style="{StaticResource Card}">
+                                <Image></Image>
+                                <TextBlock Text="{Binding Name}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Grid Style="{StaticResource Card}">
+                    <Image></Image>
+                    <TextBlock Text="{Binding Card1.Name}"></TextBlock>
+                </Grid>
+            
+                <Grid Style="{StaticResource Card}" DataContext="{Binding Card2}">
+                    <Image></Image>
+                    <TextBlock Text="{Binding Name}" ></TextBlock>
+                </Grid>
+            </StackPanel>
+
+
+        </StackPanel>
+
         <Grid Grid.Row="2">
             <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick"></Button>
@@ -53,8 +91,8 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource GameInputButtonPanel}">
-                <Button Style="{StaticResource BaseGameButton}" Content="Hit" Command="{Binding HitCommand}"></Button>
-                <Button Style="{StaticResource BaseGameButton}" Content="Stand" Command="{Binding StandCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Stack 1" Command="{Binding SelectOneCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Stack 2" Command="{Binding SelectTwoCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>

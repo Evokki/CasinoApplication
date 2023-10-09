@@ -195,7 +195,7 @@ namespace GambleAssetsLibrary
         {
             for(int i = 0; i < 4; i++) {
                 string house = Card._Suits[i];
-                for(int j = 0; j < 14; j++)
+                for(int j = 0; j < 12; j++)
                 {
                     cards.Add(new Card(j+1, house));
                 }
