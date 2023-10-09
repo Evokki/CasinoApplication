@@ -45,12 +45,10 @@ namespace OhjelmistokehitysProjekti.ViewModels
 
         private void HandleHitCommand(object obj)
         {
-            Console.WriteLine("hit cmd");
             _currentGame.HandleHitOrStand(true);
         }
         private void HandleStandCommand(object obj)
         {
-            Console.WriteLine("stand cmd");
             _currentGame.HandleHitOrStand(false);
         }
 
