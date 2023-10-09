@@ -114,13 +114,13 @@ namespace GambleAssetsLibrary
             set { _Stack2 = value; OnPropertyChanged("Stack2"); }
         }
         private Card _Card1;
-        public Card Card1
+        public Card? Card1
         {
             get { return _Card1; }
             set { _Card1 = value; OnPropertyChanged("Card1"); }
         }
         private Card _Card2;
-        public Card Card2
+        public Card? Card2
         {
             get { return _Card2; }
             set { _Card2 = value; OnPropertyChanged("Card2"); }
@@ -134,11 +134,12 @@ namespace GambleAssetsLibrary
             if(one.Count != 0)
             {
                 Card1 = one.First();
-            }
+            }else Card1 = null;
             if (two.Count != 0)
             {
                 Card2 = two.First();
             }
+            else Card2 = null;
         }
     }
 }

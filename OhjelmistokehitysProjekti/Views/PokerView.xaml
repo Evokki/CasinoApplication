@@ -14,7 +14,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Canvas Name="UserPanel" Style="{StaticResource UserCanvas}">
             <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
             <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
@@ -37,7 +37,7 @@
         </Canvas>
 
         <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
-            
+
             <ListView x:Name="UserCardPanel" 
                 ItemsSource="{Binding CurrentStatus.UserCards}"
                 HorizontalAlignment="Center" Grid.Row="1">
@@ -59,15 +59,25 @@
             </ListView>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                <Grid Style="{StaticResource Card}">
-                    <Image></Image>
-                    <TextBlock Text="{Binding Card1.Name}"></TextBlock>
+                <Grid Style="{StaticResource CardStack}" DataContext="{Binding CurrentStatus}">
+                    <Image Source="/Resources/Images/cardback_blue.png" Height="300" Margin="160,100,0,0" />
+                    <Image Source="/Resources/Images/cardback_blue.png" Height="300" Margin="80,50,0,0" />
+                    <Border BorderThickness="3" BorderBrush="Black" Margin="80,50">
+                        <Grid Style="{StaticResource Card}" DataContext="{Binding Card1}">
+                            <Image></Image>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Grid>
+                    </Border>
                 </Grid>
-            
-                <Grid Style="{StaticResource Card}" DataContext="{Binding Card2}">
-                    <Image></Image>
-                    <TextBlock Text="{Binding Name}" ></TextBlock>
+                <Grid Style="{StaticResource CardStack}" DataContext="{Binding CurrentStatus}">
+                    <Image Source="/Resources/Images/cardback_blue.png" Height="300" Margin="160,100,0,0" />
+                    <Image Source="/Resources/Images/cardback_blue.png" Height="300" Margin="80,50,0,0" />
+                    <Border BorderThickness="3" BorderBrush="Black" Margin="80,50">
+                        <Grid Style="{StaticResource Card}" DataContext="{Binding Card2}">
+                            <Image></Image>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Grid>
+                    </Border>
                 </Grid>
             </StackPanel>
 
