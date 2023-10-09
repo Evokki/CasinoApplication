@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Audio\click.wav" />
+    <None Remove="Resources\Audio\win.wav" />
     <None Remove="Resources\Images\cardback_blue.png" />
     <None Remove="Resources\Images\Slots_1.png" />
     <None Remove="Resources\Images\Slots_2.png" />
@@ -29,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Audio\click.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Audio\win.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\cardback_blue.png" />
     <Resource Include="Resources\Images\Slots_4.png" />
     <Resource Include="Resources\Images\Slots_1.png" />

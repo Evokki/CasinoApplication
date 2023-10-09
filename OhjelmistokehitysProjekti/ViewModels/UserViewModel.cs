@@ -34,7 +34,6 @@ namespace OhjelmistokehitysProjekti
         public ICommand DepositCommand { get; set; }
         public ICommand WithdrawCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
-        public ICommand RefreshCommand { get; set; }
         public event Action OnDeposit;
         public event Action OnWithdraw;
         public UserViewModel()
@@ -42,7 +41,6 @@ namespace OhjelmistokehitysProjekti
             DepositCommand = new RelayCommand(Deposit, canExecute);
             WithdrawCommand = new RelayCommand(Withdraw, canExecute);
             LogOutCommand = new RelayCommand(Logout, canExecute);
-            //RefreshCommand = new RelayCommand(ValidateUser, canExecute);
 
             ValidateUser();
             _ = UpdateTime();

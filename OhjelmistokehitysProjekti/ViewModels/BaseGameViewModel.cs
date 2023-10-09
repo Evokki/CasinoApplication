@@ -105,10 +105,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             if (BetIndex < _Bets.Length - 1) {
                 BetIndex += 1;
-            }
-            else
-            {
-                BetIndex = _Bets.Length - 1;
+                AudioManager.PlayAudio(AudioManager.ClickSoundPath);
             }
         }
         // Called from BetDownCommand
@@ -117,6 +114,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             if (BetIndex > 0)
             {
                 BetIndex -= 1;
+                AudioManager.PlayAudio(AudioManager.ClickSoundPath);
             }
         }
         public decimal GetCurrentBet() => CurrentBet;
@@ -169,6 +167,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             gameResult = (GameResult) res;
             if (gameResult.userWon)
             {
+                AudioManager.PlayAudio(AudioManager.WinSoundPath);
                 MainViewModel.NotifyUser($"You won {gameResult.WinAmount}!");
                 ChangeGameState(2);
             }

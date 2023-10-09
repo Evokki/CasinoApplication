@@ -39,7 +39,6 @@
                     <MenuItem Header="Deposit" Style="{StaticResource UserPanelMenuItem}" Command="{Binding DepositCommand}"></MenuItem>
                     <MenuItem Header="Withdraw" Style="{StaticResource UserPanelMenuItem}" Command="{Binding WithdrawCommand}"></MenuItem>
                     <MenuItem Header="Log Out" Style="{StaticResource UserPanelMenuItem}" Command="{Binding LogOutCommand}"></MenuItem>
-                    <MenuItem Header="Refresh" Style="{StaticResource UserPanelMenuItem}" Command="{Binding RefreshCommand}"></MenuItem>
                 </MenuItem>
             </Menu>
         </Canvas>
