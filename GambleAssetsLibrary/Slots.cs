@@ -28,7 +28,7 @@ namespace GambleAssetsLibrary
         }
 
         private int[] numbers = { 1, 2, 3, 4, 5 };
-        private double[] probabilities = { 0.5, 0.25, 0.125, 0.085, 0.04 };
+        private double[] probabilities = { 0.4, 0.25, 0.2, 0.1, 0.05 };
 
         public Slots(string s = "Slots") : base(s)
         {
@@ -68,7 +68,7 @@ namespace GambleAssetsLibrary
             if (Win1 == 3)
             {
                 won = true;
-                WinMultiplier = 5;
+                WinMultiplier = 3;
             }
             if (Win2 == 3)
             {
@@ -78,17 +78,17 @@ namespace GambleAssetsLibrary
             if (Win3 == 3)
             {
                 won = true;
-                WinMultiplier = 20;
+                WinMultiplier = 15;
             }
             if (Win4 == 3)
             {
                 won = true;
-                WinMultiplier = 50;
+                WinMultiplier = 30;
             }
             if (Win5 == 3)
             {
                 won = true;
-                WinMultiplier = 100; 
+                WinMultiplier = 60; 
             }
             if (Win5 == 2)
             {
