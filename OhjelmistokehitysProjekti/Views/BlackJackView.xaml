@@ -41,53 +41,52 @@
         </Canvas>
 
         <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
-                <TextBlock Text="House Hand Value" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding HouseHandValue}" 
-                           HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="House Hand" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding HouseHandValue}" HorizontalAlignment="Center"></TextBlock>
 
-                <ListView x:Name="HouseHandPanel" 
-                          ItemsSource="{Binding GameStatus.HouseCards}"
-                          HorizontalAlignment="Center">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"></StackPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="3" BorderBrush="Black" Margin="10">
-                                <Grid Style="{StaticResource Card}">
-                                    <Image></Image>
-                                    <TextBlock Text="{Binding Name}" ></TextBlock>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            <ListView x:Name="HouseHandPanel" 
+                        ItemsSource="{Binding CurrentStatus.HouseCards}"
+                        HorizontalAlignment="Center">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="Black" Margin="10">
+                            <Grid Style="{StaticResource Card}">
+                                <Image></Image>
+                                <TextBlock Text="{Binding Name}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                <TextBlock Text="User Hand Value" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding UserHandValue}" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Player Hand" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding UserHandValue}" HorizontalAlignment="Center"></TextBlock>
             
-                <ListView x:Name="UserHandPanel" 
-                          ItemsSource="{Binding GameStatus.UserCards}"
-                          HorizontalAlignment="Center">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"></StackPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="3" BorderBrush="Black" Margin="10">
-                                <Grid Style="{StaticResource Card}">
-                                    <Image></Image>
-                                    <TextBlock Text="{Binding Name}" ></TextBlock>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
+            <ListView x:Name="UserHandPanel" 
+                        ItemsSource="{Binding CurrentStatus.UserCards}"
+                        HorizontalAlignment="Center">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="Black" Margin="10">
+                            <Grid Style="{StaticResource Card}">
+                                <Image></Image>
+                                <TextBlock Text="{Binding Name}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
 
         <Grid Grid.Row="2"> <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource BaseGameButton}" Content="Quit" Click="CloseWindowClick" Margin="0,0,1700,0"></Button>

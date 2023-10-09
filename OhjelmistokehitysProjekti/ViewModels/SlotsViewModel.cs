@@ -41,12 +41,49 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             get { return Num3.SlotIconPath(); }
         }
+        public string Icons1Result
+        {
+            get { return "= " + GetCurrentBet() * 5 + " €"; }
+        }
+        public string Icons2Result
+        {
+            get { return "= " + GetCurrentBet() * 10 + " €"; }
+        }
+        public string Icons3Result
+        {
+            get { return "= " + GetCurrentBet() * 20 + " €"; }
+        }
+        public string Icons4Result
+        {
+            get { return "= " + GetCurrentBet() * 50 + " €"; }
+        }
+        public string Icons5Result
+        {
+            get { return "= " + GetCurrentBet() * 100 + " €"; }
+        }
 
         public SlotsViewModel(Game game) : base(game)
         {
             CurrentGame = (Slots)game;
         }
-
+        public override void IncreaseBet(object obj)
+        {
+            base.IncreaseBet(obj);
+            RefreshBets();
+        }
+        public override void DecreaseBet(object obj)
+        {
+            base.DecreaseBet(obj);
+            RefreshBets();
+        }
+        private void RefreshBets()
+        {
+            OnPropertyChanged("Icons1Result");
+            OnPropertyChanged("Icons2Result");
+            OnPropertyChanged("Icons3Result");
+            OnPropertyChanged("Icons4Result");
+            OnPropertyChanged("Icons5Result");
+        }
         public override void HandleGameStatus(GameCallback res)
         {
             base.HandleGameStatus(res);

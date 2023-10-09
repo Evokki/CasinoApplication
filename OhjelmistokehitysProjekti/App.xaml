@@ -21,6 +21,9 @@
             <Setter Property="Content" Value="Quit"/>
             <Setter Property="Margin" Value="0,0,1700,0"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="DarkRed"/>
         </Style>
         <Style TargetType="StackPanel" x:Key="BetButtonPanel" BasedOn="{StaticResource GameControlsPanelStyle}">
             <Style.Triggers>

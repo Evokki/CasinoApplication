@@ -26,3 +26,9 @@ BaseGameViewModel.ChangeState() päättää mitä peli nappeja näkyy ruudulla. 
 0 = Ruudulla näkyy BetUp, BetDown ja Play
 1 = Ruudulla näkyy pelikohtaiset valinta napit esim. Pokerissa pakat ja Blackjackissä Hit ja Stand. 
 2 = Ruudulla näkyy Double ja CashOut
+
+Paletti
+EEEEEE
+787A91
+141E61
+0F044C

@@ -15,6 +15,11 @@ namespace OhjelmistokehitysProjekti.ViewModels
     {
         private Blackjack _currentGame;
         private BlackjackGameStatus _currentGameStatus;
+        public BlackjackGameStatus CurrentStatus
+        {
+            get { return _currentGameStatus; }
+            set { _currentGameStatus = value; OnPropertyChanged("CurrentStatus"); }
+        }
         public ICommand HitCommand { get; set; }
         public ICommand StandCommand { get; set; }
 
@@ -49,12 +54,12 @@ namespace OhjelmistokehitysProjekti.ViewModels
             _currentGame.HandleHitOrStand(false);
         }
 
-        public override void HandleGameStatus(GameCallback res)
+        public override void HandleGameStatus(GameCallback response)
         {
-            base.gameStatus = (GameStatus)res;
-            _currentGameStatus = (BlackjackGameStatus)res;
-            HouseHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.HouseCards);
-            UserHandValue = GambleExtensionMethods.BJHandValues(_currentGameStatus.UserCards);
+            base.gameStatus = (GameStatus)response;
+            CurrentStatus = (BlackjackGameStatus)response;
+            HouseHandValue = GambleExtensionMethods.BJHandValues(CurrentStatus.HouseCards);
+            UserHandValue = GambleExtensionMethods.BJHandValues(CurrentStatus.UserCards);
             ChangeGameState(1);
         }
     }

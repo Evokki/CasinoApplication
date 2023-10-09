@@ -30,10 +30,10 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\cardback_blue.png" />
+    <Resource Include="Resources\Images\Slots_4.png" />
     <Resource Include="Resources\Images\Slots_1.png" />
     <Resource Include="Resources\Images\Slots_2.png" />
     <Resource Include="Resources\Images\Slots_3.png" />
-    <Resource Include="Resources\Images\Slots_4.png" />
     <Resource Include="Resources\Images\Slots_5.png" />
     <Resource Include="Resources\Images\suits_Clubs.png" />
     <Resource Include="Resources\Images\suits_Diamonds.png" />

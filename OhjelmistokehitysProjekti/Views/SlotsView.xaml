@@ -19,13 +19,14 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions> <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
+        <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
-            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="140"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!--Käyttäjä paneeli-->
         <Canvas Name="UserPanel" Style="{StaticResource UserCanvas}">
             <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
             <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
@@ -48,39 +49,60 @@
             </Menu>
         </Canvas>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray">
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+        <!--Slotti voittosummat-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Background="#787A91" Margin="5">
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="60"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons1Result}" Foreground="White"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="LightGray">
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Text="777 = 1000€"/>
+            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="60"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons2Result}" Foreground="White"/>
             </StackPanel>
-        </Grid>
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="{Binding Num1}" Width ="200" FontSize="40"></TextBlock>
-            <Image Source="{Binding Num1Path}" Width="100" Height="100"></Image>
-            <TextBlock Text="{Binding Num2}" Width ="200" FontSize="40"></TextBlock>
-            <Image Source="{Binding Num2Path}" Width="100" Height="100"></Image>
-            <TextBlock Text="{Binding Num3}" Width ="200" FontSize="40"></TextBlock>
-            <Image  Source="{Binding Num3Path}" Width="100" Height="100"></Image>
+            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="60"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons3Result}" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="60"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons4Result}" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="60"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="60"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons5Result}" Foreground="White"/>
+            </StackPanel>
         </StackPanel>
-        
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="93" Margin="226,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"  FontSize="36"/>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <ListView>
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="{Binding Num1}" Width ="200" FontSize="40"></TextBlock>
+                <Image Source="{Binding Num1Path}" Width="200"></Image>
+            </ListView>
+            <ListView>
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="{Binding Num2}" Width ="200" FontSize="40"></TextBlock>
+                <Image Source="{Binding Num2Path}" Width="200"></Image>
+            </ListView>
+            <ListView>
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="{Binding Num3}" Width ="200" FontSize="40"></TextBlock>
+                <Image  Source="{Binding Num3Path}" Width="200"></Image>
+            </ListView>
+        </StackPanel>
+
+        <!-- Stackpanel for showin game buttons -->
         <Grid Grid.Row="4">
-            <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick"></Button>
 
             <StackPanel Style="{StaticResource BetButtonPanel}">

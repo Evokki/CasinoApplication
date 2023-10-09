@@ -52,16 +52,16 @@
                 <ColumnDefinition Width="500"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="400"></RowDefinition>
-                <RowDefinition Height="400"></RowDefinition>
+                <RowDefinition Height="380"></RowDefinition>
+                <RowDefinition Height="380"></RowDefinition>
                 <RowDefinition Height="15"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="2" Grid.ColumnSpan="4"  Margin="5" Fill="Gray"/>
             <Button Content="Blackjack" Style="{StaticResource MenuGameButtonStyle}" Click="StartBlackjack" Grid.Row="0" Grid.Column="1"></Button>
             <Button Content="Slots" Style="{StaticResource MenuGameButtonStyle}" Click="StartSlots" Grid.Row="0" Grid.Column="2"></Button>
             <Button Content="Poker" Style="{StaticResource MenuGameButtonStyle}" Click="StartPoker" Grid.Row="1" Grid.Column="1"></Button>
-            <Button Content="Quit" Width="200" Margin="10, 5, 200, 0" FontSize="32" Background="IndianRed" Command="{Binding CloseWindowCommand}" Grid.Row="3" Grid.Column="0"></Button>
+            <Button Style="{StaticResource QuitButton}" Margin="10, 5, 200, 0"  Command="{Binding CloseWindowCommand}" Grid.Row="3" Grid.Column="0"></Button>
         </Grid>
 
     </Grid>

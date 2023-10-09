@@ -101,7 +101,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
         #region Betting Functionality
         // Called from BetUpCommand
-        private void IncreaseBet(object obj)
+        public virtual void IncreaseBet(object obj)
         {
             if (BetIndex < _Bets.Length - 1) {
                 BetIndex += 1;
@@ -112,7 +112,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             }
         }
         // Called from BetDownCommand
-        private void DecreaseBet(object obj)
+        public virtual void DecreaseBet(object obj)
         {
             if (BetIndex > 0)
             {
