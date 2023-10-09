@@ -90,6 +90,16 @@ namespace GambleAssetsLibrary
                 won = true;
                 WinMultiplier = 100; 
             }
+            if (Win5 == 2)
+            {
+                won = true;
+                WinMultiplier = 5;
+            }
+            if (Win5 == 1)
+            {
+                won = true;
+                WinMultiplier = 2;
+            }
 
             RaiseGameLogicEndedEvent(new SlotsGameStatus(GetName(), rolledNumbers));
             HandleGameResults(won); //älä koske

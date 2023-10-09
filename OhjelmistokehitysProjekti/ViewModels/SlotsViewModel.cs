@@ -61,6 +61,14 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             get { return "= " + GetCurrentBet() * 100 + " €"; }
         }
+        public string Icons6Result
+        {
+            get { return "= " + GetCurrentBet() * 2 + " €"; }
+        }
+        public string Icons7Result
+        {
+            get { return "= " + GetCurrentBet() * 5 + " €"; }
+        }
 
         public SlotsViewModel(Game game) : base(game)
         {
@@ -83,6 +91,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
             OnPropertyChanged("Icons3Result");
             OnPropertyChanged("Icons4Result");
             OnPropertyChanged("Icons5Result");
+            OnPropertyChanged("Icons6Result");
+            OnPropertyChanged("Icons7Result");
         }
         public override void HandleGameStatus(GameCallback res)
         {
