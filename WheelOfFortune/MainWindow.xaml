@@ -25,7 +25,7 @@
                 </Line.RenderTransform>
                 
             </Line>
-            <TextBlock Text="1" Canvas.Right="120" Canvas.Top="80" />
+            <TextBlock Text="Esim1" Canvas.Right="110" Canvas.Top="80" />
             <Line X1="220" Y1="80" X2="80" Y2="220" Stroke="Black" StrokeThickness="1">
                 <Line.RenderTransform>
                     <RotateTransform x:Name="line4" CenterX="150" CenterY="150"/>
