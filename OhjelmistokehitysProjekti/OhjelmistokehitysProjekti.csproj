@@ -10,8 +10,11 @@
   <ItemGroup>
     <None Remove="Resources\Audio\click.wav" />
     <None Remove="Resources\Audio\win.wav" />
+    <None Remove="Resources\Images\Blue_Table.jpg" />
+    <None Remove="Resources\Images\Blue_Table.png" />
     <None Remove="Resources\Images\cardback_blue.png" />
     <None Remove="Resources\Images\Coins.png" />
+    <None Remove="Resources\Images\Green_Table.jpg" />
     <None Remove="Resources\Images\Slots_1.png" />
     <None Remove="Resources\Images\Slots_2.png" />
     <None Remove="Resources\Images\Slots_3.png" />
@@ -38,8 +41,10 @@
     <Resource Include="Resources\Audio\win.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Images\Blue_Table.png" />
     <Resource Include="Resources\Images\cardback_blue.png" />
     <Resource Include="Resources\Images\Coins.png" />
+    <Resource Include="Resources\Images\Green_Table.jpg" />
     <Resource Include="Resources\Images\Slots_4.png" />
     <Resource Include="Resources\Images\Slots_1.png" />
     <Resource Include="Resources\Images\Slots_2.png" />
