@@ -4,10 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti.Views"
+        xmlns:gamble="clr-namespace:GambleAssetsLibrary;assembly=GambleAssetsLibrary"
         mc:Ignorable="d"
         Title="SlotsView" Height="1080" Width="1920"
         WindowState="Maximized">
     <Window.Resources>
+        <Style TargetType="ListBoxItem" x:Key="WheelItemStyle">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Gold"/>
+        </Style>
         <Style TargetType="TextBlock" x:Key="SlottiTyyli">
             <!--Muokkaile tätä tyyliä miten haluut. Tää on textblock elementteihin-->
             <Setter Property="Width" Value="140"/>
@@ -113,6 +120,81 @@
             <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Coins.png" HorizontalAlignment="Left" Height="660" Grid.Row="2" VerticalAlignment="Top" Width="634"/>
         </StackPanel>
 
+        <Canvas x:Name="Wheel">
+            <ListBox x:Name="WheelLB" 
+                     RenderTransformOrigin=".5,.5" 
+                     Width="760" Height="760" 
+                     Canvas.Top="160" Canvas.Left="40"
+                     Background="Black">
+                <ListBox.RenderTransform>
+                    <RotateTransform x:Name="WheelRotation" Angle="0"/>
+                </ListBox.RenderTransform>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <gamble:CircularPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBoxItem Content="0x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot0"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="1x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot1"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="0x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot2"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="2x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot3"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="0x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot4"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="2x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot5"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="0x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot6"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="3x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot7"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="0x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot8"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+                <ListBoxItem Content="5x" Style="{StaticResource WheelItemStyle}">
+                    <ListBoxItem.RenderTransform>
+                        <RotateTransform x:Name="Rot9"/>
+                    </ListBoxItem.RenderTransform>
+                </ListBoxItem>
+            </ListBox>
+
+            <Polygon Fill="Red" Stroke="Black" Canvas.Top="460" Canvas.Left="760">
+                <Polygon.Points>
+                    <Point X="0" Y="80"/>
+                    <Point X="80" Y="0"/>
+                    <Point X="80" Y="160"/>
+                </Polygon.Points>
+            </Polygon>
+        </Canvas>
         <!-- Stackpanel for showin game buttons -->
         <Grid Grid.Row="4" Background="#FF787A91">
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick"></Button>
@@ -125,7 +207,7 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource GameResultButtonPanel}">
-                <Button Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}" Click="ShowWheel"></Button>
                 <Button Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
             </StackPanel>
         </Grid>

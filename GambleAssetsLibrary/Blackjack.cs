@@ -13,6 +13,7 @@ namespace GambleAssetsLibrary
         private Deck deck;
         private List<Card> houseHand = new List<Card>();
         private List<Card> userHand = new List<Card>();
+        private int Limit = 21;
         public Blackjack(string s = "Blackjack") : base(s)
         {
             deck = new Deck();
@@ -44,11 +45,11 @@ namespace GambleAssetsLibrary
                 userHand.Add(deck.GetCard());
                 userAmount = CalculateHand(userHand);
                 RaiseGameLogicEndedEvent(new BlackjackGameStatus(GetName(), houseHand, userHand));
-                if (userAmount > 21)
+                if (userAmount > Limit)
                 {
                     HandleGameResults(false);
                 }
-                else if(userAmount == 21)
+                else if(userAmount == Limit)
                 {
                     HouseTurn(userAmount);
                 }
@@ -95,10 +96,19 @@ namespace GambleAssetsLibrary
                 if(card.Value > 10)
                 {
                     i += 10;
+                    Limit -= 10;
                 }
-                else { 
+                else if (card.Value > 1){ 
                     i += card.Value;
                 }
+                else
+                {
+                    i += 11;
+                }
+            }
+            if(i > Limit && hand.Any(x => x.Value == 1))
+            {
+                i -= 10;
             }
             return i;
         }
