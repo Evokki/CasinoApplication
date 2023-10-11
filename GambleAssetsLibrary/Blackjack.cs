@@ -93,10 +93,9 @@ namespace GambleAssetsLibrary
             int i = 0;
             foreach(Card card in hand)
             {
-                if(card.Value > 10)
+                if(card.Value >= 10)
                 {
                     i += 10;
-                    Limit -= 10;
                 }
                 else if (card.Value > 1){ 
                     i += card.Value;

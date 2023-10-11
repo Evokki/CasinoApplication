@@ -32,7 +32,14 @@ namespace OhjelmistokehitysProjekti.Views
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
         }
-
+        public void TextboxEditor(object o, KeyEventArgs e)
+        {
+            TextBox t = (TextBox)o;
+            if (string.IsNullOrEmpty(t.Text))
+            {
+                t.Text = "Enter text here...";
+            }
+        }
         public void CloseWindow(object obj, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Exit Application?",
