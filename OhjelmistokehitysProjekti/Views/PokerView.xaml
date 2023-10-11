@@ -1,4 +1,4 @@
-﻿<Window x:Class="OhjelmistokehitysProjekti.Views.PokerView"
+﻿<Window x:Name="window" x:Class="OhjelmistokehitysProjekti.Views.PokerView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PokerView" Height="1080" Width="1920"
         WindowState="Maximized">
-    <Grid>
+    <Grid Background="#FF909090">
         <Grid.RowDefinitions>
             <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
             <RowDefinition Height="140"></RowDefinition>
@@ -36,7 +36,10 @@
             </Menu>
         </Canvas>
 
-        <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
+        <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Resources/Images/Blue_Table.png" TileMode="None" Stretch="UniformToFill"/>
+            </StackPanel.Background>
 
             <ListView x:Name="UserCardPanel" 
                 ItemsSource="{Binding CurrentStatus.UserCards}"
@@ -84,7 +87,7 @@
 
         </StackPanel>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Background="#FF909090">
             <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick"></Button>
 
