@@ -16,6 +16,7 @@
         </Grid.RowDefinitions>
 
         <Canvas Name="UserPanel" Style="{StaticResource UserCanvas}">
+            <TextBlock Text="{Binding LatestResult}" Canvas.Left="240"></TextBlock>
             <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
             <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
             <TextBlock Text="{Binding user.AccountBalance, IsAsync=True}" Canvas.Right="150"></TextBlock>

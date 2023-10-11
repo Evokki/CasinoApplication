@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace OhjelmistokehitysProjekti.Views
 {
@@ -42,7 +43,7 @@ namespace OhjelmistokehitysProjekti.Views
             UserPanel.DataContext = MainWindow._UserViewModel;
             CreateRotList();
             wheel = new Wheel(WheelLB, WheelRotation, list);
-            wheel.WheelStopped += HideWheel;
+            wheel.WheelStopped += OnWheelResult;
             Wheel.Visibility = Visibility.Collapsed;
         }
         private void CreateRotList()
@@ -58,7 +59,7 @@ namespace OhjelmistokehitysProjekti.Views
             list.Add(Rot8);
             list.Add(Rot9);
         }
-        public void HideWheel()
+        public void OnWheelResult()
         {
             int T = wheel.GetMultiplier();
             GameResult g = slotsViewModel.gameResult;
@@ -70,9 +71,22 @@ namespace OhjelmistokehitysProjekti.Views
             {
                 g.userWon = false;
                 g.WinAmount = 0;
+
+                var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+                timer.Start();
+                timer.Tick += (sender, args) =>
+                {
+                    timer.Stop();
+                    HideWheel(null, null);
+                };
             }
             slotsViewModel.HandleGameResult(g);
-            Wheel.Visibility = Visibility.Collapsed;
+
+
+        }
+        public void HideWheel(object o, RoutedEventArgs e)
+        {
+               Wheel.Visibility = Visibility.Collapsed;
         }
         private void ShowWheel(object sender, RoutedEventArgs e)
         {

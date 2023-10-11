@@ -22,6 +22,18 @@ namespace OhjelmistokehitysProjekti
 {
     public class UserViewModel : INotifyPropertyChanged
     {
+        private string _LatestResult;
+        public string LatestResult
+        {
+            get { return _LatestResult; }
+            set { _LatestResult = value; OnPropertyChanged("LatestResult"); }
+        }
+        private GameResult _GameResult;
+        public GameResult gameResult
+        {
+            get { return _GameResult; }
+            set { _GameResult = value; OnPropertyChanged("GameResult"); OnPropertyChanged("LatestResult"); }
+        }
         public string LocalTime
         {
             get { return DateTime.Now.ToString("HH:mm"); }
@@ -86,6 +98,14 @@ namespace OhjelmistokehitysProjekti
             popup.Child = b;
             
             popup.IsOpen = true;
+        }
+        public void OnGameResultReceived(GameResult result)
+        {
+            gameResult = result;
+            if(gameResult.WinAmount != 0)
+            {
+                LatestResult = "Latest win: " + gameResult.WinAmount + " €";
+            }
         }
         public void Logout(object parameter)
         {

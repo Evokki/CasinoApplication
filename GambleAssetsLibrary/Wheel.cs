@@ -18,7 +18,7 @@ namespace GambleAssetsLibrary
         private DoubleAnimation WheelAnim;
         private DoubleAnimation WheelItemAnim;
 
-        public int[] WheelValues = { 0,1,0,2,0,2, 0,3,0,5};
+        public int[] WheelValues = { 0,1,0,2,0,2,0,3,0,5};
 
         public List<RotateTransform> WheelItems = new List<RotateTransform>();
         public RotateTransform WheelRot;
@@ -44,8 +44,7 @@ namespace GambleAssetsLibrary
         }
         private void Set(int target)
         {
-            WheelLB.SelectedIndex = target;
-            string Rep = "2," + target.ToString();
+            string Rep = "1," + target.ToString();
             double D = Convert.ToDouble(Rep);
             WheelAnim.RepeatBehavior = new RepeatBehavior(D);
             WheelItemAnim.RepeatBehavior = new RepeatBehavior(D);
@@ -69,6 +68,7 @@ namespace GambleAssetsLibrary
         }
         private void OnAnimationEnd(object obj, EventArgs e)
         {
+            WheelLB.SelectedIndex = Target;
             WheelStopped?.Invoke();
         }
         private void CreateAnimations()

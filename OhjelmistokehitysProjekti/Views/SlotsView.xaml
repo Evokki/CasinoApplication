@@ -37,6 +37,7 @@
         <!--Käyttäjä paneeli-->
         <Canvas Name="UserPanel" Style="{StaticResource UserCanvas}">
             <TextBlock Text="{Binding LocalTime, IsAsync=True}" Canvas.Left="10"></TextBlock>
+            <TextBlock Text="{Binding LatestResult}" Canvas.Left="240"></TextBlock>
             <TextBlock Text="{Binding user.Username, IsAsync=True}" Canvas.Top="20" Canvas.Right="150"></TextBlock>
             <TextBlock Text="{Binding user.AccountBalance, IsAsync=True}" Canvas.Right="150"></TextBlock>
             <Popup Name="UserBalancePopup" Height="80" Width="160" PlacementTarget="{Binding ElementName=UserMenu}" Placement="Left" HorizontalOffset="-160">
@@ -232,7 +233,7 @@
 
             <StackPanel Style="{StaticResource GameResultButtonPanel}">
                 <Button Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}" Click="ShowWheel"></Button>
-                <Button Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}" Click="HideWheel"></Button>
             </StackPanel>
         </Grid>
 

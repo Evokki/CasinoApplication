@@ -165,10 +165,10 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public virtual void HandleGameResult(GameCallback res)
         {
             gameResult = (GameResult) res;
+            MainWindow._UserViewModel.OnGameResultReceived(gameResult);
             if (gameResult.userWon)
             {
                 AudioManager.PlayAudio(AudioManager.WinSoundPath);
-                MainViewModel.NotifyUser($"You won {gameResult.WinAmount}!");
                 ChangeGameState(2);
             }
             else
