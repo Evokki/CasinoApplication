@@ -33,3 +33,13 @@ Sprint 3 review
 	-Allu Pokeri
 	-Veeti Hienosäätöä
 	-Jaakko
+-4 Review
+	-Pokeri valmis
+	-Slots Valmis
+	-UI valmis
+	-Käyttäjä system valmis
+
+-Sprint 5 11.10.23
+	-Viimeistelyt
+	-bugifixit
+	-SRS

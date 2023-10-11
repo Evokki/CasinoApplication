@@ -15,7 +15,7 @@ namespace GambleAssetsLibrary
         private List<Card> playerHand = new List<Card>();
         private List<Card> stack1 = new List<Card>();
         private List<Card> stack2 = new List<Card>();
-        private int[] winMultipliers = { 0, 1, 2, 3, 4, 5, 8, 10, 15};
+        private int[] winMultipliers = { 0, 1, 2, 3, 5, 8, 10, 15, 20};
         private int WinMultiplier = 0;
         public Poker(string S) : base(S)
         {

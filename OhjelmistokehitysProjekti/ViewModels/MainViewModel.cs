@@ -29,8 +29,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public static void NotifyUser(string msg)
         {
             MessageBox.Show(msg,
-                "Notification", MessageBoxButton.OK,
-                MessageBoxImage.Information);
+                "Notification");
         }
     }
 }

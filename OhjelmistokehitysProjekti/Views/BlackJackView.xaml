@@ -9,7 +9,7 @@
         Title="Blackjack" Height="1080" Width="1920"
         WindowState="Maximized">
     <Window.Resources>
-        
+
     </Window.Resources>
     <Grid Background="Gray">
         <Grid.RowDefinitions>
@@ -40,9 +40,12 @@
             </Menu>
         </Canvas>
 
-        <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000" Background="LightGray">
-            <TextBlock Text="House Hand" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="{Binding HouseHandValue}" HorizontalAlignment="Center"></TextBlock>
+        <StackPanel x:Name="GameContentPanel" Grid.Row="1" MinWidth="1000">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Resources/Images/Green_Table.jpg" Stretch="UniformToFill"/>
+            </StackPanel.Background>
+            <TextBlock Text="House Hand" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+            <TextBlock Text="{Binding HouseHandValue}" HorizontalAlignment="Center" Foreground="White"></TextBlock>
 
             <ListView x:Name="HouseHandPanel" 
                         ItemsSource="{Binding CurrentStatus.HouseCards}"
@@ -64,9 +67,9 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <TextBlock Text="Player Hand" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="{Binding UserHandValue}" HorizontalAlignment="Center"></TextBlock>
-            
+            <TextBlock Text="Player Hand" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+            <TextBlock Text="{Binding UserHandValue}" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+
             <ListView x:Name="UserHandPanel" 
                         ItemsSource="{Binding CurrentStatus.UserCards}"
                         HorizontalAlignment="Center">
@@ -88,9 +91,10 @@
             </ListView>
         </StackPanel>
 
-        <Grid Grid.Row="2"> <!-- Stackpanel for showin game buttons -->
+        <Grid Grid.Row="2">
+            <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource BaseGameButton}" Content="Quit" Click="CloseWindowClick" Margin="0,0,1700,0"></Button>
-            
+
             <StackPanel Style="{StaticResource BetButtonPanel}">
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
                 <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"></TextBlock>

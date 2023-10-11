@@ -1,6 +1,7 @@
 ﻿using GambleAssetsLibrary;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
         public string Icons1Result
         {
-            get { return "= " + GetCurrentBet() * 5 + " €"; }
+            get { return "= " + GetCurrentBet() * 3 + " €"; }
         }
         public string Icons2Result
         {
@@ -51,15 +52,15 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
         public string Icons3Result
         {
-            get { return "= " + GetCurrentBet() * 20 + " €"; }
+            get { return "= " + GetCurrentBet() * 15 + " €"; }
         }
         public string Icons4Result
         {
-            get { return "= " + GetCurrentBet() * 50 + " €"; }
+            get { return "= " + GetCurrentBet() * 30 + " €"; }
         }
         public string Icons5Result
         {
-            get { return "= " + GetCurrentBet() * 100 + " €"; }
+            get { return "= " + GetCurrentBet() * 60 + " €"; }
         }
         public string Icons6Result
         {

@@ -11,7 +11,7 @@ namespace GambleAssetsLibrary
         public static bool IsPair(List<Card> hand)
         {
             var values = hand.Select(card => card.Value).ToList();
-            return values.Any(v => values.Count(val => val == v) == 2);
+            return values.Any(v => values.Count(val => val == v) == 2 && (v >= 10 || v == 1));
         }
 
         public static bool IsTwoPairs(List<Card> hand)
@@ -64,7 +64,7 @@ namespace GambleAssetsLibrary
 
         public static int CheckHand(List<Card> hand)
         {
-            int i = 9;
+            int i = 10;
             Func<List<Card>, bool>[] bestHands = {
             IsRoyalFlush, IsStraightFlush, IsFours, IsFullSuit, IsStraight,
             IsFlush, IsThreeOfAKind, IsTwoPairs, IsPair
