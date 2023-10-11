@@ -71,16 +71,12 @@ namespace OhjelmistokehitysProjekti.Views
                 g.userWon = false;
                 g.WinAmount = 0;
             }
-            Task.Delay(2000).ContinueWith(t =>
-            {
-                slotsViewModel.HandleGameResult(g);
-                Wheel.Visibility = Visibility.Collapsed;
-            });
+            slotsViewModel.HandleGameResult(g);
+            Wheel.Visibility = Visibility.Collapsed;
         }
         private void ShowWheel(object sender, RoutedEventArgs e)
         {
             Wheel.Visibility = Visibility.Visible;
-            Task.Delay(1000);
             wheel.Begin();
         }
 
