@@ -16,8 +16,8 @@ namespace GambleAssetsLibrary
     public static class AudioManager
     {
         private static SoundPlayer player;
-        public const string ClickSoundPath = @"/Ohjelmistokehitysprojekti;Component/Resources/Audio/click.wav";
-        public const string WinSoundPath = @"/Ohjelmistokehitysprojekti;Component/Resources/Audio/win.wav";
+        public const string ClickSoundPath = @"Resources/Audio/click.wav";
+        public const string WinSoundPath = @"Resources/Audio/win.wav";
         public static void PlayAudio(string AudioPath)
         {
             player = new SoundPlayer(AudioPath);

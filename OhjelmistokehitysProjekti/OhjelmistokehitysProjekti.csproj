@@ -35,12 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Audio\click.wav">
+    <Content Include="Resources\Audio\click.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Audio\win.wav">
+    </Content>
+    <Content Include="Resources\Audio\win.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Resource Include="Resources\Images\Blue_Table.png" />
     <Resource Include="Resources\Images\cardback_blue.png" />
     <Resource Include="Resources\Images\Coins.png" />
