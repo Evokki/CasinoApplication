@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Net.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,7 +71,28 @@ namespace GambleAssetsLibrary
 
             HandleGameResults(HandResult > 0);
         }
-
+        public void OnDoubleSelected(string suitCol)
+        {
+            playerHand.Add(Deck.GetCard());
+            string suit = playerHand.ElementAt(0).Suit;
+            RaiseGameLogicEndedEvent(new PokerGameStatus(GetName(), playerHand, stack1, stack2));
+            if (suitCol.Contains(suit))
+            {
+                WinMultiplier = 2;
+                HandleGameResults(true);
+            }
+            else
+            {
+                HandleGameResults(false);
+            }
+        }
+        public override void DoubleOrNothing(GameResult result)
+        {
+            currentBet = result.WinAmount;
+            playerHand.Clear();
+            RaiseGameLogicEndedEvent(new PokerGameStatus(GetName(), playerHand, stack1, stack2, true));
+            base.DoubleOrNothing(result);
+        }
         public override void HandleGameResults(bool userWon = false)
         {
 

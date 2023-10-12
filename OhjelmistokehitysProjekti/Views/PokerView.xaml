@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="PokerView" Height="1080" Width="1920"
         WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="Grid" x:Key="DoublingCard">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentStatus.isDouble}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="ActionButton1" BasedOn="{StaticResource BaseGameButton}">
+            <Setter Property="Content" Value="Stack 1"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentStatus.isDouble}" Value="True">
+                    <Setter Property="Content" Value="Black"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="ActionButton2" BasedOn="{StaticResource BaseGameButton}">
+            <Setter Property="Content" Value="Stack 2"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentStatus.isDouble}" Value="True">
+                    <Setter Property="Content" Value="Red"/>
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FF909090">
         <Grid.RowDefinitions>
             <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
@@ -45,6 +74,9 @@
             <ListView x:Name="UserCardPanel" 
                 ItemsSource="{Binding CurrentStatus.UserCards}"
                 HorizontalAlignment="Center" Grid.Row="1">
+                <ListView.Background>
+                    <SolidColorBrush Opacity="0"/>
+                </ListView.Background>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>
@@ -61,6 +93,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <Grid Name="DoublingCard" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource DoublingCard}">
+                <Image Source="/Resources/Images/cardback_blue.png" Height="300" HorizontalAlignment="Center" />
+            </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Grid Style="{StaticResource CardStack}" DataContext="{Binding CurrentStatus}">
@@ -105,8 +141,8 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource GameInputButtonPanel}">
-                <Button Style="{StaticResource BaseGameButton}" Content="Stack 1" Command="{Binding SelectOneCommand}"></Button>
-                <Button Style="{StaticResource BaseGameButton}" Content="Stack 2" Command="{Binding SelectTwoCommand}"></Button>
+                <Button Style="{StaticResource ActionButton1}" Command="{Binding SelectOneCommand}"></Button>
+                <Button Style="{StaticResource ActionButton2}" Command="{Binding SelectTwoCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>

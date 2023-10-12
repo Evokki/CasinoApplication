@@ -29,12 +29,36 @@ namespace OhjelmistokehitysProjekti.ViewModels
         }
         public void SelectStackOne(object obj)
         {
-            CurrentGame.OnSelected(0);
+            if(CurrentStatus != null)
+                if (CurrentStatus.isDouble)
+                {
+                    CurrentGame.OnDoubleSelected("Clubs Spades");
+                }
+                else
+                {
+                    CurrentGame.OnSelected(0);
+                }
+            else
+            {
+                CurrentGame.OnSelected(0);
+            }
         }
 
         public void SelectStackTwo(object obj)
         {
-            CurrentGame.OnSelected(1);
+            if (CurrentStatus != null)
+                if (CurrentStatus.isDouble)
+                {
+                    CurrentGame.OnDoubleSelected("Hearts Diamonds");
+                }
+                else
+                {
+                    CurrentGame.OnSelected(1);
+                }
+            else
+            {
+                CurrentGame.OnSelected(1);
+            }
         }
 
         public override void HandleGameStatus(GameCallback result)

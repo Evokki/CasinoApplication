@@ -125,12 +125,18 @@ namespace GambleAssetsLibrary
             get { return _Card2; }
             set { _Card2 = value; OnPropertyChanged("Card2"); }
         }
+        private bool _isDouble = false;
+        public bool isDouble {
+            get { return _isDouble; }
+            set { _isDouble = value; OnPropertyChanged("isDouble"); }
+        }
 
-        public PokerGameStatus(string Name, List<Card> hand, List<Card> one, List<Card> two) : base(Name)
+        public PokerGameStatus(string Name, List<Card> hand, List<Card> one, List<Card> two, bool isdouble = false) : base(Name)
         {
             UserCards = new ObservableCollection<Card>(hand);
             Stack1 = new ObservableCollection<Card>(one);
             Stack2 = new ObservableCollection<Card>(two);
+            isDouble = isdouble;
             if(one.Count != 0)
             {
                 Card1 = one.First();
