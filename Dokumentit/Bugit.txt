@@ -1,0 +1,5 @@
+-Loginnissa "Enter terxt here" tulee näkyviin ku alkaa kirjottaa eikä toisinpäin.
+-wheel of fortunen tulos ei aina pysähdy punaseen nuoleen, mut en tiiä onko ees fixattavissa?
+-Jos tulpaa slotsissa kahdesti, niin rullan vanha tulos jää highlightatuks.
+-Blackjackissä jos tulos on tasan 21 näkyy väärä kokonaissumma esim 11, kun on A,2,8.
+-Jos depoo rahaa ja withdrawaa heti niin se jostain syystä depoo sen sun withdraw summan kans ja sama käy aina välillä myös toisinpäin. En tiiä auttasko jos toi withdraw/depo menu lähtis pois aina ku painaa enter?

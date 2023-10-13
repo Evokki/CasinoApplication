@@ -59,65 +59,65 @@
 
         <!--Slotti voittosummat-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Margin="5" Background="#FF787A91">
+            <StackPanel Orientation="Horizontal" Margin="5" Background="#FF909090">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons1Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons1Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons2Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons2Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons3Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons3Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons4Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons4Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons6Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons6Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
-                <StackPanel.Effect>
-                    <DropShadowEffect/>
-                </StackPanel.Effect>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons7Result}" Padding="0, 23, 0, 0" Foreground="White"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"  Background="#787A91" Margin="5">
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
                 <StackPanel.Effect>
                     <DropShadowEffect/>
                 </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons7Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Background="#FF909090" Margin="5">
+                <StackPanel.Effect>
+                    <DropShadowEffect/>
+                </StackPanel.Effect>
                 <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
-                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#787A91" Text="{Binding Icons5Result}" Padding="0, 23, 0, 0" Foreground="White"/>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
+                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_5.png" Height="40"></Image>
+                <TextBlock Style="{StaticResource SlottiTyyli}" Background="#FF909090" Text="{Binding Icons5Result}" Padding="0, 23, 0, 0" Foreground="White"/>
             </StackPanel>
         </StackPanel>
 
@@ -227,7 +227,7 @@
             </Polygon>
         </Canvas>
         <!-- Stackpanel for showin game buttons -->
-        <Grid Grid.Row="4" Background="#FF787A91">
+        <Grid Grid.Row="4" Background="#FF909090">
             <Grid.Effect>
                 <DropShadowEffect/>
             </Grid.Effect>
