@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GambleAssetsLibrary
 {
@@ -16,19 +18,27 @@ namespace GambleAssetsLibrary
         }
         public static int BJHandValues(this ObservableCollection<Card> l)
         {
-            int x = 0;
-            foreach (var c in l)
+            int i = 0;
+            foreach (Card card in l)
             {
-                if(c.Value > 10)
+                if (card.Value >= 10)
                 {
-                    x += 10;
+                    i += 10;
+                }
+                else if (card.Value > 1)
+                {
+                    i += card.Value;
                 }
                 else
                 {
-                    x += c.Value;
+                    i += 11;
                 }
             }
-            return x;
+            if (i > 21 && l.Any(x => x.Value == 1))
+            {
+                i -= 10;
+            }
+            return i;
         }
         public static string CardSuitPath(this string suit)
         {

@@ -20,25 +20,18 @@ namespace OhjelmistokehitysProjekti.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+        LoginViewModel viewModel;
         public LoginWindow()
         {
             InitializeComponent();
 
-            LoginViewModel viewModel = new LoginViewModel();
+            viewModel = new LoginViewModel();
             viewModel.RequestClose += this.Close;
             this.DataContext = viewModel;
 
             //Sets the window unmovable
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
-        }
-        public void TextboxEditor(object o, KeyEventArgs e)
-        {
-            TextBox t = (TextBox)o;
-            if (string.IsNullOrEmpty(t.Text))
-            {
-                t.Text = "Enter text here...";
-            }
         }
         public void CloseWindow(object obj, RoutedEventArgs e)
         {
@@ -51,6 +44,16 @@ namespace OhjelmistokehitysProjekti.Views
                 App.Current.Shutdown();
             }
 
+        }
+
+        private void UsernameTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            viewModel.UpdateUsername(UsernameTB.Text);
+        }
+
+        private void PasswordTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            viewModel.UpdatePassword(PasswordTB.Text);
         }
     }
 }

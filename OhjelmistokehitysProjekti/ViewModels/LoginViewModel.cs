@@ -17,8 +17,40 @@ namespace OhjelmistokehitysProjekti.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand LoginCommand { get; set; }
         public ICommand PlayAsGuestCommand { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
+        private string _Username { get; set; }
+        public string Username
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(_Username))
+                {
+                    return "Enter username here...";
+                }
+                else
+                {
+                    return _Username;
+                }
+            }
+            set { _Username = value; OnPropertyChanged("Username"); }
+        }
+
+        private string _Password { get; set; }
+        public string? Password 
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_Password))
+                {
+                    return "Enter password here...";
+                }
+                else
+                {
+                    return _Password;
+                }
+            }
+            set { _Password = value; OnPropertyChanged("Password"); }
+        }
+
         private bool _LoginOrSignup { get; set; }
         public bool LoginOrSignup
         {
@@ -34,16 +66,24 @@ namespace OhjelmistokehitysProjekti.ViewModels
             LoginCommand = new RelayCommand(LoginUser, CanExecute);
             PlayAsGuestCommand = new RelayCommand(PlayAsGuest, CanExecute);
         }
+        public void UpdateUsername(string s)
+        {
+            Username = s;
+        }
+        public void UpdatePassword(string s)
+        {
+            Password = s;
+        }
 
         private void LoginUser(object obj)
         {
-            if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            if(string.IsNullOrEmpty(_Username) || string.IsNullOrEmpty(_Password))
             {
                 MainViewModel.NotifyUser("Username or password is empty!");
             }
             if (!LoginOrSignup)
             {
-                if(UserHandler.LoginUser(Username, Password) == false)
+                if(UserHandler.LoginUser(_Username, _Password) == false)
                 {
                     MainViewModel.NotifyUser("Wrong username or password!");
                     return;
@@ -54,7 +94,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
             }
             else
             {
-                UserHandler.CreateNewUser(Username, Password);
+                UserHandler.CreateNewUser(_Username, _Password);
                 OnPropertyChanged("user");
                 CloseWindow(null);
             }

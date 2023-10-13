@@ -52,6 +52,7 @@ namespace GambleAssetsLibrary
         }
         public void Begin()
         {
+            WheelLB.UnselectAll();
             Random rng = new Random();
             Target = rng.Next(0, 9);
             Set(Target);

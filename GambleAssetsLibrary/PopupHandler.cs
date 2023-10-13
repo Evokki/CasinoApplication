@@ -35,18 +35,18 @@ namespace GambleAssetsLibrary
             popup.KeyDown -= OnPopupWithdraw;
             popup.KeyDown += OnPopupDeposit;
             textBlock.Text = "Deposit amount?";
+            textBox.Text = "";
             ShowPopup();
         }
         public void SetWithdrawHandler()
         {
-            Debug.WriteLine("setting helper W in: " + helper.ToString());
             popup.KeyDown += OnPopupWithdraw;
             popup.KeyDown -= OnPopupDeposit;
             textBlock.Text = "Withdraw amount?";
+            textBox.Text = "";
             ShowPopup();
         }
         public void OnPopupWithdraw(object sender, KeyEventArgs e) {
-            Debug.WriteLine("On key click W" + helper.ToString());
             if (e.Key == Key.Enter)
             {
                 popup.IsOpen = false;
