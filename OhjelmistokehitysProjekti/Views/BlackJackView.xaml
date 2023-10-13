@@ -94,11 +94,11 @@
 
         <Grid Grid.Row="2">
             <!-- Stackpanel for showin game buttons -->
-            <Button Style="{StaticResource BaseGameButton}" Content="Quit" Click="CloseWindowClick" Margin="0,0,1700,0"></Button>
+            <Button Style="{StaticResource BaseGameButton}" Content="Quit" Click="CloseWindowClick" Margin="0,0,1700,0" Background="DarkRed" Foreground="#FFFFFEFE"></Button>
 
             <StackPanel Style="{StaticResource BetButtonPanel}">
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
-                <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"></TextBlock>
+                <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"> </TextBlock>
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
                 <Button Style="{StaticResource BaseGameButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
             </StackPanel>
