@@ -22,14 +22,7 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             get 
             {
-                if (string.IsNullOrEmpty(_Username))
-                {
-                    return "Enter username here...";
-                }
-                else
-                {
                     return _Username;
-                }
             }
             set { _Username = value; OnPropertyChanged("Username"); }
         }
@@ -39,14 +32,8 @@ namespace OhjelmistokehitysProjekti.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(_Password))
-                {
-                    return "Enter password here...";
-                }
-                else
-                {
                     return _Password;
-                }
+            
             }
             set { _Password = value; OnPropertyChanged("Password"); }
         }

@@ -50,7 +50,10 @@
 
             <ListView x:Name="HouseHandPanel" 
                         ItemsSource="{Binding CurrentStatus.HouseCards}"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center" BorderThickness="0">
+                <ListView.Background>
+                    <SolidColorBrush Opacity="0"/>
+                </ListView.Background>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>
@@ -73,7 +76,11 @@
 
             <ListView x:Name="UserHandPanel" 
                         ItemsSource="{Binding CurrentStatus.UserCards}"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center"
+                      BorderThickness="0">
+                <ListView.Background>
+                    <SolidColorBrush Opacity="0"/>
+                </ListView.Background>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>

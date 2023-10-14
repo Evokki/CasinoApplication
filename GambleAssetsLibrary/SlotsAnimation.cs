@@ -67,7 +67,7 @@ namespace GambleAssetsLibrary
             foreach (ListView roll in Rolls)
             {
                 roll.SelectedIndex = 2;
-                roll.ScrollIntoView(roll.SelectedItem);
+                roll.ScrollIntoView(roll.Items[3]);
             }
             OnAnimationEnded?.Invoke();
         }

@@ -8,35 +8,44 @@
         Title="Login" Height="450" Width="800"
         Background="Gray">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="LoginToggleButton">
+        <Style TargetType="Button" x:Key="LoginButton">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="Button" x:Key="LoginToggleButton" BasedOn="{StaticResource LoginButton}">
             <Setter Property="Content" Value="LOGIN"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ElementName=LoginCheck, Path=IsChecked}" Value="True">
+                    <Setter Property="FontSize" Value="18"/>
                     <Setter Property="Content" Value="CREATE USER"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="StackPanel" x:Key="LoginSP">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition Width="300"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Label Grid.Column="0" Grid.Row="0" Content="Username:" ></Label>
-        <Label Grid.Column="0" Grid.Row="1" Content="Password:" ></Label>
-        <TextBox Name="UsernameTB" Grid.Column="1" Grid.Row="0" Text="{Binding Username}" TextChanged="UsernameTB_TextChanged"></TextBox>
-        <TextBox Name="PasswordTB" Grid.Column="1" Grid.Row="1" Text="{Binding Password}" TextChanged="PasswordTB_TextChanged"></TextBox>
-        <CheckBox Name="LoginCheck" Grid.Row="2" Content="Create new User" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
-        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource LoginToggleButton}" Command="{Binding LoginCommand}"></Button>
-        <Button Grid.Row="3" Grid.Column="1" Content="Play as a guest" Command="{Binding PlayAsGuestCommand}"></Button>
-        <Button Name="ExitBtn" Grid.Row="4" Grid.Column="1" Content="Quit" Click="CloseWindow"></Button>
+        <StackPanel>
+            <StackPanel Style="{StaticResource LoginSP}">
+                <Label Content="Username:" ></Label>
+                <TextBox Name="UsernameTB" Text="{Binding Username}" Width="200"></TextBox>
+            </StackPanel>
+            <StackPanel  Style="{StaticResource LoginSP}">
+                <Label  Content="Password:" ></Label>
+                <TextBox Name="PasswordTB" Text="{Binding Password}" Width="200"></TextBox>
+            </StackPanel>
+            <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
+            <StackPanel  Style="{StaticResource LoginSP}">
+                <Button Style="{StaticResource LoginToggleButton}" Command="{Binding LoginCommand}"></Button>
+                <TextBlock Text="-or-" FontSize="24" Margin="20,10"></TextBlock>
+                <Button Content="Play as a guest" FontSize="16" Command="{Binding PlayAsGuestCommand}" Style="{StaticResource LoginButton}"></Button>
+                
+            </StackPanel>
+            <Button Name="ExitBtn" Content="Quit" Click="CloseWindow" Style="{StaticResource LoginButton}"></Button>
+        </StackPanel>
     </Grid>
 </Window>

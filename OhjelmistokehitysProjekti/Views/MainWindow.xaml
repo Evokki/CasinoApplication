@@ -45,10 +45,10 @@
 
         <Grid Name="GameButtonPanel" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition MinWidth="120" MaxWidth="400"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition MinWidth="120" MaxWidth="400"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="380"></RowDefinition>

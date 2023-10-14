@@ -73,7 +73,8 @@
 
             <ListView x:Name="UserCardPanel" 
                 ItemsSource="{Binding CurrentStatus.UserCards}"
-                HorizontalAlignment="Center" Grid.Row="1">
+                HorizontalAlignment="Center" Grid.Row="1"
+                BorderThickness="0">
                 <ListView.Background>
                     <SolidColorBrush Opacity="0"/>
                 </ListView.Background>
