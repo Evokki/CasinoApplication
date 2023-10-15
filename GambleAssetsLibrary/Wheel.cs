@@ -42,9 +42,9 @@ namespace GambleAssetsLibrary
             DrawingBrush brushMask = new DrawingBrush(gd);
             WheelLB.OpacityMask = brushMask;
         }
-        private void Set(int target)
+        private void Set()
         {
-            string Rep = "1," + target.ToString();
+            string Rep = "1," + Target.ToString();
             double D = Convert.ToDouble(Rep);
             WheelAnim.RepeatBehavior = new RepeatBehavior(D);
             WheelItemAnim.RepeatBehavior = new RepeatBehavior(D);
@@ -55,9 +55,10 @@ namespace GambleAssetsLibrary
             WheelLB.UnselectAll();
             Random rng = new Random();
             Target = rng.Next(0, 9);
-            Set(Target);
+            Set();
             SpinWheel();
         }
+
         private void SpinWheel()
         {
             foreach(RotateTransform item in WheelItems)
@@ -75,14 +76,14 @@ namespace GambleAssetsLibrary
         private void CreateAnimations()
         {
             WheelAnim = new DoubleAnimation();
-            WheelAnim.From = 0;
-            WheelAnim.To = 360;
+            WheelAnim.From = 360;
+            WheelAnim.To = 0;
             WheelAnim.Duration = new Duration(TimeSpan.Parse("0:0:0:1"));
             WheelAnim.Completed += OnAnimationEnd;
 
             WheelItemAnim = new DoubleAnimation();
-            WheelItemAnim.From = 360;
-            WheelItemAnim.To = 0;
+            WheelItemAnim.From = 0;
+            WheelItemAnim.To = 360;
             WheelItemAnim.Duration = new Duration(TimeSpan.Parse("0:0:0:1"));
 
         }
