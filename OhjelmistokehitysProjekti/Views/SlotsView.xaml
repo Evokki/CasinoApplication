@@ -126,32 +126,20 @@
 
             <ListView Background="#FFFFE116"  Name="Roll1LV">
                 <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="Roll1"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Width="200" Margin="10"/>
-                <Image Source="{Binding Num1Path}" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Width="200" Margin="10"/>
+                <Image VerticalAlignment="Center" Source="{Binding Num1Path}" Width="200" Margin="10"/>
             </ListView>
             <ListView Background="#FFFFE116" Name="Roll2LV">
                 <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="Roll2"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Width="200" Margin="10"/>
-                <Image Source="{Binding Num2Path}" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Width="200" Margin="10"/>
+                <Image  VerticalAlignment="Center" Source="{Binding Num2Path}" Width="200" Margin="10"/>
             </ListView>
             <ListView Background="#FFFFE116" Name="Roll3LV">
                 <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="Roll3"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_1.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_2.png" Width="200" Margin="10"/>
                 <Image Source="{Binding Num3Path}" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_3.png" Width="200" Margin="10"/>
-                <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Slots_4.png" Width="200" Margin="10"/>
             </ListView>
             <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Coins.png" HorizontalAlignment="Left" Height="660" Grid.Row="2" VerticalAlignment="Top" Width="634"/>
         </StackPanel>
 
-        <Canvas x:Name="Wheel" Visibility="Visible">
+        <Canvas x:Name="Wheel" Visibility="Collapsed">
             <ListBox x:Name="WheelLB" 
                      RenderTransformOrigin=".5,.5" 
                      Width="760" Height="760" 
@@ -237,7 +225,7 @@
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
                 <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"></TextBlock>
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
-                <Button Style="{StaticResource BaseGameButton}" Content="Play" Command="{Binding PlayCommand}" Click="AnimateRolls"></Button>
+                <Button Style="{StaticResource BaseGameButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
             </StackPanel>
 
             <StackPanel Style="{StaticResource GameResultButtonPanel}">

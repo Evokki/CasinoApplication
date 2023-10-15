@@ -66,7 +66,6 @@ namespace GambleAssetsLibrary
                 item.BeginAnimation(RotateTransform.AngleProperty, WheelItemAnim);
             }
             WheelRot.BeginAnimation(RotateTransform.AngleProperty, WheelAnim);
-
         }
         private void OnAnimationEnd(object obj, EventArgs e)
         {

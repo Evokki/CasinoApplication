@@ -28,8 +28,6 @@ namespace OhjelmistokehitysProjekti.Views
         private PopupHandler _PopupHandler;
         private Wheel wheel;
         private List<RotateTransform> WheelList = new List<RotateTransform>();
-        private SlotsAnimation SlotAnim;
-        private List<ListView> RollList = new List<ListView>();
         public SlotsView()
         {
             InitializeComponent();
@@ -48,7 +46,6 @@ namespace OhjelmistokehitysProjekti.Views
             wheel.WheelStopped += OnWheelResult;
             Wheel.Visibility = Visibility.Collapsed;
 
-            SlotAnim = new SlotsAnimation(RollList);
         }
         private void CreateAnimList() //Populates lists with animated elements
         {
@@ -62,14 +59,6 @@ namespace OhjelmistokehitysProjekti.Views
             WheelList.Add(Rot7);
             WheelList.Add(Rot8);
             WheelList.Add(Rot9);
-
-            RollList.Add(Roll1LV);
-            RollList.Add(Roll2LV);
-            RollList.Add(Roll3LV);
-        }
-        public void AnimateRolls(object sender, RoutedEventArgs e)
-        {
-            SlotAnim.BeginAnimation();
         }
 
         #region Wheel Animation functions

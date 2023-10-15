@@ -43,3 +43,6 @@ Sprint 3 review
 	-Viimeistelyt
 	-bugifixit
 	-SRS
+
+-SCRUM reflection:
+	-
