@@ -32,11 +32,11 @@
         <StackPanel>
             <StackPanel Style="{StaticResource LoginSP}">
                 <Label Content="Username:" ></Label>
-                <TextBox Name="UsernameTB" Text="{Binding Username}" Width="200"></TextBox>
+                <TextBox Name="UsernameTB" Text="" Width="200" TextChanged="UsernameTB_TextChanged"></TextBox>
             </StackPanel>
             <StackPanel  Style="{StaticResource LoginSP}">
                 <Label  Content="Password:" ></Label>
-                <TextBox Name="PasswordTB" Text="{Binding Password}" Width="200"></TextBox>
+                <TextBox Name="PasswordTB" Text="" Width="200" TextChanged="PasswordTB_TextChanged"></TextBox>
             </StackPanel>
             <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
             <StackPanel  Style="{StaticResource LoginSP}">

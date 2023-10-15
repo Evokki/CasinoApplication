@@ -151,7 +151,7 @@
             <Image Source="/Ohjelmistokehitysprojekti;Component/Resources/Images/Coins.png" HorizontalAlignment="Left" Height="660" Grid.Row="2" VerticalAlignment="Top" Width="634"/>
         </StackPanel>
 
-        <Canvas x:Name="Wheel" Visibility="Collapsed">
+        <Canvas x:Name="Wheel" Visibility="Visible">
             <ListBox x:Name="WheelLB" 
                      RenderTransformOrigin=".5,.5" 
                      Width="760" Height="760" 

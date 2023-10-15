@@ -31,46 +31,57 @@ namespace OhjelmistokehitysProjekti.Views
             viewModel = new LoginViewModel();
             viewModel.RequestClose += this.Close;
             this.DataContext = viewModel;
-            UsernameTB.GotKeyboardFocus += OnFocused;
-            PasswordTB.GotKeyboardFocus += OnFocused;
-            UsernameTB.LostKeyboardFocus += OnLostKBFocus;
-            PasswordTB.LostKeyboardFocus += OnLostKBFocus;
+
+            UsernameTB.GotKeyboardFocus += OnFocusedUN;
+            PasswordTB.GotKeyboardFocus += OnFocusedPW;
+            UsernameTB.LostKeyboardFocus += OnLostKBFocusUN;
+            PasswordTB.LostKeyboardFocus += OnLostKBFocusPW;
             UsernameTB.Text = UNplaceholder;
             PasswordTB.Text = PWplaceholder;
+
             //Sets the window unmovable
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
         }
-        public void OnFocused(object o, KeyboardEventArgs e)
+        public void OnFocusedUN(object o, KeyboardEventArgs e)
         {
-            if (string.IsNullOrEmpty(viewModel.Username))
+            if (UsernameTB.Text == UNplaceholder)
             {
                 UsernameTB.Text = "";
             }
-            if (string.IsNullOrEmpty(viewModel.Password))
+        }
+        public void OnFocusedPW(object o, KeyboardEventArgs e)
+        {
+            if (PasswordTB.Text == PWplaceholder)
             {
                 PasswordTB.Text = "";
             }
         }
-        public void OnLostKBFocus(object o, KeyboardEventArgs e)
+        public void OnLostKBFocusUN(object o, KeyboardEventArgs e)
         {
             if (!string.IsNullOrEmpty(UsernameTB.Text) && UsernameTB.Text != UNplaceholder)
             {
                 viewModel.UpdateUsername(UsernameTB.Text);
             }
+
+            if (UsernameTB.Text == "")
+            {
+                UsernameTB.Text = UNplaceholder;
+            }
+        }
+        public void OnLostKBFocusPW(object o, KeyboardEventArgs e)
+        {
             if (!string.IsNullOrEmpty(PasswordTB.Text) && PasswordTB.Text != PWplaceholder)
             {
                 viewModel.UpdatePassword(PasswordTB.Text);
             }
-            if (string.IsNullOrEmpty(viewModel.Username))
-            {
-                UsernameTB.Text = UNplaceholder;
-            }
-            if (string.IsNullOrEmpty(viewModel.Password))
+            if (PasswordTB.Text == "")
             {
                 PasswordTB.Text = PWplaceholder;
             }
         }
+
+
         public void CloseWindow(object obj, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Exit Application?",
@@ -82,6 +93,22 @@ namespace OhjelmistokehitysProjekti.Views
                 App.Current.Shutdown();
             }
 
+        }
+
+        private void UsernameTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(UsernameTB.Text) && UsernameTB.Text != UNplaceholder)
+            {
+                viewModel.UpdateUsername(UsernameTB.Text);
+            }
+        }
+
+        private void PasswordTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(PasswordTB.Text) && PasswordTB.Text != PWplaceholder)
+            {
+                viewModel.UpdatePassword(PasswordTB.Text);
+            }
         }
     }
 }

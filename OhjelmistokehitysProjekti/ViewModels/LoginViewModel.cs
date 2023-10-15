@@ -20,21 +20,14 @@ namespace OhjelmistokehitysProjekti.ViewModels
         private string _Username { get; set; }
         public string Username
         {
-            get 
-            {
-                    return _Username;
-            }
+            get { return _Username; }
             set { _Username = value; OnPropertyChanged("Username"); }
         }
 
         private string _Password { get; set; }
         public string? Password 
         {
-            get
-            {
-                    return _Password;
-            
-            }
+            get { return _Password; }
             set { _Password = value; OnPropertyChanged("Password"); }
         }
 

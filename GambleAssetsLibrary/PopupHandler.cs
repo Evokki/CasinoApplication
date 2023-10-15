@@ -17,6 +17,7 @@ namespace GambleAssetsLibrary
         private TextBox textBox;
         private TextBlock textBlock;
         private IPopUpHelper helper;
+
         public PopupHandler(IPopUpHelper helper, Popup popup, TextBox textBox, TextBlock textBlock)
         {
             this.popup = popup;
