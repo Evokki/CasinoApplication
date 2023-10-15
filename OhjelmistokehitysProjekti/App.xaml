@@ -9,6 +9,23 @@
             <Setter Property="Height" Value="80"/>
             <Setter Property="Margin" Value="20"/>
             <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="#0f0f0f" Offset="0.1"/>
+                        <GradientStop Color="#2e2e2e" Offset="0.6"/>
+                        <GradientStop Color="#4d4d4d" Offset=".9"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gold" Opacity=".5" BlurRadius="20" ShadowDepth="10">
+                        
+                    </DropShadowEffect>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="StackPanel" x:Key="GameControlsPanelStyle">

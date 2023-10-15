@@ -29,23 +29,33 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel Style="{StaticResource LoginSP}">
-                <Label Content="Username:" ></Label>
-                <TextBox Name="UsernameTB" Text="" Width="200" TextChanged="UsernameTB_TextChanged"></TextBox>
-            </StackPanel>
-            <StackPanel  Style="{StaticResource LoginSP}">
-                <Label  Content="Password:" ></Label>
-                <TextBox Name="PasswordTB" Text="" Width="200" TextChanged="PasswordTB_TextChanged"></TextBox>
-            </StackPanel>
-            <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
-            <StackPanel  Style="{StaticResource LoginSP}">
-                <Button Style="{StaticResource LoginToggleButton}" Command="{Binding LoginCommand}"></Button>
-                <TextBlock Text="-or-" FontSize="24" Margin="20,10"></TextBlock>
-                <Button Content="Play as a guest" FontSize="16" Command="{Binding PlayAsGuestCommand}" Style="{StaticResource LoginButton}"></Button>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                <GradientStop Color="#0f0f0f" Offset="0.1"/>
+                <GradientStop Color="#2e2e2e" Offset="0.6"/>
+                <GradientStop Color="#4d4d4d" Offset=".8"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border BorderThickness="10" BorderBrush="Gold">
+            
+            <StackPanel>
+                <StackPanel Style="{StaticResource LoginSP}">
+                    <Label Content="Username:" Foreground="White" FontWeight="Bold"></Label>
+                    <TextBox Name="UsernameTB" Text="" Width="200" TextChanged="UsernameTB_TextChanged"></TextBox>
+                </StackPanel>
+                <StackPanel  Style="{StaticResource LoginSP}">
+                    <Label  Content="Password:" Foreground="White" FontWeight="Bold"></Label>
+                    <TextBox Name="PasswordTB" Text="" Width="200" TextChanged="PasswordTB_TextChanged"></TextBox>
+                </StackPanel>
+                <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
+                <StackPanel  Style="{StaticResource LoginSP}">
+                    <Button Style="{StaticResource LoginToggleButton}" Command="{Binding LoginCommand}"></Button>
+                    <TextBlock Text="-or-" FontSize="24" Margin="20,10" Foreground="White" FontWeight="Bold"></TextBlock>
+                    <Button Content="Play as a guest" FontSize="16" Command="{Binding PlayAsGuestCommand}" Style="{StaticResource LoginButton}"></Button>
                 
+                </StackPanel>
+                <Button Name="ExitBtn" Content="Quit" Click="CloseWindow" Style="{StaticResource LoginButton}"></Button>
             </StackPanel>
-            <Button Name="ExitBtn" Content="Quit" Click="CloseWindow" Style="{StaticResource LoginButton}"></Button>
-        </StackPanel>
+        </Border>
     </Grid>
 </Window>
