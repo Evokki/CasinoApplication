@@ -83,6 +83,7 @@
             <Setter Property="MinWidth" Value="150"/>
             <Setter Property="MinHeight" Value="200"/>
             <Setter Property="MaxWidth" Value="220"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="Background" Value="White"/>
             <Style.Resources>
                 <Style TargetType="TextBlock">

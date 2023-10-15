@@ -289,8 +289,8 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource GameResultButtonPanel}">
-                <Button Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}" Click="ShowWheel"></Button>
-                <Button Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}" Click="HideWheel"></Button>
+                <Button x:Name="Dbtn" Style="{StaticResource BaseGameButton}" Content="Double Or Nothing" Command="{Binding DoubleCommand}" Click="ShowWheel"></Button>
+                <Button x:Name="Cbtn" Style="{StaticResource BaseGameButton}" Content="Cash out" Command="{Binding CashOutCommand}" Click="HideWheel"></Button>
             </StackPanel>
         </Grid>
 

@@ -74,7 +74,7 @@
             <ListView x:Name="UserHandPanel" 
                         ItemsSource="{Binding CurrentStatus.UserCards}"
                         HorizontalAlignment="Center"
-                      BorderThickness="0">
+                      BorderThickness="0" Focusable="False">
                 <ListView.Background>
                     <SolidColorBrush Opacity="0"/>
                 </ListView.Background>

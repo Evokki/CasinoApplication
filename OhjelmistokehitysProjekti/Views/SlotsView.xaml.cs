@@ -83,6 +83,8 @@ namespace OhjelmistokehitysProjekti.Views
                     HideWheel(null, null);
                 };
             }
+            Dbtn.IsEnabled = true;
+            Cbtn.IsEnabled = true;
             slotsViewModel.HandleGameResult(g);
         }
 
@@ -95,6 +97,8 @@ namespace OhjelmistokehitysProjekti.Views
         {
             Wheel.Visibility = Visibility.Visible;
             wheel.Begin();
+            Dbtn.IsEnabled = false;
+            Cbtn.IsEnabled = false;
         }
         #endregion
 
