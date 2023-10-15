@@ -218,7 +218,7 @@
             </Polygon>
         </Canvas>
         <!-- Stackpanel for showin game buttons -->
-        <Grid Grid.Row="4" Background="#FF909090">
+        <Grid Grid.Row="4" Background="#2e2e2e">
             <Grid.Effect>
                 <DropShadowEffect/>
             </Grid.Effect>

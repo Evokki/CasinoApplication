@@ -7,11 +7,8 @@
         xmlns:gambleLib="clr-namespace:GambleAssetsLibrary;assembly=GambleAssetsLibrary"
         mc:Ignorable="d"
         Title="Blackjack" Height="1080" Width="1920"
-        WindowState="Maximized">
-    <Window.Resources>
-
-    </Window.Resources>
-    <Grid Background="Gray">
+        WindowState="Maximized" Background="#2e2e2e">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>

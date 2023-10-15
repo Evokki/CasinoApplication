@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OhjelmistokehitysProjekti.Views"
         mc:Ignorable="d"
         Title="PokerView" Height="1080" Width="1920"
-        WindowState="Maximized">
+        WindowState="Maximized" Background="#2e2e2e">
     <Window.Resources>
         <Style TargetType="Grid" x:Key="DoublingCard">
             <Setter Property="Visibility" Value="Collapsed"/>
@@ -36,7 +36,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Background="#FF909090">
+    <Grid>
         <Grid.RowDefinitions>
             <!--Tällä saa jaettua ruudun vaakasuoriin osiin voit testailla miten haluat. JOs laitat elementtiin Grid-Row="numero" niin elementti päätyy siihen osioon-->
             <RowDefinition Height="140"></RowDefinition>
@@ -125,7 +125,7 @@
 
         </StackPanel>
 
-        <Grid Grid.Row="2" Background="#FF909090">
+        <Grid Grid.Row="2">
             <!-- Stackpanel for showin game buttons -->
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick"></Button>
 

@@ -47,7 +47,7 @@
                     <Label  Content="Password:" Foreground="White" FontWeight="Bold"></Label>
                     <TextBox Name="PasswordTB" Text="" Width="200" TextChanged="PasswordTB_TextChanged"></TextBox>
                 </StackPanel>
-                <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
+                <CheckBox Name="LoginCheck" Content="Create new User" HorizontalAlignment="Center" Foreground="White" IsChecked="{Binding LoginOrSignup, Mode=TwoWay}"></CheckBox>
                 <StackPanel  Style="{StaticResource LoginSP}">
                     <Button Style="{StaticResource LoginToggleButton}" Command="{Binding LoginCommand}"></Button>
                     <TextBlock Text="-or-" FontSize="24" Margin="20,10" Foreground="White" FontWeight="Bold"></TextBlock>
