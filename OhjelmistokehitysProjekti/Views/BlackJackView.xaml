@@ -101,7 +101,7 @@
             <Button Style="{StaticResource QuitButton}" Click="CloseWindowClick" ></Button>
             <StackPanel Style="{StaticResource BetButtonPanel}">
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Up" Command="{Binding BetUpCommand}"></Button>
-                <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0"> </TextBlock>
+                <TextBlock FontSize="24" Text="{Binding CurrentBet}" Margin="5, 30, 5, 0" FontWeight="Bold" Foreground="White"> </TextBlock>
                 <Button Style="{StaticResource BaseGameButton}" Content="Bet Down" Command="{Binding BetDownCommand}"></Button>
                 <Button Style="{StaticResource BaseGameButton}" Content="Play" Command="{Binding PlayCommand}"></Button>
             </StackPanel>
