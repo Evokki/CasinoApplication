@@ -45,4 +45,6 @@ Sprint 3 review
 	-SRS
 
 -SCRUM reflection:
-	-
+	-Hyvin meni
+	-Hommat eteni ajallaan
+	-Tavoitteet saavutettu
